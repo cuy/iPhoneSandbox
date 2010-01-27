@@ -12,7 +12,7 @@
 @implementation iPhoneSandboxAppDelegate
 
 @synthesize window;
-
+@synthesize tabBarController;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -20,8 +20,56 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
     
     // Override point for customization after app launch    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+    
+    // create tab bar controller
+    UITabBarController *aTabBarController = [[UITabBarController alloc] init];
+    [self setTabBarController:aTabBarController];
+    [aTabBarController release];
 
-	[window makeKeyAndVisible];
+    // Create/allocate view controllers for each tab
+    UITableViewController *aMainViewController = [[UITableViewController alloc] init];
+    UITabBarItem *aMainViewItem = [[UITabBarItem alloc] initWithTitle:@"Main" image:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"32-iphone" ofType:@"png"]] tag:0];
+    [aMainViewController setTabBarItem:aMainViewItem];
+    [aMainViewItem release];
+    [aMainViewController setTitle:@"Main"];
+    UINavigationController *aMainNavigationController = [[UINavigationController alloc] initWithRootViewController:aMainViewController];
+    [aMainViewController release];
+    [[aMainNavigationController navigationBar] setBarStyle:UIBarStyleBlack];
+    
+    UITableViewController *anOptionsViewController = [[UITableViewController alloc] init];
+    UITabBarItem *anOptionsViewItem = [[UITabBarItem alloc] initWithTitle:@"Options" image:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"19-gear" ofType:@"png"]] tag:0];
+    [anOptionsViewController setTabBarItem:anOptionsViewItem];
+    [anOptionsViewItem release];
+    [anOptionsViewController setTitle:@"Options"];
+    UINavigationController *anOptionsNavigationController = [[UINavigationController alloc] initWithRootViewController:anOptionsViewController];
+    [anOptionsViewController release];
+    [[anOptionsNavigationController navigationBar] setBarStyle:UIBarStyleBlack];
+    
+    UITableViewController *aStoreViewController = [[UITableViewController alloc] init];
+    UITabBarItem *aStoreViewItem = [[UITabBarItem alloc] initWithTitle:@"Store" image:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"35-shopping-bag" ofType:@"png"]] tag:0];
+    [aStoreViewController setTabBarItem:aStoreViewItem];
+    [aStoreViewItem release];
+    [aStoreViewController setTitle:@"Store"];
+    UINavigationController *aStoreNavigationController = [[UINavigationController alloc] initWithRootViewController:aStoreViewController];
+    [aStoreViewController release];
+    [[aStoreNavigationController navigationBar] setBarStyle:UIBarStyleBlack];
+    
+    // assign and retain view controllers to tab view controller
+    [tabBarController setViewControllers:[NSArray arrayWithObjects:aMainNavigationController, anOptionsNavigationController, aStoreNavigationController, nil] animated:NO];
+    
+    // release view controllers for each tab
+    [aMainNavigationController release];
+    [anOptionsNavigationController release];
+    [aStoreNavigationController release];
+    
+    // set selected index
+    [tabBarController setSelectedIndex:0];
+
+    [window addSubview:[tabBarController view]];
+	
+    [window makeKeyAndVisible];
 }
 
 /**
@@ -134,8 +182,14 @@
     [persistentStoreCoordinator release];
     
 	[window release];
+    [tabBarController release];
 	[super dealloc];
 }
+
+#pragma mark -
+#pragma mark TableView delegates
+
+
 
 
 @end
