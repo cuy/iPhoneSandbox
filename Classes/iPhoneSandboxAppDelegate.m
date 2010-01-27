@@ -30,6 +30,7 @@
 
     // Create/allocate view controllers for each tab
     UITableViewController *aMainViewController = [[UITableViewController alloc] init];
+    [[aMainViewController tableView] setDataSource:self];
     UITabBarItem *aMainViewItem = [[UITabBarItem alloc] initWithTitle:@"Main" image:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"32-iphone" ofType:@"png"]] tag:0];
     [aMainViewController setTabBarItem:aMainViewItem];
     [aMainViewItem release];
@@ -48,6 +49,7 @@
     [[anOptionsNavigationController navigationBar] setBarStyle:UIBarStyleBlack];
     
     UITableViewController *aStoreViewController = [[UITableViewController alloc] init];
+    [[aStoreViewController tableView] setDataSource:self];
     UITabBarItem *aStoreViewItem = [[UITabBarItem alloc] initWithTitle:@"Store" image:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"35-shopping-bag" ofType:@"png"]] tag:0];
     [aStoreViewController setTabBarItem:aStoreViewItem];
     [aStoreViewItem release];
@@ -187,10 +189,69 @@
 }
 
 #pragma mark -
-#pragma mark TableView delegates
+#pragma mark Mini-apps
 
+- (NSArray *)miniApps
+{
+    if (miniApps != nil) {
+        return miniApps;
+    }
+        
+    miniApps = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"mini-apps" ofType:@"plist"]];
+    return miniApps;
+}
 
+#pragma mark -
+#pragma mark TableView delegate
 
+#pragma mark -
+#pragma mark TableView datasource
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // same cells are used for main & store
+    if ([[[[tabBarController viewControllers] objectAtIndex:1] topViewController] tableView] != tableView) {
+        UITableViewCell *appCell = [tableView dequeueReusableCellWithIdentifier:@"MiniAppCell"];
+        if (appCell == nil) {
+            appCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MiniAppCell"] autorelease];
+            [appCell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        }
+        
+        [[appCell textLabel] setText:[[miniApps objectAtIndex:[indexPath row]] objectForKey:@"name"]];
+        [[appCell imageView] setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"1" ofType:@"png"]]];
+        return appCell;
+    }
+    // options uses different cells
+    else {
+        UITableViewCell *optCell = [tableView dequeueReusableCellWithIdentifier:@"OptCell"];
+        if (optCell == nil) {
+            optCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"OptCell"] autorelease];
+        }
+        
+        return optCell;
+        
+    }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.miniApps count];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
 
 @end
 

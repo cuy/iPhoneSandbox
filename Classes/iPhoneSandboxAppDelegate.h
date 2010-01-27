@@ -6,7 +6,7 @@
 //  Copyright Home 2010. All rights reserved.
 //
 
-@interface iPhoneSandboxAppDelegate : NSObject <UIApplicationDelegate> {
+@interface iPhoneSandboxAppDelegate : NSObject <UIApplicationDelegate, UITableViewDelegate, UITableViewDataSource> {
 
     NSManagedObjectModel *managedObjectModel;
     NSManagedObjectContext *managedObjectContext;	    
@@ -15,6 +15,8 @@
     UIWindow *window;
     
     UITabBarController *tabBarController;
+    
+    NSArray *miniApps;
 }
 
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
@@ -24,6 +26,8 @@
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
 @property (nonatomic, retain) UITabBarController *tabBarController;
+
+@property (nonatomic, retain, readonly) NSArray *miniApps;
 
 - (NSString *)applicationDocumentsDirectory;
 
