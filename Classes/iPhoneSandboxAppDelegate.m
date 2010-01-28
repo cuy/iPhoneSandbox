@@ -7,7 +7,12 @@
 //
 
 #import "iPhoneSandboxAppDelegate.h"
+#import "GunboundMainMenuViewController.h"
 
+#define kMiniAppKeyName @"name"
+#define kMiniAppKeyImage @"imageFilename"
+#define kMiniAppCell @"MiniAppCell"
+#define kOptCell @"OptCell"
 
 @implementation iPhoneSandboxAppDelegate
 
@@ -31,6 +36,7 @@
     // Create/allocate view controllers for each tab
     UITableViewController *aMainViewController = [[UITableViewController alloc] init];
     [[aMainViewController tableView] setDataSource:self];
+    [[aMainViewController tableView] setDelegate:self];
     UITabBarItem *aMainViewItem = [[UITabBarItem alloc] initWithTitle:@"Main" image:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"32-iphone" ofType:@"png"]] tag:0];
     [aMainViewController setTabBarItem:aMainViewItem];
     [aMainViewItem release];
@@ -40,6 +46,7 @@
     [[aMainNavigationController navigationBar] setBarStyle:UIBarStyleBlack];
     
     UITableViewController *anOptionsViewController = [[UITableViewController alloc] init];
+    [[anOptionsViewController tableView] setDataSource:self];
     UITabBarItem *anOptionsViewItem = [[UITabBarItem alloc] initWithTitle:@"Options" image:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"19-gear" ofType:@"png"]] tag:0];
     [anOptionsViewController setTabBarItem:anOptionsViewItem];
     [anOptionsViewItem release];
@@ -204,28 +211,41 @@
 #pragma mark -
 #pragma mark TableView delegate
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    if ([(UITableViewController *)[[[tabBarController viewControllers] objectAtIndex:0] topViewController] tableView] == tableView) {
+        GunboundMainMenuViewController *gunboundMainMenuViewController = [[GunboundMainMenuViewController alloc] initWithNibName:@"GunboundMainMenu" bundle:nil];
+        [gunboundMainMenuViewController setHidesBottomBarWhenPushed:YES];
+        [(UINavigationController *)[tabBarController selectedViewController] pushViewController:gunboundMainMenuViewController animated:NO];
+        [gunboundMainMenuViewController release];
+    }
+}
+
 #pragma mark -
 #pragma mark TableView datasource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // same cells are used for main & store
-    if ([[[[tabBarController viewControllers] objectAtIndex:1] topViewController] tableView] != tableView) {
-        UITableViewCell *appCell = [tableView dequeueReusableCellWithIdentifier:@"MiniAppCell"];
+    // object at postion 1 is the options view
+    if ([(UITableViewController *)[[[tabBarController viewControllers] objectAtIndex:1] topViewController] tableView] != tableView) {
+        UITableViewCell *appCell = [tableView dequeueReusableCellWithIdentifier:kMiniAppCell];
         if (appCell == nil) {
-            appCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MiniAppCell"] autorelease];
+            appCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kMiniAppCell] autorelease];
             [appCell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+            [appCell setSelectionStyle:UITableViewCellSelectionStyleGray];
         }
         
-        [[appCell textLabel] setText:[[miniApps objectAtIndex:[indexPath row]] objectForKey:@"name"]];
-        [[appCell imageView] setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"1" ofType:@"png"]]];
+        [[appCell textLabel] setText:[[self.miniApps objectAtIndex:[indexPath row]] objectForKey:kMiniAppKeyName]];
+        NSArray *imageComponents = [[[self.miniApps objectAtIndex:[indexPath row]] objectForKey:kMiniAppKeyImage] componentsSeparatedByString:@"."];
+        [[appCell imageView] setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[imageComponents objectAtIndex:0] ofType:[imageComponents objectAtIndex:1]]]];
         return appCell;
     }
     // options uses different cells
     else {
-        UITableViewCell *optCell = [tableView dequeueReusableCellWithIdentifier:@"OptCell"];
+        UITableViewCell *optCell = [tableView dequeueReusableCellWithIdentifier:kOptCell];
         if (optCell == nil) {
-            optCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"OptCell"] autorelease];
+            optCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kOptCell] autorelease];
         }
         
         return optCell;
@@ -235,22 +255,42 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.miniApps count];
+    if ([(UITableViewController *)[[[tabBarController viewControllers] objectAtIndex:1] topViewController] tableView] != tableView) {
+        return [self.miniApps count];        
+    }
+    else {
+        return 0;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    if ([(UITableViewController *)[[[tabBarController viewControllers] objectAtIndex:1] topViewController] tableView] != tableView) {
+        return 1;        
+    }
+    else {
+        return 1;
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return NO;
+    if ([(UITableViewController *)[[[tabBarController viewControllers] objectAtIndex:1] topViewController] tableView] != tableView) {
+        return NO;
+    }
+    else {
+        return NO;
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return NO;
+    if ([(UITableViewController *)[[[tabBarController viewControllers] objectAtIndex:1] topViewController] tableView] != tableView) {
+        return NO;
+    }
+    else {
+        return NO;
+    }
 }
 
 @end

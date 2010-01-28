@@ -128,6 +128,8 @@
 		561996D9111020B10018BC20 /* mini-apps.plist in Resources */ = {isa = PBXBuildFile; fileRef = 561996D8111020B10018BC20 /* mini-apps.plist */; };
 		56199798111033DD0018BC20 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 56199796111033DD0018BC20 /* 1.png */; };
 		56199799111033DD0018BC20 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 56199797111033DD0018BC20 /* 2.png */; };
+		56BA2F8C111132AD00CB4BDB /* GunboundMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA2F8B111132AD00CB4BDB /* GunboundMainMenuViewController.m */; };
+		56BA2F9A1111355700CB4BDB /* GunboundMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56BA2F991111355700CB4BDB /* GunboundMainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -255,6 +257,9 @@
 		561996D8111020B10018BC20 /* mini-apps.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "mini-apps.plist"; sourceTree = "<group>"; };
 		56199796111033DD0018BC20 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		56199797111033DD0018BC20 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		56BA2F8A111132AD00CB4BDB /* GunboundMainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GunboundMainMenuViewController.h; sourceTree = "<group>"; };
+		56BA2F8B111132AD00CB4BDB /* GunboundMainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GunboundMainMenuViewController.m; sourceTree = "<group>"; };
+		56BA2F991111355700CB4BDB /* GunboundMainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GunboundMainMenu.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iPhoneSandbox-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iPhoneSandbox-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -276,6 +281,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				56BA2F891111328100CB4BDB /* Gunbound */,
 				1D3623240D0F684500981E51 /* iPhoneSandboxAppDelegate.h */,
 				1D3623250D0F684500981E51 /* iPhoneSandboxAppDelegate.m */,
 			);
@@ -320,6 +326,7 @@
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* iPhoneSandbox-Info.plist */,
 				561996D8111020B10018BC20 /* mini-apps.plist */,
+				56BA2F991111355700CB4BDB /* GunboundMainMenu.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -459,6 +466,15 @@
 				56199797111033DD0018BC20 /* 2.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		56BA2F891111328100CB4BDB /* Gunbound */ = {
+			isa = PBXGroup;
+			children = (
+				56BA2F8A111132AD00CB4BDB /* GunboundMainMenuViewController.h */,
+				56BA2F8B111132AD00CB4BDB /* GunboundMainMenuViewController.m */,
+			);
+			name = Gunbound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -617,6 +633,7 @@
 				561996D9111020B10018BC20 /* mini-apps.plist in Resources */,
 				56199798111033DD0018BC20 /* 1.png in Resources */,
 				56199799111033DD0018BC20 /* 2.png in Resources */,
+				56BA2F9A1111355700CB4BDB /* GunboundMainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +647,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* iPhoneSandboxAppDelegate.m in Sources */,
 				28C3AD8A0F43EF2300507BA6 /* iPhoneSandbox.xcdatamodel in Sources */,
+				56BA2F8C111132AD00CB4BDB /* GunboundMainMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
