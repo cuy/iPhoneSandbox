@@ -7,6 +7,7 @@
 //
 
 #import "GunboundMainMenuViewController.h"
+#import "GunBoundNewCharacterViewController.h"
 
 
 @implementation GunboundMainMenuViewController
@@ -80,6 +81,19 @@
 - (IBAction)exit:(id)sender
 {
     [[self navigationController] popViewControllerAnimated:NO];
+}
+
+- (IBAction)newGameButton:(id)sender
+{
+	// if new user then create character
+	
+	GunBoundNewCharacterViewController *viewController = [[GunBoundNewCharacterViewController alloc] initWithNibName:@"GunBoundNewCharacterViewController" bundle:[NSBundle mainBundle]];
+	[self.navigationController pushViewController:viewController animated:YES];
+	//[self.view addSubview:viewController.view];
+	[viewController release];
+	
+	// else start game
+	// to be filled soon
 }
 
 

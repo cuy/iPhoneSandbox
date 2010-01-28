@@ -14,5 +14,6 @@
 }
 
 - (IBAction)exit:(id)sender;
+- (IBAction)newGameButton:(id)sender;
 
 @end
