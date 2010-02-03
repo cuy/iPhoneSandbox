@@ -8,6 +8,7 @@
 
 #import "GunboundMainMenuViewController.h"
 #import "GunBoundNewCharacterViewController.h"
+#import "GunBoundGamePlayViewController.h"
 
 
 @implementation GunboundMainMenuViewController
@@ -87,10 +88,19 @@
 {
 	// if new user then create character
 	
-	GunBoundNewCharacterViewController *viewController = [[GunBoundNewCharacterViewController alloc] initWithNibName:@"GunBoundNewCharacterViewController" bundle:[NSBundle mainBundle]];
-	[self.navigationController pushViewController:viewController animated:YES];
+	//GunBoundNewCharacterViewController *viewController = [[GunBoundNewCharacterViewController alloc] initWithNibName:@"GunBoundNewCharacterViewController" bundle:[NSBundle mainBundle]];
+	GunBoundGamePlayViewController *viewController = [[GunBoundGamePlayViewController alloc] initWithNibName:@"GunBoundGamePlayViewController" bundle:[NSBundle mainBundle]];
+	UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]; // this is a leak!
+	window.backgroundColor = [UIColor redColor]; // just for debugging
+	[UIView setAnimationsEnabled:NO];
+	[window addSubview:viewController.view];
+	[[UIDevice currentDevice] setOrientation:UIInterfaceOrientationLandscapeRight];
+	[window makeKeyAndVisible];
+	//[self.navigationController pushViewController:viewController animated:YES];
 	//[self.view addSubview:viewController.view];
-	[viewController release];
+	//[[UIDevice currentDevice] setOrientation:UIInterfaceOrientationLandscapeRight];
+
+	//[viewController release];
 	
 	// else start game
 	// to be filled soon
