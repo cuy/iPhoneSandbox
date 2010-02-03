@@ -137,6 +137,17 @@
 		56199799111033DD0018BC20 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 56199797111033DD0018BC20 /* 2.png */; };
 		56BA2F8C111132AD00CB4BDB /* GunboundMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA2F8B111132AD00CB4BDB /* GunboundMainMenuViewController.m */; };
 		56BA2F9A1111355700CB4BDB /* GunboundMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56BA2F991111355700CB4BDB /* GunboundMainMenu.xib */; };
+		6B358D3011198646008B98B8 /* angleArc.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B358D2811198646008B98B8 /* angleArc.png */; };
+		6B358D3111198646008B98B8 /* angleArcBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B358D2911198646008B98B8 /* angleArcBtn.png */; };
+		6B358D3211198646008B98B8 /* btnExit.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B358D2A11198646008B98B8 /* btnExit.png */; };
+		6B358D3311198646008B98B8 /* btnFire.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B358D2B11198646008B98B8 /* btnFire.png */; };
+		6B358D3411198646008B98B8 /* btnFirePressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B358D2C11198646008B98B8 /* btnFirePressed.png */; };
+		6B358D3511198646008B98B8 /* btnMissileSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B358D2D11198646008B98B8 /* btnMissileSelect.png */; };
+		6B358D3611198646008B98B8 /* controllerBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B358D2E11198646008B98B8 /* controllerBg.png */; };
+		6B358D3711198646008B98B8 /* powerGaugeSample.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B358D2F11198646008B98B8 /* powerGaugeSample.png */; };
+		6B358D4711198F31008B98B8 /* btnDownPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B358D4511198F31008B98B8 /* btnDownPressed.png */; };
+		6B358D4811198F31008B98B8 /* btnUpPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B358D4611198F31008B98B8 /* btnUpPressed.png */; };
+		6B358D4E1119917B008B98B8 /* btnMissileSelectPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B358D4D1119917B008B98B8 /* btnMissileSelectPressed.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -276,6 +287,17 @@
 		56BA2F8A111132AD00CB4BDB /* GunboundMainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GunboundMainMenuViewController.h; sourceTree = "<group>"; };
 		56BA2F8B111132AD00CB4BDB /* GunboundMainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GunboundMainMenuViewController.m; sourceTree = "<group>"; };
 		56BA2F991111355700CB4BDB /* GunboundMainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GunboundMainMenu.xib; sourceTree = "<group>"; };
+		6B358D2811198646008B98B8 /* angleArc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = angleArc.png; sourceTree = "<group>"; };
+		6B358D2911198646008B98B8 /* angleArcBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = angleArcBtn.png; sourceTree = "<group>"; };
+		6B358D2A11198646008B98B8 /* btnExit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnExit.png; sourceTree = "<group>"; };
+		6B358D2B11198646008B98B8 /* btnFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnFire.png; sourceTree = "<group>"; };
+		6B358D2C11198646008B98B8 /* btnFirePressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnFirePressed.png; sourceTree = "<group>"; };
+		6B358D2D11198646008B98B8 /* btnMissileSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnMissileSelect.png; sourceTree = "<group>"; };
+		6B358D2E11198646008B98B8 /* controllerBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controllerBg.png; sourceTree = "<group>"; };
+		6B358D2F11198646008B98B8 /* powerGaugeSample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = powerGaugeSample.png; sourceTree = "<group>"; };
+		6B358D4511198F31008B98B8 /* btnDownPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btnDownPressed.png; path = images/btnDownPressed.png; sourceTree = SOURCE_ROOT; };
+		6B358D4611198F31008B98B8 /* btnUpPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btnUpPressed.png; path = images/btnUpPressed.png; sourceTree = SOURCE_ROOT; };
+		6B358D4D1119917B008B98B8 /* btnMissileSelectPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnMissileSelectPressed.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iPhoneSandbox-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iPhoneSandbox-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -363,6 +385,8 @@
 		561995A11110115F0018BC20 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				6B358D4511198F31008B98B8 /* btnDownPressed.png */,
+				6B358D4611198F31008B98B8 /* btnUpPressed.png */,
 				561995A21110115F0018BC20 /* 01-refresh.png */,
 				561995A31110115F0018BC20 /* 02-redo.png */,
 				561995A41110115F0018BC20 /* 03-loopback.png */,
@@ -480,6 +504,15 @@
 		56199795111033DD0018BC20 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6B358D4D1119917B008B98B8 /* btnMissileSelectPressed.png */,
+				6B358D2811198646008B98B8 /* angleArc.png */,
+				6B358D2911198646008B98B8 /* angleArcBtn.png */,
+				6B358D2A11198646008B98B8 /* btnExit.png */,
+				6B358D2B11198646008B98B8 /* btnFire.png */,
+				6B358D2C11198646008B98B8 /* btnFirePressed.png */,
+				6B358D2D11198646008B98B8 /* btnMissileSelect.png */,
+				6B358D2E11198646008B98B8 /* controllerBg.png */,
+				6B358D2F11198646008B98B8 /* powerGaugeSample.png */,
 				11BD237711194D7C00066A18 /* bg01.png */,
 				11BD237811194D7C00066A18 /* btnDown.png */,
 				11BD237911194D7C00066A18 /* btnUp.png */,
@@ -664,6 +697,17 @@
 				11BD237A11194D7C00066A18 /* bg01.png in Resources */,
 				11BD237B11194D7C00066A18 /* btnDown.png in Resources */,
 				11BD237C11194D7C00066A18 /* btnUp.png in Resources */,
+				6B358D3011198646008B98B8 /* angleArc.png in Resources */,
+				6B358D3111198646008B98B8 /* angleArcBtn.png in Resources */,
+				6B358D3211198646008B98B8 /* btnExit.png in Resources */,
+				6B358D3311198646008B98B8 /* btnFire.png in Resources */,
+				6B358D3411198646008B98B8 /* btnFirePressed.png in Resources */,
+				6B358D3511198646008B98B8 /* btnMissileSelect.png in Resources */,
+				6B358D3611198646008B98B8 /* controllerBg.png in Resources */,
+				6B358D3711198646008B98B8 /* powerGaugeSample.png in Resources */,
+				6B358D4711198F31008B98B8 /* btnDownPressed.png in Resources */,
+				6B358D4811198F31008B98B8 /* btnUpPressed.png in Resources */,
+				6B358D4E1119917B008B98B8 /* btnMissileSelectPressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
