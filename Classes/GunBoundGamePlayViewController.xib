@@ -58,11 +58,11 @@
 					<object class="IBUIImageView" id="380507758">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{120, 157}, {272, 128}}</string>
+						<string key="NSFrame">{{115, 168}, {272, 128}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-						<float key="IBUIAlpha">7.676057e-01</float>
+						<float key="IBUIAlpha">2.746479e-01</float>
 						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -73,10 +73,11 @@
 					<object class="IBUIButton" id="263346707">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{220, 167}, {36, 38}}</string>
+						<string key="NSFrame">{{215, 178}, {36, 38}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<float key="IBUIAlpha">5.422535e-01</float>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<object class="NSFont" key="IBUIFont" id="690704910">
@@ -108,10 +109,11 @@
 					<object class="IBUIButton" id="874037703">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{224, 212}, {29, 31}}</string>
+						<string key="NSFrame">{{219, 223}, {29, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<float key="IBUIAlpha">5.000000e-01</float>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="690704910"/>
@@ -147,10 +149,11 @@
 					<object class="IBUIButton" id="390456773">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{148, 182}, {44, 46}}</string>
+						<string key="NSFrame">{{143, 193}, {44, 46}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<float key="IBUIAlpha">5.000000e-01</float>
 						<int key="IBUIContentMode">4</int>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
@@ -173,7 +176,7 @@
 					<object class="IBUIImageView" id="123070090">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{281, 174}, {102, 102}}</string>
+						<string key="NSFrame">{{276, 185}, {102, 102}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -187,10 +190,11 @@
 					<object class="IBUIButton" id="947022888">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{301, 195}, {64, 66}}</string>
+						<string key="NSFrame">{{296, 206}, {64, 66}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<float key="IBUIAlpha">4.014085e-01</float>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="690704910"/>
@@ -212,10 +216,11 @@
 					<object class="IBUIButton" id="666044947">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{131, 244}, {33, 34}}</string>
+						<string key="NSFrame">{{126, 255}, {33, 34}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<float key="IBUIAlpha">5.000000e-01</float>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="690704910"/>
@@ -231,7 +236,7 @@
 						</object>
 					</object>
 				</object>
-				<string key="NSFrameSize">{480, 300}</string>
+				<string key="NSFrameSize">{480, 299}</string>
 				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="408350530"/>
 			</object>
@@ -324,15 +329,15 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="874037703"/>
 							<reference ref="394796178"/>
+							<reference ref="536715513"/>
 							<reference ref="380507758"/>
 							<reference ref="263346707"/>
-							<reference ref="536715513"/>
+							<reference ref="874037703"/>
 							<reference ref="390456773"/>
 							<reference ref="123070090"/>
-							<reference ref="947022888"/>
 							<reference ref="666044947"/>
+							<reference ref="947022888"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -386,15 +391,15 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
+						<int key="objectID">32</int>
+						<reference key="object" ref="666044947"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
+					<object class="IBObjectRecord">
 						<int key="objectID">31</int>
 						<reference key="object" ref="947022888"/>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Fire Button</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">32</int>
-						<reference key="object" ref="666044947"/>
-						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
 			</object>
@@ -420,7 +425,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>GunBoundGamePlayViewController</string>
 					<string>UIResponder</string>
-					<string>{{255, 375}, {480, 300}}</string>
+					<string>{{424, 383}, {480, 299}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSMutableArray">
 						<bool key="EncodedWithXMLCoder">YES</bool>
