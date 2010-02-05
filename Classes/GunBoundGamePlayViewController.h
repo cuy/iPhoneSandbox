@@ -13,13 +13,19 @@
 	
 	IBOutlet UIImageView *playerOneAvatar;
 	NSTimer *timer;
+	
+	// Player Variables
+	CGPoint playerOnePos;
 }
 
 @property(retain, nonatomic) IBOutlet UIImageView *playerOneAvatar;
 @property(retain, nonatomic) NSTimer *timer;
+//@property(retain, nonatomic) CGPoint *playerOnePos;
 
 - (IBAction)upButton:(id)sender;
 - (IBAction)downButton:(id)sender;
 - (IBAction)stopTimerButton:(id)sender;
+- (IBAction)fireButton:(id)sender;
+- (IBAction)exitGame:(id)sender;
 
 @end

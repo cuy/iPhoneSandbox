@@ -15,6 +15,8 @@
 
 @synthesize playerOneAvatar;
 @synthesize timer;
+//@synthesize playerOnePos;
+
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -46,6 +48,18 @@
 	timer = nil;
 }
 
+- (IBAction)fireButton:(id)sender
+{
+	CGPoint pos = playerOnePos;
+	
+	NSLog(@"cgpoint pos %@",NSStringFromCGPoint(pos));
+}
+
+- (IBAction)exitGame:(id)sender
+{
+	
+}
+
 #pragma mark avatar movements
 
 - (void) moveAvatarUp:(id)sender 
@@ -59,8 +73,9 @@
 	CGPoint pos = playerOneAvatar.center;
 	
 	pos.y -= 3.0f;
-	NSLog(@"current pos y: %d x:%d",pos.y,pos.x);
+	NSLog(@"current pos y: %f x:%f",pos.y,pos.x);
 	playerOneAvatar.center = pos;
+	playerOnePos = pos;
 	
 	[UIView commitAnimations];	
 }
@@ -76,17 +91,37 @@
 	CGPoint pos = playerOneAvatar.center;
 	
 	pos.y += 3.0f;
-	NSLog(@"current pos y: %d x:%d",pos.y,pos.x);
+	NSLog(@"current pos y: %f x:%f",pos.y,pos.x);
 	playerOneAvatar.center = pos;
-	
+	playerOnePos = pos;
+
 	[UIView commitAnimations];	
 }
+
+- (void) randomLocationAvatar
+{
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:1.0];
+	
+	
+	CGPoint pos = playerOneAvatar.center;
+	
+	pos.y = (float)(arc4random()%(250 - 50 + 1))+ 50;
+	pos.x = 60.0f;
+	NSLog(@"starting pos y: %f x:%f",pos.y,pos.x);
+	playerOneAvatar.center = pos;
+	playerOnePos = pos;	
+	
+	[UIView commitAnimations];
+
+}
+
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bg01.png"]];
-
+	[self randomLocationAvatar];
 }
 
 
