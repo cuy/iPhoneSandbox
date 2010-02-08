@@ -72,7 +72,10 @@
 	
 	CGPoint pos = playerOneAvatar.center;
 	
-	pos.y -= 3.0f;
+	if (pos.y - 3.0f > 100.0f) {
+		pos.y -= 3.0f;
+	}
+	
 	NSLog(@"current pos y: %f x:%f",pos.y,pos.x);
 	playerOneAvatar.center = pos;
 	playerOnePos = pos;
@@ -90,7 +93,9 @@
 	
 	CGPoint pos = playerOneAvatar.center;
 	
-	pos.y += 3.0f;
+	if (pos.y + 3.0f < 260.0f) {
+		pos.y += 3.0f;
+	}
 	NSLog(@"current pos y: %f x:%f",pos.y,pos.x);
 	playerOneAvatar.center = pos;
 	playerOnePos = pos;
