@@ -8,19 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+@class Mount;
 
 @interface GunBoundGamePlayViewController : UIViewController {
 	
-	IBOutlet UIImageView *playerOneAvatar;
+	// Avatar Variables
+	Mount *mountOneView;
+	
 	NSTimer *timer;
 	
 	// Player Variables
 	CGPoint playerOnePos;
 }
 
-@property(retain, nonatomic) IBOutlet UIImageView *playerOneAvatar;
+@property(nonatomic, readonly, assign) Mount *mountOneView;
+
 @property(retain, nonatomic) NSTimer *timer;
-//@property(retain, nonatomic) CGPoint *playerOnePos;
 
 - (IBAction)upButton:(id)sender;
 - (IBAction)downButton:(id)sender;

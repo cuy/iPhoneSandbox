@@ -1,0 +1,16 @@
+//
+//  Mount.h
+//  iPhoneSandbox
+//
+//  Created by Royce Dy on 2/10/10.
+//  Copyright 2010 G2iX. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+
+@interface Mount : UIView {
+
+}
+
+@end

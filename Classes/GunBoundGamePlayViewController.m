@@ -7,15 +7,17 @@
 //
 
 #import "GunBoundGamePlayViewController.h"
+#import "Mount.h"
+
 
 #define degreesToRadian(x) (M_PI * x / 180.0)
 
 
 @implementation GunBoundGamePlayViewController
 
-@synthesize playerOneAvatar;
+@synthesize mountOneView;
 @synthesize timer;
-//@synthesize playerOnePos;
+
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -53,6 +55,7 @@
 	CGPoint pos = playerOnePos;
 	
 	NSLog(@"cgpoint pos %@",NSStringFromCGPoint(pos));
+
 }
 
 - (IBAction)exitGame:(id)sender
@@ -67,17 +70,15 @@
 	NSLog(@"up");
 	
 	[UIView beginAnimations:nil context:NULL];
+		
+	CGPoint pos = mountOneView.center;
 	
-	[UIView setAnimationDuration:1.0];
-	
-	CGPoint pos = playerOneAvatar.center;
-	
-	if (pos.y - 3.0f > 100.0f) {
-		pos.y -= 3.0f;
+	if (pos.y - 5.0f > 100.0f) {
+		pos.y -= 5.0f;
 	}
 	
 	NSLog(@"current pos y: %f x:%f",pos.y,pos.x);
-	playerOneAvatar.center = pos;
+	mountOneView.center = pos;
 	playerOnePos = pos;
 	
 	[UIView commitAnimations];	
@@ -88,16 +89,14 @@
 	NSLog(@"down");
 	
 	[UIView beginAnimations:nil context:NULL];
+		
+	CGPoint pos = mountOneView.center;
 	
-	[UIView setAnimationDuration:1.0];
-	
-	CGPoint pos = playerOneAvatar.center;
-	
-	if (pos.y + 3.0f < 260.0f) {
-		pos.y += 3.0f;
+	if (pos.y + 5.0f < 260.0f) {
+		pos.y += 5.0f;
 	}
 	NSLog(@"current pos y: %f x:%f",pos.y,pos.x);
-	playerOneAvatar.center = pos;
+	mountOneView.center = pos;
 	playerOnePos = pos;
 
 	[UIView commitAnimations];	
@@ -105,16 +104,14 @@
 
 - (void) randomLocationAvatar
 {
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:1.0];
+	[UIView beginAnimations:nil context:NULL];	
 	
-	
-	CGPoint pos = playerOneAvatar.center;
+	CGPoint pos = mountOneView.center;
 	
 	pos.y = (float)(arc4random()%(250 - 50 + 1))+ 50;
 	pos.x = 60.0f;
 	NSLog(@"starting pos y: %f x:%f",pos.y,pos.x);
-	playerOneAvatar.center = pos;
+	mountOneView.center = pos;
 	playerOnePos = pos;	
 	
 	[UIView commitAnimations];
@@ -126,6 +123,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bg01.png"]];
+	
+	CGFloat size = 80.0f;
+	CGRect rect = CGRectMake((320.0f - size) / 2.0f , size + 10.0f, size, size);
+	mountOneView = [[[Mount alloc] initWithFrame:rect] autorelease];
+	mountOneView.backgroundColor = [UIColor redColor];
+	
+	//self.backgroundColor = [UIColor blackColor];
+	
+	[self.view addSubview:mountOneView];	
+	
 	[self randomLocationAvatar];
 }
 
