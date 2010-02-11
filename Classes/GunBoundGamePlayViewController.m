@@ -8,7 +8,7 @@
 
 #import "GunBoundGamePlayViewController.h"
 #import "Mount.h"
-
+#import "Missile.h"
 
 #define degreesToRadian(x) (M_PI * x / 180.0)
 
@@ -16,6 +16,7 @@
 @implementation GunBoundGamePlayViewController
 
 @synthesize mountOneView;
+@synthesize missileOneView;
 @synthesize timer;
 
 
@@ -52,9 +53,8 @@
 
 - (IBAction)fireButton:(id)sender
 {
-	CGPoint pos = playerOnePos;
 	
-	NSLog(@"cgpoint pos %@",NSStringFromCGPoint(pos));
+	[self fireMissile];
 
 }
 
@@ -73,12 +73,14 @@
 		
 	CGPoint pos = mountOneView.center;
 	
-	if (pos.y - 5.0f > 100.0f) {
+	if (pos.y - 5.0f > 60.0f) {
 		pos.y -= 5.0f;
 	}
 	
 	NSLog(@"current pos y: %f x:%f",pos.y,pos.x);
 	mountOneView.center = pos;
+	missileOneView.center = pos;
+
 	playerOnePos = pos;
 	
 	[UIView commitAnimations];	
@@ -97,9 +99,44 @@
 	}
 	NSLog(@"current pos y: %f x:%f",pos.y,pos.x);
 	mountOneView.center = pos;
+	missileOneView.center = pos;
+
 	playerOnePos = pos;
 
 	[UIView commitAnimations];	
+}
+
+- (void) fireMissile
+{
+	
+	missileOneView.hidden = NO;
+	[UIView beginAnimations:@"fireMissile" context:NULL];	
+	CGPoint posMissile = missileOneView.center;
+	//posMissile = playerOnePos;
+	posMissile.x = 400.0f;
+	missileOneView.center = posMissile;
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDidStopSelector:@selector(removeMissile:finished:context:)];
+	[UIView commitAnimations];
+
+	NSLog(@"missile pos y: %f x:%f",missileOneView.center.y,missileOneView.center.x);
+		
+}
+
+-(void)removeMissile:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
+{
+	NSLog(@"remove missle");
+	//[UIView beginAnimations:@"removeWithEffect" context:nil];
+	//[UIView setAnimationDuration:5.0f];
+	//Change frame parameters, you have to adjust
+	//missileOneView.frame = CGRectMake(0,0,320,480);
+	//missileOneView.alpha = 0.0f;
+	//CGPoint posMissile = missileOneView.center;
+	//posMissile = playerOnePos;
+	//posMissile.x = 60.0f;
+	//missileOneView.center = posMissile;
+	//[UIView commitAnimations];
+	//[missileOneView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:5.0f];
 }
 
 - (void) randomLocationAvatar
@@ -112,6 +149,7 @@
 	pos.x = 60.0f;
 	NSLog(@"starting pos y: %f x:%f",pos.y,pos.x);
 	mountOneView.center = pos;
+	missileOneView.center = pos;
 	playerOnePos = pos;	
 	
 	[UIView commitAnimations];
@@ -124,13 +162,21 @@
     [super viewDidLoad];
 	self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bg01.png"]];
 	
-	CGFloat size = 80.0f;
+	// add missile
+	CGFloat size = 30.0f;
 	CGRect rect = CGRectMake((320.0f - size) / 2.0f , size + 10.0f, size, size);
+	missileOneView = [[Missile alloc] initWithFrame:rect];
+	missileOneView.backgroundColor = [UIColor blackColor];
+	missileOneView.center = playerOnePos;
+	missileOneView.hidden =YES;
+	[self.view addSubview:missileOneView];
+	
+	// add mount
+	size = 80.0f;
+	rect = CGRectMake((320.0f - size) / 2.0f , size + 10.0f, size, size);
 	mountOneView = [[[Mount alloc] initWithFrame:rect] autorelease];
 	mountOneView.backgroundColor = [UIColor redColor];
-	
-	//self.backgroundColor = [UIColor blackColor];
-	
+		
 	[self.view addSubview:mountOneView];	
 	
 	[self randomLocationAvatar];

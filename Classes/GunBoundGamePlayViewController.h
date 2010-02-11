@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class Mount;
+@class Missile;
 
 @interface GunBoundGamePlayViewController : UIViewController {
 	
 	// Avatar Variables
 	Mount *mountOneView;
+	Missile *missileOneView;
 	
 	NSTimer *timer;
 	
@@ -22,6 +24,8 @@
 }
 
 @property(nonatomic, readonly, assign) Mount *mountOneView;
+@property(nonatomic, readonly, assign) Missile *missileOneView;
+
 
 @property(retain, nonatomic) NSTimer *timer;
 
