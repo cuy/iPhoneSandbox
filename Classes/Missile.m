@@ -12,6 +12,7 @@
 
 @implementation Missile
 
+/*
 - (id<CAAction>)actionForLayer:(CALayer *)layer forKey:(NSString *)key {
 	id<CAAction> animation = nil;
 	if([key isEqualToString:@"position"]) {
@@ -22,5 +23,6 @@
 	}
 	return animation;
 }
+*/
 
 @end

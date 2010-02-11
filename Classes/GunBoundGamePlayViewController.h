@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+
 
 @class Mount;
 @class Missile;
@@ -19,8 +21,6 @@
 	
 	NSTimer *timer;
 	
-	// Player Variables
-	CGPoint playerOnePos;
 }
 
 @property(nonatomic, readonly, assign) Mount *mountOneView;

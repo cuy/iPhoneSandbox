@@ -53,9 +53,8 @@
 
 - (IBAction)fireButton:(id)sender
 {
-	
+	missileOneView.hidden = NO;
 	[self fireMissile];
-
 }
 
 - (IBAction)exitGame:(id)sender
@@ -69,74 +68,64 @@
 {
 	NSLog(@"up");
 	
-	[UIView beginAnimations:nil context:NULL];
-		
+	CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    [animation setDelegate:self];
+	[animation setValue:@"moveAvatarUp" forKey:@"name"];
+	[animation setFromValue:[NSValue valueWithCGPoint:mountOneView.center]];
+	
 	CGPoint pos = mountOneView.center;
 	
 	if (pos.y - 5.0f > 60.0f) {
 		pos.y -= 5.0f;
-	}
+	}	
 	
-	NSLog(@"current pos y: %f x:%f",pos.y,pos.x);
 	mountOneView.center = pos;
-	missileOneView.center = pos;
-
-	playerOnePos = pos;
+	[animation setToValue:[NSValue valueWithCGPoint:pos]];
+    [animation setDuration:0.5f];
 	
-	[UIView commitAnimations];	
+    [[mountOneView layer] addAnimation:animation forKey:@"moveAvatarUp"];
 }
 
 - (void) moveAvatarDown:(id)sender 
 {
 	NSLog(@"down");
 	
-	[UIView beginAnimations:nil context:NULL];
-		
+	CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    [animation setDelegate:self];
+	[animation setValue:@"moveAvatarDown" forKey:@"name"];
+	[animation setFromValue:[NSValue valueWithCGPoint:mountOneView.center]];
+	
 	CGPoint pos = mountOneView.center;
 	
 	if (pos.y + 5.0f < 260.0f) {
 		pos.y += 5.0f;
 	}
-	NSLog(@"current pos y: %f x:%f",pos.y,pos.x);
+	
 	mountOneView.center = pos;
-	missileOneView.center = pos;
-
-	playerOnePos = pos;
-
-	[UIView commitAnimations];	
+	[animation setToValue:[NSValue valueWithCGPoint:pos]];
+    [animation setDuration:0.5f];
+	
+    [[mountOneView layer] addAnimation:animation forKey:@"moveAvatarDown"];
 }
 
 - (void) fireMissile
 {
-	
-	missileOneView.hidden = NO;
-	[UIView beginAnimations:@"fireMissile" context:NULL];	
-	CGPoint posMissile = missileOneView.center;
-	//posMissile = playerOnePos;
-	posMissile.x = 400.0f;
-	missileOneView.center = posMissile;
-	[UIView setAnimationDelegate:self];
-	[UIView setAnimationDidStopSelector:@selector(removeMissile:finished:context:)];
-	[UIView commitAnimations];
+		
+	CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    [animation setDelegate:self];
+	[animation setValue:@"fireMissile" forKey:@"name"];
+	[animation setFromValue:[NSValue valueWithCGPoint:mountOneView.center]];
 
+	CGPoint pos = mountOneView.center;
+	pos.x = 400.0f;
+	
+	[animation setToValue:[NSValue valueWithCGPoint:pos]];
+    [animation setDuration:1.5f];
+	
+    [[missileOneView layer] addAnimation:animation forKey:@"fireMissile"];
+	
 	NSLog(@"missile pos y: %f x:%f",missileOneView.center.y,missileOneView.center.x);
 		
-}
-
--(void)removeMissile:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
-{
-	NSLog(@"remove missle");
-	//[UIView beginAnimations:@"removeWithEffect" context:nil];
-	//[UIView setAnimationDuration:5.0f];
-	//Change frame parameters, you have to adjust
-	//missileOneView.frame = CGRectMake(0,0,320,480);
-	//missileOneView.alpha = 0.0f;
-	//CGPoint posMissile = missileOneView.center;
-	//posMissile = playerOnePos;
-	//posMissile.x = 60.0f;
-	//missileOneView.center = posMissile;
-	//[UIView commitAnimations];
-	//[missileOneView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:5.0f];
 }
 
 - (void) randomLocationAvatar
@@ -149,11 +138,16 @@
 	pos.x = 60.0f;
 	NSLog(@"starting pos y: %f x:%f",pos.y,pos.x);
 	mountOneView.center = pos;
-	missileOneView.center = pos;
-	playerOnePos = pos;	
 	
 	[UIView commitAnimations];
 
+}
+
+- (void)animationDidStop:(CAAnimation*)animation finished:(BOOL)finished {
+	NSLog(@"animationDidStop %@",[animation valueForKey:@"name"]);
+	if ([[animation valueForKey:@"name"] isEqual:@"fireMissile"]) {
+		missileOneView.hidden = YES;
+	}
 }
 
 
@@ -167,7 +161,7 @@
 	CGRect rect = CGRectMake((320.0f - size) / 2.0f , size + 10.0f, size, size);
 	missileOneView = [[Missile alloc] initWithFrame:rect];
 	missileOneView.backgroundColor = [UIColor blackColor];
-	missileOneView.center = playerOnePos;
+	//missileOneView.center = playerOnePos;
 	missileOneView.hidden =YES;
 	[self.view addSubview:missileOneView];
 	
