@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Mount.h"
 
 @interface Missile : UIView {
 
 }
+
++ (Missile *) initMissile;
+- (void) fireMissileFrom: (Mount *)mountView;
 
 @end

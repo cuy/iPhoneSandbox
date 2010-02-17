@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		110190C7112B8AB9005436CA /* MountMuzzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 110190C6112B8AB9005436CA /* MountMuzzle.m */; };
 		1172353D11229E05003E9184 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1172353C11229E05003E9184 /* QuartzCore.framework */; };
 		1172356511229F34003E9184 /* Missile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1172356411229F34003E9184 /* Missile.m */; };
 		11BD11F91111625D00066A18 /* GunBoundNewCharacterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BD11F71111625D00066A18 /* GunBoundNewCharacterViewController.m */; };
@@ -154,6 +155,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		110190C5112B8AB9005436CA /* MountMuzzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MountMuzzle.h; sourceTree = "<group>"; };
+		110190C6112B8AB9005436CA /* MountMuzzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MountMuzzle.m; sourceTree = "<group>"; };
 		1172353C11229E05003E9184 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1172356311229F34003E9184 /* Missile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Missile.h; sourceTree = "<group>"; };
 		1172356411229F34003E9184 /* Missile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Missile.m; sourceTree = "<group>"; };
@@ -341,6 +344,8 @@
 			children = (
 				11BFAB98112296C500BC256F /* Mount.h */,
 				11BFAB99112296C500BC256F /* Mount.m */,
+				110190C5112B8AB9005436CA /* MountMuzzle.h */,
+				110190C6112B8AB9005436CA /* MountMuzzle.m */,
 				1172356311229F34003E9184 /* Missile.h */,
 				1172356411229F34003E9184 /* Missile.m */,
 			);
@@ -748,6 +753,7 @@
 				11BD23381119438400066A18 /* GunBoundGamePlayViewController.m in Sources */,
 				11BFAB9A112296C500BC256F /* Mount.m in Sources */,
 				1172356511229F34003E9184 /* Missile.m in Sources */,
+				110190C7112B8AB9005436CA /* MountMuzzle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

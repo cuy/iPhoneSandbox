@@ -25,4 +25,40 @@
 }
 */
 
++ (Missile *) initMissile
+{
+	CGFloat size = 20.0f;
+	CGRect rect = CGRectMake(500.0f,0, size, size);
+	Missile *missileView = [[Missile alloc] initWithFrame:rect];
+	missileView.backgroundColor = [UIColor blackColor];
+	missileView.hidden =YES;
+	return missileView;
+}
+
+- (void) fireMissileFrom: (Mount *)mountView
+{
+	CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    [animation setDelegate:self];
+	[animation setValue:@"fireMissile" forKey:@"name"];
+	[animation setFromValue:[NSValue valueWithCGPoint:mountView.center]];
+	
+	CGPoint pos = mountView.center;
+	pos.x = 450.0f;
+	[animation setRemovedOnCompletion:YES];
+	[animation setToValue:[NSValue valueWithCGPoint:pos]];
+    [animation setDuration:1.5f];
+	
+    [[self layer] addAnimation:animation forKey:@"fireMissile"];
+	
+	NSLog(@"missile pos y: %f x:%f",mountView.center.y,mountView.center.x);
+	
+}
+
+- (void)animationDidStop:(CAAnimation*)animation finished:(BOOL)finished {
+	NSLog(@"animationDidStop %@",[animation valueForKey:@"name"]);
+	if ([[animation valueForKey:@"name"] isEqual:@"fireMissile"]) {
+		//self.hidden = YES;
+	}
+}
+
 @end

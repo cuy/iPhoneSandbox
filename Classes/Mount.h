@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MountMuzzle.h"
 
 @interface Mount : UIView {
 
 }
+
++ (Mount *) initMountWithMuzzle: (MountMuzzle *)mountMuzzle;
+- (void) moveUpMount;
+- (void) moveDownMount;
+- (void) setRandomLocation;
 
 @end

@@ -11,26 +11,32 @@
 
 
 @class Mount;
+@class MountMuzzle;
 @class Missile;
 
 @interface GunBoundGamePlayViewController : UIViewController {
 	
 	// Avatar Variables
-	Mount *mountOneView;
-	Missile *missileOneView;
+	Mount *mMountView;
+	MountMuzzle *mMountMuzzleView;
+	UIButton *mMountMuzzleButton;
+	Missile *mMissileView;
+	float mAngle;
 	
-	NSTimer *timer;
+	NSTimer *mTimer;
 	
 }
 
-@property(nonatomic, readonly, assign) Mount *mountOneView;
-@property(nonatomic, readonly, assign) Missile *missileOneView;
+@property(nonatomic, readonly, assign) Mount *mMountView;
+@property(nonatomic, readonly, assign) MountMuzzle *mMountMuzzleView;
+@property(nonatomic, readonly, assign) Missile *mMissileView;
 
-
-@property(retain, nonatomic) NSTimer *timer;
+@property(retain, nonatomic) NSTimer *mTimer;
 
 - (IBAction)upButton:(id)sender;
 - (IBAction)downButton:(id)sender;
+- (IBAction)upAngleMuzzle:(id)sender;
+- (IBAction)downAngleMuzzle:(id)sender;
 - (IBAction)stopTimerButton:(id)sender;
 - (IBAction)fireButton:(id)sender;
 - (IBAction)exitGame:(id)sender;
