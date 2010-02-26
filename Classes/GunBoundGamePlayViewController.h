@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-
 @class Mount;
 @class MountMuzzle;
 @class Missile;
+@class MissileView;
 
 @interface GunBoundGamePlayViewController : UIViewController {
 	
@@ -20,7 +20,9 @@
 	Mount *mMountView;
 	MountMuzzle *mMountMuzzleView;
 	UIButton *mMountMuzzleButton;
-	Missile *mMissileView;
+	MissileView *mMissileView;
+	Missile *mMissile;
+	
 	float mAngle;
 	
 	NSTimer *mTimer;
@@ -29,7 +31,9 @@
 
 @property(nonatomic, readonly, assign) Mount *mMountView;
 @property(nonatomic, readonly, assign) MountMuzzle *mMountMuzzleView;
-@property(nonatomic, readonly, assign) Missile *mMissileView;
+@property(nonatomic, retain) Missile *mMissile;
+@property(nonatomic, readonly, assign) MissileView *mMissileView;
+
 
 @property(retain, nonatomic) NSTimer *mTimer;
 

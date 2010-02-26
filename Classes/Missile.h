@@ -2,34 +2,28 @@
 //  Missile.h
 //  iPhoneSandbox
 //
-//  Created by Royce Dy on 2/10/10.
+//  Created by Royce Albert Dy on 2/26/10.
 //  Copyright 2010 G2iX. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "Mount.h"
+#import <Foundation/Foundation.h>
 
-@interface Missile : UIView {
-	
-	CGFloat mVelocity;
-	CGFloat mGravity;
-	CGFloat mTime;
-	CGFloat mAngle;
-	
-	NSTimer *mTimer;
-	Mount *mMountView;
+
+@interface Missile : NSObject {
+
+	CGPoint position;
+	CGFloat velocity;
+	CGFloat gravity;
+	CGFloat angle;
+	CGFloat time;
 }
 
-@property (readwrite, assign) CGFloat mVelocity;
-@property (readwrite, assign) CGFloat mGravity;
-@property (readwrite, assign) CGFloat mTime;
-@property (readwrite, assign) CGFloat mAngle;
+@property CGPoint position;
+@property CGFloat velocity;
+@property CGFloat gravity;
+@property CGFloat angle;
+@property CGFloat time;
 
-@property(retain, nonatomic) NSTimer *mTimer;
-@property(retain, nonatomic) Mount *mMountView;
-
-
-+ (Missile *) initMissile;
-- (void) fireMissileFrom: (Mount *)mountView;
+- (void) update;
 
 @end

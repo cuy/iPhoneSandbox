@@ -10,6 +10,7 @@
 #import "Mount.h"
 #import "MountMuzzle.h"
 #import "Missile.h"
+#import "MissileView.h"
 
 
 #define degreesToRadian(x) (M_PI * x / 180.0)
@@ -19,8 +20,8 @@
 
 @synthesize mMountView;
 @synthesize mMountMuzzleView;
-@synthesize mMissileView;
 @synthesize mTimer;
+@synthesize mMissile, mMissileView;
 
 
 /*
@@ -64,8 +65,29 @@
 
 - (IBAction)fireButton:(id)sender
 {
+	//mMissileView = [Missile alloc];
+	//[self.view addSubview:mMissileView];
+	//[mMissileView setNeedsDisplay];
+	
+	//mMissileView.hidden = NO;
+	//[mMissileView fireMissileFrom:mMountView];	
+	//[mMissileView release];
+	//mMissile = [Missile alloc];
+	
+	//mMissile = [[Missile alloc] init];
+	//mMissile.position = mMountView.center;
+	//[self.view bringSubviewToFront:mMissileView];
+	
+	mMissileView = [[MissileView alloc] initWithFrame:CGRectMake(0.0, 0.0, 480, 320)];
+	mMissileView.backgroundColor = [UIColor clearColor];
+	[self.view addSubview:mMissileView];
+	[self.view bringSubviewToFront:mMissileView];
+	//mMissileView.hidden = YES;
 	mMissileView.hidden = NO;
-	[mMissileView fireMissileFrom:mMountView];	
+	[mMissileView fireMissileFrom:mMountView];
+	//[self.view sendSubviewToBack:mMissileView];
+	//[mMissile release];
+	[mMissileView release];
 }
 
 - (IBAction)exitGame:(id)sender
@@ -92,9 +114,13 @@
 	self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bg01.png"]];
 	
 	// add missile
-	mMissileView = [Missile initMissile];
-	[self.view addSubview:mMissileView];
-	
+	//mMissileView = [[MissileView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	//mMissileView.backgroundColor = [UIColor clearColor];
+	//mMissileView = [Missile initMissile];
+	//[self.view addSubview:mMissileView];
+	//[self.view bringSubviewToFront:mMissileView];
+	//mMissileView.hidden = YES;
+
 	// add mount
 	mMountMuzzleView = [MountMuzzle initMuzzle];
 	mMountView = [Mount initMountWithMuzzle:mMountMuzzleView];
