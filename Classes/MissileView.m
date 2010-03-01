@@ -30,9 +30,10 @@
 	mMissile.velocity = 15;
 	mMissile.gravity = 10;
 	mMissile.angle = (float)(arc4random()%(90 - 1 + 1))+ 1;
-	mMissile.time = 0;
+	//mMissile.angle = 80;
+	mMissile.time = 1.0/40.0;
 	
-	mTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 / 30.0  target:self selector:@selector(startFireMissile) userInfo:nil repeats:YES];	
+	mTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 / 40.0  target:self selector:@selector(startFireMissile) userInfo:nil repeats:YES];	
 
 }
 
@@ -40,9 +41,9 @@
 {
 	[mMissile update];
 	[self setNeedsDisplay];
-	mMissile.time += 1.0/30.0;
+	mMissile.time += 1.0/40.0;
 	
-	if (mMissile.position.y >= 460.0f ) {
+	if (mMissile.position.y >= 320.0f  || mMissile.position.x >= 480.0f) {
 		[mTimer invalidate];
 		mTimer = nil;
 		self.hidden = YES;
@@ -74,19 +75,10 @@
 
 - (void)drawRect:(CGRect)rect {
     // Drawing code
-	//  NSLog(@"drawing ball");
 	
-	
-	/*
-	 CGContextRef context = UIGraphicsGetCurrentContext();
-	 CGContextSetStrokeColorWithColor(context, [UIColor greenColor].CGColor);
-	 CGContextSetLineWidth(context, 1.0);
-	 CGContextAddEllipseInRect(context, mBallRect);
-	 CGContextStrokePath(context);
-	 */
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	[self drawImage:context pos:CGPointMake( mMissile.position.x, mMissile.position.y ) 
-			  image:[self loadImage:@"ball1.png"] ]; 
+			  image:[self loadImage:@"missile.png"] ]; 
 }
 
 - (void)dealloc {

@@ -67,7 +67,7 @@
 	if ((mAngle - 0.1f) > -0.6f) {
 		mAngle -= 0.1f;
 	}
-	self.transform = CGAffineTransformMakeRotation(mAngle);
+	self.transform = CGAffineTransformMakeRotation(M_PI/mAngle);
 	//NSLog(@"muzzle pos y: %f x:%f",self.center.y,self.center.x);
 	NSLog(@"mangle %f",mAngle);
 
@@ -88,10 +88,20 @@
 	
 	[self.layer addAnimation:rotateAnimation forKey:@"rotatemuzzledown"];
 	*/
-	if ((mAngle + 0.1f) < 0.4f) {
+	//if ((mAngle + 0.1f) < 0.4f) {
 		mAngle += 0.1f;
-	}
-	self.transform = CGAffineTransformMakeRotation(mAngle);
+	//}
+	NSLog(@"transform a: %f",self.transform.a);
+	NSLog(@"transform b: %f",self.transform.b);
+	NSLog(@"transform c: %f",self.transform.c);
+	NSLog(@"transform d: %f",self.transform.d);
+	NSLog(@"transform tx: %f",self.transform.tx);
+	NSLog(@"transform ty: %f",self.transform.ty);
+	
+	//self.transform.tx = 1.0f;
+	//self.transform = CGAffineTransformMakeTranslation(2.0,2.0);
+	//self.transform = CGAffineTransformMakeRotation(mAngle);
+	self.transform = CGAffineTransformRotate(CGAffineTransformMakeTranslation(10.0, 10.0), mAngle);
 	//NSLog(@"muzzle pos y: %f x:%f",self.center.y,self.center.x);
 	NSLog(@"mangle %f",mAngle);
 }

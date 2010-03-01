@@ -11,6 +11,7 @@
 		1143ACFA1137ACC10040D909 /* MissileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143ACF91137ACC10040D909 /* MissileView.m */; };
 		1143ACFD1137ACCF0040D909 /* Missile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143ACFC1137ACCF0040D909 /* Missile.m */; };
 		1172353D11229E05003E9184 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1172353C11229E05003E9184 /* QuartzCore.framework */; };
+		1176D68A113B8815007409AD /* missile.png in Resources */ = {isa = PBXBuildFile; fileRef = 1176D689113B8815007409AD /* missile.png */; };
 		11BD11F91111625D00066A18 /* GunBoundNewCharacterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BD11F71111625D00066A18 /* GunBoundNewCharacterViewController.m */; };
 		11BD11FA1111625D00066A18 /* GunBoundNewCharacterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11BD11F81111625D00066A18 /* GunBoundNewCharacterViewController.xib */; };
 		11BD23381119438400066A18 /* GunBoundGamePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BD23361119438400066A18 /* GunBoundGamePlayViewController.m */; };
@@ -19,7 +20,6 @@
 		11BD237B11194D7C00066A18 /* btnDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 11BD237811194D7C00066A18 /* btnDown.png */; };
 		11BD237C11194D7C00066A18 /* btnUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 11BD237911194D7C00066A18 /* btnUp.png */; };
 		11BFAB9A112296C500BC256F /* Mount.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BFAB99112296C500BC256F /* Mount.m */; };
-		11C813BC113644BC000EA700 /* ball1.png in Resources */ = {isa = PBXBuildFile; fileRef = 11C813BB113644BC000EA700 /* ball1.png */; };
 		1D3623260D0F684500981E51 /* iPhoneSandboxAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* iPhoneSandboxAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -164,6 +164,7 @@
 		1143ACFB1137ACCF0040D909 /* Missile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Missile.h; sourceTree = "<group>"; };
 		1143ACFC1137ACCF0040D909 /* Missile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Missile.m; sourceTree = "<group>"; };
 		1172353C11229E05003E9184 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1176D689113B8815007409AD /* missile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile.png; sourceTree = "<group>"; };
 		11BD11F61111625D00066A18 /* GunBoundNewCharacterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GunBoundNewCharacterViewController.h; sourceTree = "<group>"; };
 		11BD11F71111625D00066A18 /* GunBoundNewCharacterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GunBoundNewCharacterViewController.m; sourceTree = "<group>"; };
 		11BD11F81111625D00066A18 /* GunBoundNewCharacterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GunBoundNewCharacterViewController.xib; path = Classes/GunBoundNewCharacterViewController.xib; sourceTree = "<group>"; };
@@ -175,7 +176,6 @@
 		11BD237911194D7C00066A18 /* btnUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnUp.png; sourceTree = "<group>"; };
 		11BFAB98112296C500BC256F /* Mount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mount.h; sourceTree = "<group>"; };
 		11BFAB99112296C500BC256F /* Mount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mount.m; sourceTree = "<group>"; };
-		11C813BB113644BC000EA700 /* ball1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball1.png; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* iPhoneSandboxAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneSandboxAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* iPhoneSandboxAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPhoneSandboxAppDelegate.m; sourceTree = "<group>"; };
@@ -538,7 +538,7 @@
 		56199795111033DD0018BC20 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				11C813BB113644BC000EA700 /* ball1.png */,
+				1176D689113B8815007409AD /* missile.png */,
 				6B358D4D1119917B008B98B8 /* btnMissileSelectPressed.png */,
 				6B358D2811198646008B98B8 /* angleArc.png */,
 				6B358D2911198646008B98B8 /* angleArcBtn.png */,
@@ -743,7 +743,7 @@
 				6B358D4711198F31008B98B8 /* btnDownPressed.png in Resources */,
 				6B358D4811198F31008B98B8 /* btnUpPressed.png in Resources */,
 				6B358D4E1119917B008B98B8 /* btnMissileSelectPressed.png in Resources */,
-				11C813BC113644BC000EA700 /* ball1.png in Resources */,
+				1176D68A113B8815007409AD /* missile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
