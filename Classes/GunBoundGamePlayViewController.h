@@ -11,17 +11,17 @@
 
 @class Mount;
 @class MountView;
-//@class MountMuzzle;
 @class Missile;
 @class MissileView;
+@class MuzzleView;
 
 @interface GunBoundGamePlayViewController : UIViewController {
 	
 	// Avatar Variables
 	MountView *mMountView;
-	//MountMuzzle *mMountMuzzleView;
-	//UIButton *mMountMuzzleButton;
 	MissileView *mMissileView;
+	MuzzleView *mMuzzleView;
+	CGFloat mAngle;
 	int mPower;
 	IBOutlet UILabel *powerLabel;
 	IBOutlet UILabel *angleLabel;
@@ -32,19 +32,26 @@
 	MountView *mMountView2;
 	Mount *mMount1;
 	Mount *mMount2;
+	MuzzleView *mMuzzleView1;
+	MuzzleView *mMuzzleView2;
+	
+	// touch vars
+	CGPoint mGestureStartPoint;
 	
 	NSTimer *mTimer;
 	
 }
 
 @property(nonatomic, readonly, assign) MountView *mMountView;
-//@property(nonatomic, readonly, assign) MountMuzzle *mMountMuzzleView;
+@property(nonatomic, readonly, assign) MuzzleView *mMuzzleView;
 @property(nonatomic, readonly, assign) MissileView *mMissileView;
 
 @property(nonatomic, readonly, assign) MountView *mMountView1;
 @property(nonatomic, readonly, assign) MountView *mMountView2;
 @property(nonatomic, readonly, assign) Mount *mMount1;
 @property(nonatomic, readonly, assign) Mount *mMount2;
+@property(nonatomic, readonly, assign) MuzzleView *mMuzzleView1;
+@property(nonatomic, readonly, assign) MuzzleView *mMuzzleView2;
 
 @property(retain, nonatomic) NSTimer *mTimer;
 @property(nonatomic, retain) IBOutlet UILabel *powerLabel;

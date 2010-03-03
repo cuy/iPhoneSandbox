@@ -10,13 +10,16 @@
 #import <QuartzCore/QuartzCore.h>
 
 @class Mount;
+@class MuzzleView;
 
 @interface MountView : UIView {
 
 	Mount *mMount;
+	MuzzleView *mMuzzleView;
 }
 
 @property (nonatomic, retain) Mount *mMount;
+@property (nonatomic, retain) MuzzleView *mMuzzleView;
 
 //+ (Mount *) initMountWithMuzzle: (MountMuzzle *)mountMuzzle;
 - (id)initWithFrame:(CGRect)frame withMount:(Mount *)mount;

@@ -8,11 +8,12 @@
 
 #import "MountView.h"
 #import "Mount.h"
+#import "MuzzleView.h"
 
 @implementation MountView
 
 @synthesize mMount;
-
+@synthesize mMuzzleView;
 
 - (id<CAAction>)actionForLayer:(CALayer *)layer forKey:(NSString *)key {
 	id<CAAction> animation = nil;
@@ -67,12 +68,15 @@
     [[self layer] addAnimation:animation forKey:@"moveUpMount"];
 	 */
 	CGPoint pos = self.center;
-	
+	CGPoint muzzlepos = mMuzzleView.center;
+
 	if (pos.y - 5.0f > 60.0f) {
 		pos.y -= 5.0f;
+		muzzlepos.y -= 5.0f; 
 	}
 	
 	self.center = pos;
+	mMuzzleView.center = muzzlepos;
 	NSLog(@"current pos x: %f y:%f",pos.x,pos.y);
 }
 
@@ -98,12 +102,15 @@
     [[self layer] addAnimation:animation forKey:@"moveDownMount"];	
 	*/
 	CGPoint pos = self.center;
-	
+	CGPoint muzzlepos = mMuzzleView.center;
+
 	if (pos.y + 5.0f < 260.0f) {
 		pos.y += 5.0f;
+		muzzlepos.y += 5.0f; 
 	}
 	
 	self.center = pos;
+	mMuzzleView.center = muzzlepos;
 	NSLog(@"current pos x: %f y:%f",pos.x,pos.y);
 }
 
