@@ -10,39 +10,53 @@
 #import <QuartzCore/QuartzCore.h>
 
 @class Mount;
-@class MountMuzzle;
+@class MountView;
+//@class MountMuzzle;
 @class Missile;
 @class MissileView;
 
 @interface GunBoundGamePlayViewController : UIViewController {
 	
 	// Avatar Variables
-	Mount *mMountView;
-	MountMuzzle *mMountMuzzleView;
-	UIButton *mMountMuzzleButton;
+	MountView *mMountView;
+	//MountMuzzle *mMountMuzzleView;
+	//UIButton *mMountMuzzleButton;
 	MissileView *mMissileView;
-	Missile *mMissile;
+	int mPower;
+	IBOutlet UILabel *powerLabel;
 	
-	float mAngle;
+	// Players Variables
+	MountView *mMountView1;
+	MountView *mMountView2;
+	Mount *mMount1;
+	Mount *mMount2;
 	
 	NSTimer *mTimer;
 	
 }
 
-@property(nonatomic, readonly, assign) Mount *mMountView;
-@property(nonatomic, readonly, assign) MountMuzzle *mMountMuzzleView;
-@property(nonatomic, retain) Missile *mMissile;
+@property(nonatomic, readonly, assign) MountView *mMountView;
+//@property(nonatomic, readonly, assign) MountMuzzle *mMountMuzzleView;
 @property(nonatomic, readonly, assign) MissileView *mMissileView;
 
+@property(nonatomic, readonly, assign) MountView *mMountView1;
+@property(nonatomic, readonly, assign) MountView *mMountView2;
+@property(nonatomic, readonly, assign) Mount *mMount1;
+@property(nonatomic, readonly, assign) Mount *mMount2;
 
 @property(retain, nonatomic) NSTimer *mTimer;
+@property(nonatomic, retain) IBOutlet UILabel *powerLabel;
 
-- (IBAction)upButton:(id)sender;
-- (IBAction)downButton:(id)sender;
-- (IBAction)upAngleMuzzle:(id)sender;
-- (IBAction)downAngleMuzzle:(id)sender;
-- (IBAction)stopTimerButton:(id)sender;
-- (IBAction)fireButton:(id)sender;
-- (IBAction)exitGame:(id)sender;
+- (void) changePlayer;
+
+
+- (IBAction) upButton:(id)sender;
+- (IBAction) downButton:(id)sender;
+//- (IBAction)upAngleMuzzle:(id)sender;
+//- (IBAction)downAngleMuzzle:(id)sender;
+- (IBAction) stopTimerButton:(id)sender;
+- (IBAction) fireButton:(id)sender;
+- (IBAction) fireMissile:(id)sender;
+- (IBAction) exitGame:(id)sender;
 
 @end

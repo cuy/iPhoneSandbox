@@ -9,18 +9,20 @@
 #import <UIKit/UIKit.h>
 
 @class Missile;
-@class Mount;
+@class MountView;
 
 @interface MissileView : UIView {
 
 	Missile *mMissile;
 	NSTimer *mTimer;
+	CGFloat mPower;
 }
 
 @property (nonatomic, retain) Missile *mMissile;
 @property (nonatomic, retain) NSTimer *mTimer;
+@property CGFloat mPower;
 
-- (void) fireMissileFrom: (Mount *) mountView;
+- (void) fireMissileFrom:(MountView *) mountView;
 - (void) startFireMissile;
 
 @end

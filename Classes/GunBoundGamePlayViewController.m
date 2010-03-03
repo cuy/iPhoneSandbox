@@ -7,9 +7,9 @@
 //
 
 #import "GunBoundGamePlayViewController.h"
+//#import "MountMuzzle.h"
 #import "Mount.h"
-#import "MountMuzzle.h"
-#import "Missile.h"
+#import "MountView.h"
 #import "MissileView.h"
 
 
@@ -19,9 +19,14 @@
 @implementation GunBoundGamePlayViewController
 
 @synthesize mMountView;
-@synthesize mMountMuzzleView;
+//@synthesize mMountMuzzleView;
 @synthesize mTimer;
-@synthesize mMissile, mMissileView;
+@synthesize mMissileView;
+
+@synthesize mMountView1,mMountView2;
+@synthesize mMount1,mMount2;
+
+@synthesize powerLabel;
 
 
 /*
@@ -36,16 +41,16 @@
 
 #pragma mark Buttons
 
-- (IBAction)upButton:(id)sender
+- (IBAction) upButton:(id)sender
 {
 	mTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(moveAvatarUp:) userInfo:nil repeats:YES];	
 }
 
-- (IBAction)downButton:(id)sender
+- (IBAction) downButton:(id)sender
 {
 	mTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(moveAvatarDown:) userInfo:nil repeats:YES];	
 }
-
+/*
 - (IBAction)upAngleMuzzle:(id)sender
 {
 	[mMountMuzzleView rotateMuzzleUp];
@@ -55,39 +60,33 @@
 {
 	[mMountMuzzleView rotateMuzzleDown];
 }
-
-- (IBAction)stopTimerButton:(id)sender
+*/
+- (IBAction) stopTimerButton:(id)sender
 {
 	if (mTimer != nil) 
 		[mTimer invalidate];
 	mTimer = nil;
 }
 
-- (IBAction)fireButton:(id)sender
+- (IBAction) fireButton:(id)sender
 {
-	//mMissileView = [Missile alloc];
-	//[self.view addSubview:mMissileView];
-	//[mMissileView setNeedsDisplay];
-	
-	//mMissileView.hidden = NO;
-	//[mMissileView fireMissileFrom:mMountView];	
-	//[mMissileView release];
-	//mMissile = [Missile alloc];
-	
-	//mMissile = [[Missile alloc] init];
-	//mMissile.position = mMountView.center;
-	//[self.view bringSubviewToFront:mMissileView];
+	mTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(addPower:) userInfo:nil repeats:YES];
+}
+
+- (IBAction) fireMissile:(id)sender
+{
+	[self stopTimerButton:sender];
 	
 	mMissileView = [[MissileView alloc] initWithFrame:CGRectMake(0.0, 0.0, 480, 320)];
 	mMissileView.backgroundColor = [UIColor clearColor];
+	mMissileView.mPower = mPower;
 	[self.view addSubview:mMissileView];
 	[self.view bringSubviewToFront:mMissileView];
-	//mMissileView.hidden = YES;
 	mMissileView.hidden = NO;
 	[mMissileView fireMissileFrom:mMountView];
-	//[self.view sendSubviewToBack:mMissileView];
-	//[mMissile release];
 	[mMissileView release];
+	mPower = 0;
+	[self changePlayer];	
 }
 
 - (IBAction)exitGame:(id)sender
@@ -107,29 +106,51 @@
 	[mMountView moveDownMount];
 }
 
+-(void) addPower:(id)sender
+{
+	mPower+=1;
+	powerLabel.text = [NSString stringWithFormat:@"%d",mPower];
+	NSLog(@"mpower %d",mPower);
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bg01.png"]];
 	
-	// add missile
-	//mMissileView = [[MissileView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	//mMissileView.backgroundColor = [UIColor clearColor];
-	//mMissileView = [Missile initMissile];
-	//[self.view addSubview:mMissileView];
-	//[self.view bringSubviewToFront:mMissileView];
-	//mMissileView.hidden = YES;
-
-	// add mount
-	mMountMuzzleView = [MountMuzzle initMuzzle];
-	mMountView = [Mount initMountWithMuzzle:mMountMuzzleView];
-	[self.view addSubview:mMountView];	
-	[mMountView setRandomLocation];
-
+	// add player 1
+	mMount1 = [[Mount alloc] init];
+	mMount1.player = 1;
+	mMount1.bgColor = [UIColor blueColor];
+	mMountView1 = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) withMount:mMount1];
+	mMountView1.backgroundColor = [UIColor clearColor];
+	[self.view addSubview:mMountView1];
+	[mMountView1 setRandomLocation];
+	
+	
+	// add player 2
+	mMount2 = [[Mount alloc] init];
+	mMount2.player = 2;
+	mMount2.bgColor = [UIColor redColor];
+	mMountView2 = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) withMount:mMount2];
+	mMountView2.backgroundColor = [UIColor clearColor];
+	[self.view addSubview:mMountView2];
+	[mMountView2 setRandomLocation];
+	
+	// set player 1 to be the first to move
+	mMountView = mMountView1;
 }
 
+- (void) changePlayer
+{
+	if (mMountView == mMountView1) {
+		mMountView = mMountView2;
+	}
+	else {
+		mMountView = mMountView1;
+	}
 
+}
 
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -154,6 +175,13 @@
 
 - (void)dealloc {
     [super dealloc];
+	[mMount1 release];
+	[mMount2 release];
+	[mMountView1 release];
+	[mMountView2 release];
+	
+	[mMountView release];
+	[mMissileView release];
 }
 
 

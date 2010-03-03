@@ -8,12 +8,14 @@
 
 #import "MissileView.h"
 #import "Missile.h"
+#import "MountView.h"
 #import "Mount.h"
 
 @implementation MissileView
 
 @synthesize mMissile;
 @synthesize mTimer;
+@synthesize mPower;
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -22,14 +24,19 @@
     return self;
 }
 
-- (void) fireMissileFrom:(Mount *)mountView
+- (void) fireMissileFrom:(MountView *)mountView
 {
-	//mMissile = missile;
 	mMissile = [[Missile alloc] init];
 	mMissile.position = mountView.center;
-	mMissile.velocity = 15;
-	mMissile.gravity = 10;
+	NSLog(@"player %d",mountView.mMount.player);
 	mMissile.angle = (float)(arc4random()%(90 - 1 + 1))+ 1;
+
+	if (mountView.mMount.player == 2) {
+		mMissile.angle += 90;
+	}
+	NSLog(@"current angle: %f",mMissile.angle);
+	mMissile.velocity = mPower;
+	mMissile.gravity = 10;
 	//mMissile.angle = 80;
 	mMissile.time = 1.0/40.0;
 	

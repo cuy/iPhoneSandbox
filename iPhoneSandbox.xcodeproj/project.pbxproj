@@ -10,6 +10,10 @@
 		110190C7112B8AB9005436CA /* MountMuzzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 110190C6112B8AB9005436CA /* MountMuzzle.m */; };
 		1143ACFA1137ACC10040D909 /* MissileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143ACF91137ACC10040D909 /* MissileView.m */; };
 		1143ACFD1137ACCF0040D909 /* Missile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143ACFC1137ACCF0040D909 /* Missile.m */; };
+		114FC1A3113CDDC400B4F33A /* MountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 114FC1A2113CDDC400B4F33A /* MountView.m */; };
+		114FC1A6113CDE1600B4F33A /* Mount.m in Sources */ = {isa = PBXBuildFile; fileRef = 114FC1A5113CDE1600B4F33A /* Mount.m */; };
+		114FC3DB113D05C600B4F33A /* player_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 114FC3D9113D05C600B4F33A /* player_1.png */; };
+		114FC3DC113D05C600B4F33A /* player_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 114FC3DA113D05C600B4F33A /* player_2.png */; };
 		1172353D11229E05003E9184 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1172353C11229E05003E9184 /* QuartzCore.framework */; };
 		1176D68A113B8815007409AD /* missile.png in Resources */ = {isa = PBXBuildFile; fileRef = 1176D689113B8815007409AD /* missile.png */; };
 		11BD11F91111625D00066A18 /* GunBoundNewCharacterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BD11F71111625D00066A18 /* GunBoundNewCharacterViewController.m */; };
@@ -19,7 +23,6 @@
 		11BD237A11194D7C00066A18 /* bg01.png in Resources */ = {isa = PBXBuildFile; fileRef = 11BD237711194D7C00066A18 /* bg01.png */; };
 		11BD237B11194D7C00066A18 /* btnDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 11BD237811194D7C00066A18 /* btnDown.png */; };
 		11BD237C11194D7C00066A18 /* btnUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 11BD237911194D7C00066A18 /* btnUp.png */; };
-		11BFAB9A112296C500BC256F /* Mount.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BFAB99112296C500BC256F /* Mount.m */; };
 		1D3623260D0F684500981E51 /* iPhoneSandboxAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* iPhoneSandboxAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -163,6 +166,12 @@
 		1143ACF91137ACC10040D909 /* MissileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissileView.m; sourceTree = "<group>"; };
 		1143ACFB1137ACCF0040D909 /* Missile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Missile.h; sourceTree = "<group>"; };
 		1143ACFC1137ACCF0040D909 /* Missile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Missile.m; sourceTree = "<group>"; };
+		114FC1A1113CDDC400B4F33A /* MountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MountView.h; sourceTree = "<group>"; };
+		114FC1A2113CDDC400B4F33A /* MountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MountView.m; sourceTree = "<group>"; };
+		114FC1A4113CDE1600B4F33A /* Mount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mount.h; sourceTree = "<group>"; };
+		114FC1A5113CDE1600B4F33A /* Mount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mount.m; sourceTree = "<group>"; };
+		114FC3D9113D05C600B4F33A /* player_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_1.png; sourceTree = "<group>"; };
+		114FC3DA113D05C600B4F33A /* player_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_2.png; sourceTree = "<group>"; };
 		1172353C11229E05003E9184 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1176D689113B8815007409AD /* missile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile.png; sourceTree = "<group>"; };
 		11BD11F61111625D00066A18 /* GunBoundNewCharacterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GunBoundNewCharacterViewController.h; sourceTree = "<group>"; };
@@ -174,8 +183,6 @@
 		11BD237711194D7C00066A18 /* bg01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg01.png; sourceTree = "<group>"; };
 		11BD237811194D7C00066A18 /* btnDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnDown.png; sourceTree = "<group>"; };
 		11BD237911194D7C00066A18 /* btnUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnUp.png; sourceTree = "<group>"; };
-		11BFAB98112296C500BC256F /* Mount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mount.h; sourceTree = "<group>"; };
-		11BFAB99112296C500BC256F /* Mount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mount.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* iPhoneSandboxAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneSandboxAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* iPhoneSandboxAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPhoneSandboxAppDelegate.m; sourceTree = "<group>"; };
@@ -344,17 +351,35 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		11BFAB911122963E00BC256F /* Avatar */ = {
+		114FC1A7113CDE2400B4F33A /* Mount */ = {
 			isa = PBXGroup;
 			children = (
-				11BFAB98112296C500BC256F /* Mount.h */,
-				11BFAB99112296C500BC256F /* Mount.m */,
-				110190C5112B8AB9005436CA /* MountMuzzle.h */,
-				110190C6112B8AB9005436CA /* MountMuzzle.m */,
+				114FC1A1113CDDC400B4F33A /* MountView.h */,
+				114FC1A2113CDDC400B4F33A /* MountView.m */,
+				114FC1A4113CDE1600B4F33A /* Mount.h */,
+				114FC1A5113CDE1600B4F33A /* Mount.m */,
+			);
+			name = Mount;
+			sourceTree = "<group>";
+		};
+		114FC1A8113CDE3600B4F33A /* Missile */ = {
+			isa = PBXGroup;
+			children = (
 				1143ACF81137ACC10040D909 /* MissileView.h */,
 				1143ACF91137ACC10040D909 /* MissileView.m */,
 				1143ACFB1137ACCF0040D909 /* Missile.h */,
 				1143ACFC1137ACCF0040D909 /* Missile.m */,
+			);
+			name = Missile;
+			sourceTree = "<group>";
+		};
+		11BFAB911122963E00BC256F /* Avatar */ = {
+			isa = PBXGroup;
+			children = (
+				114FC1A8113CDE3600B4F33A /* Missile */,
+				114FC1A7113CDE2400B4F33A /* Mount */,
+				110190C5112B8AB9005436CA /* MountMuzzle.h */,
+				110190C6112B8AB9005436CA /* MountMuzzle.m */,
 			);
 			name = Avatar;
 			sourceTree = "<group>";
@@ -538,6 +563,8 @@
 		56199795111033DD0018BC20 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				114FC3D9113D05C600B4F33A /* player_1.png */,
+				114FC3DA113D05C600B4F33A /* player_2.png */,
 				1176D689113B8815007409AD /* missile.png */,
 				6B358D4D1119917B008B98B8 /* btnMissileSelectPressed.png */,
 				6B358D2811198646008B98B8 /* angleArc.png */,
@@ -744,6 +771,8 @@
 				6B358D4811198F31008B98B8 /* btnUpPressed.png in Resources */,
 				6B358D4E1119917B008B98B8 /* btnMissileSelectPressed.png in Resources */,
 				1176D68A113B8815007409AD /* missile.png in Resources */,
+				114FC3DB113D05C600B4F33A /* player_1.png in Resources */,
+				114FC3DC113D05C600B4F33A /* player_2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,10 +789,11 @@
 				56BA2F8C111132AD00CB4BDB /* GunboundMainMenuViewController.m in Sources */,
 				11BD11F91111625D00066A18 /* GunBoundNewCharacterViewController.m in Sources */,
 				11BD23381119438400066A18 /* GunBoundGamePlayViewController.m in Sources */,
-				11BFAB9A112296C500BC256F /* Mount.m in Sources */,
 				110190C7112B8AB9005436CA /* MountMuzzle.m in Sources */,
 				1143ACFA1137ACC10040D909 /* MissileView.m in Sources */,
 				1143ACFD1137ACCF0040D909 /* Missile.m in Sources */,
+				114FC1A3113CDDC400B4F33A /* MountView.m in Sources */,
+				114FC1A6113CDE1600B4F33A /* Mount.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

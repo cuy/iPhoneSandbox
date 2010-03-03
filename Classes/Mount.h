@@ -2,20 +2,23 @@
 //  Mount.h
 //  iPhoneSandbox
 //
-//  Created by Royce Dy on 2/10/10.
+//  Created by Royce Albert Dy on 3/2/10.
 //  Copyright 2010 G2iX. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "MountMuzzle.h"
+#import <Foundation/Foundation.h>
 
-@interface Mount : UIView {
 
+@interface Mount : NSObject {
+	
+	UIColor *bgColor;
+	int player;
+	CGPoint position;	
+	
 }
 
-+ (Mount *) initMountWithMuzzle: (MountMuzzle *)mountMuzzle;
-- (void) moveUpMount;
-- (void) moveDownMount;
-- (void) setRandomLocation;
+@property CGPoint position;
+@property (nonatomic,retain) UIColor *bgColor;
+@property int player;
 
 @end
