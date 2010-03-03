@@ -27,6 +27,8 @@
 @synthesize mMount1,mMount2;
 
 @synthesize powerLabel;
+@synthesize angleLabel;
+@synthesize angleSlider;
 
 
 /*
@@ -80,8 +82,9 @@
 	mMissileView = [[MissileView alloc] initWithFrame:CGRectMake(0.0, 0.0, 480, 320)];
 	mMissileView.backgroundColor = [UIColor clearColor];
 	mMissileView.mPower = mPower;
-	[self.view addSubview:mMissileView];
-	[self.view bringSubviewToFront:mMissileView];
+	[self.view insertSubview:mMissileView belowSubview:mMountView];
+	//[self.view addSubview:mMissileView];
+	//[self.view bringSubviewToFront:mMissileView];
 	mMissileView.hidden = NO;
 	[mMissileView fireMissileFrom:mMountView];
 	[mMissileView release];
@@ -89,7 +92,13 @@
 	[self changePlayer];	
 }
 
-- (IBAction)exitGame:(id)sender
+- (IBAction) changeAngle:(UISlider *) sender
+{
+	angleLabel.text = [NSString stringWithFormat:@"%.1f",[sender value]];
+	mMountView.mMount.angle = (CGFloat)[sender value];
+}
+
+- (IBAction) exitGame:(id)sender
 {
 	
 }
@@ -110,7 +119,7 @@
 {
 	mPower+=1;
 	powerLabel.text = [NSString stringWithFormat:@"%d",mPower];
-	NSLog(@"mpower %d",mPower);
+	//NSLog(@"mpower %d",mPower);
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -149,6 +158,8 @@
 	else {
 		mMountView = mMountView1;
 	}
+	
+	mMountView.mMount.angle = (CGFloat) [angleSlider value];
 
 }
 

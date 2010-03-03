@@ -11,6 +11,6 @@
 
 @implementation Mount
 
-@synthesize bgColor, player, position;
+@synthesize bgColor, player, position, angle;
 
 @end

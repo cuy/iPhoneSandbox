@@ -27,17 +27,27 @@
 - (void) fireMissileFrom:(MountView *)mountView
 {
 	mMissile = [[Missile alloc] init];
-	mMissile.position = mountView.center;
-	NSLog(@"player %d",mountView.mMount.player);
-	mMissile.angle = (float)(arc4random()%(90 - 1 + 1))+ 1;
+	
+	// set missile starting point
+	CGPoint mPos = mountView.center;
+	if (mountView.mMount.player == 1) {
+		mPos.x += 20;
+	}
+	else {
+		mPos.x -= 40;
+	}
+	mMissile.position = mPos;
 
+	NSLog(@"player %d",mountView.mMount.player);
+	//mMissile.angle = (float)(arc4random()%(90 - 1 + 1))+ 1;
+	//mMissile.angle = 80;
+	mMissile.angle =  mountView.mMount.angle;
 	if (mountView.mMount.player == 2) {
-		mMissile.angle += 90;
+		mMissile.angle = 180 - mMissile.angle;
 	}
 	NSLog(@"current angle: %f",mMissile.angle);
 	mMissile.velocity = mPower;
 	mMissile.gravity = 10;
-	//mMissile.angle = 80;
 	mMissile.time = 1.0/40.0;
 	
 	mTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 / 40.0  target:self selector:@selector(startFireMissile) userInfo:nil repeats:YES];	

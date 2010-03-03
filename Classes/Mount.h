@@ -14,10 +14,12 @@
 	UIColor *bgColor;
 	int player;
 	CGPoint position;	
+	CGFloat angle;
 	
 }
 
 @property CGPoint position;
+@property CGFloat angle;
 @property (nonatomic,retain) UIColor *bgColor;
 @property int player;
 

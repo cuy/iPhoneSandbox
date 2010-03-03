@@ -24,6 +24,8 @@
 	MissileView *mMissileView;
 	int mPower;
 	IBOutlet UILabel *powerLabel;
+	IBOutlet UILabel *angleLabel;
+	IBOutlet UISlider *angleSlider;
 	
 	// Players Variables
 	MountView *mMountView1;
@@ -46,6 +48,8 @@
 
 @property(retain, nonatomic) NSTimer *mTimer;
 @property(nonatomic, retain) IBOutlet UILabel *powerLabel;
+@property(nonatomic, retain) IBOutlet UILabel *angleLabel;
+@property(nonatomic, retain) IBOutlet UISlider *angleSlider;
 
 - (void) changePlayer;
 
@@ -58,5 +62,6 @@
 - (IBAction) fireButton:(id)sender;
 - (IBAction) fireMissile:(id)sender;
 - (IBAction) exitGame:(id)sender;
+- (IBAction) changeAngle:(UISlider *) sender;
 
 @end
