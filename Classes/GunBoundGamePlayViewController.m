@@ -73,7 +73,7 @@
 
 - (IBAction) fireButton:(id)sender
 {
-	mTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(addPower:) userInfo:nil repeats:YES];
+	mTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/30 target:self selector:@selector(addPower:) userInfo:nil repeats:YES];
 }
 
 - (IBAction) fireMissile:(id)sender
@@ -90,6 +90,7 @@
 	[mMissileView fireMissileFrom:mMountView];
 	[mMissileView release];
 	mPower = 0;
+	mAccel = 0;
 	//[self changePlayer];	
 }
 
@@ -118,7 +119,7 @@
 
 -(void) addPower:(id)sender
 {
-	mPower+=1;
+	mPower += 1.5;
 	powerLabel.text = [NSString stringWithFormat:@"%d",mPower];
 	//NSLog(@"mpower %d",mPower);
 }
@@ -128,6 +129,7 @@
     [super viewDidLoad];
 	self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bg01.png"]];
 	mAngle = 0;
+	mAccel = 0;
 	// add player 1
 	mMount1 = [[Mount alloc] init];
 	mMount1.player = 1;
@@ -137,7 +139,7 @@
 	[self.view addSubview:mMountView1];
 	[mMountView1 setRandomLocation];
 	// alloc mount muzzle 
-	mMuzzleView1 = [[MuzzleView alloc] initWithFrame:CGRectMake(mMountView1.center.x - 3, mMountView1.center.y - 27, 75, 75)];
+	mMuzzleView1 = [[MuzzleView alloc] initWithFrame:CGRectMake(mMountView1.center.x - 12, mMountView1.center.y - 27, 75, 75)];
 	mMuzzleView1.backgroundColor = [UIColor clearColor];
 	mMountView1.mMuzzleView = mMuzzleView1;
 	[self.view insertSubview:mMuzzleView1 belowSubview:mMountView1];
@@ -182,6 +184,28 @@
 	//NSLog(@"previous position x: %f y: %f",mGestureStartPoint.x,mGestureStartPoint.y);
 	//NSLog(@"current position x: %f y: %f",currentPosition.x,currentPosition.y);
 	
+	
+	/**
+	 * Arc Tangent Formula
+	 */
+	CGFloat currentAngle = atan2(mGestureStartPoint.y-mMuzzleView1.center.y,mGestureStartPoint.x-mMuzzleView1.center.x)*180.0/M_PI;
+	
+	if (currentAngle < -90.0) {
+		currentAngle = -90.0;
+	}
+	else if (currentAngle > 0) {
+		currentAngle = 0;
+	}
+	
+	//Let's rotate the angle
+	[mMuzzleView rotateAngle:currentAngle];
+	//Let's run Pole Shift
+	mMountView.mMount.angle = currentAngle*-1;
+	
+	
+	NSLog(@"Current Angle = %f", currentAngle);
+	
+	/*
 	if (currentPosition.y > mGestureStartPoint.y) {
 	//	NSLog(@"down");
 		if((mAngle + 5) <= 90)
@@ -197,9 +221,9 @@
 		[mMuzzleView rotateAngle:mAngle];
 		mMountView.mMount.angle = mAngle;
 	}
-	
-	mGestureStartPoint = currentPosition;	
-	NSLog(@"mAngle %f",mAngle);
+	*/
+	mGestureStartPoint = currentPosition;
+	//NSLog(@"mAngle %f",mAngle);
 }
 
 

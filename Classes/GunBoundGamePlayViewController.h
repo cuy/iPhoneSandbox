@@ -23,6 +23,7 @@
 	MuzzleView *mMuzzleView;
 	CGFloat mAngle;
 	int mPower;
+	int mAccel;
 	IBOutlet UILabel *powerLabel;
 	IBOutlet UILabel *angleLabel;
 	IBOutlet UISlider *angleSlider;

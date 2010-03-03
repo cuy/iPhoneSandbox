@@ -54,7 +54,7 @@
 	CGRect imageRect; 
 	size_t h = CGImageGetHeight( image ); 
 	size_t w = CGImageGetWidth( image ); 
-	imageRect.origin = CGPointMake(pos.x, pos.y); 
+	imageRect.origin = CGPointMake(pos.x, pos.y);
 	imageRect.size = CGSizeMake(w, h); 
 	CGContextDrawImage( context, CGRectMake( pos.x, pos.y, w, h), 
 					   image ); 

@@ -48,9 +48,9 @@
 	NSLog(@"current angle: %f",mMissile.angle);
 	mMissile.velocity = mPower;
 	mMissile.gravity = 10;
-	mMissile.time = 1.0/40.0;
+	mMissile.time = 0;
 	
-	mTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 / 40.0  target:self selector:@selector(startFireMissile) userInfo:nil repeats:YES];	
+	mTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 / 30.0  target:self selector:@selector(startFireMissile) userInfo:nil repeats:YES];	
 
 }
 
@@ -58,7 +58,6 @@
 {
 	[mMissile update];
 	[self setNeedsDisplay];
-	mMissile.time += 1.0/40.0;
 	
 	if (mMissile.position.y >= 320.0f  || mMissile.position.x >= 480.0f) {
 		[mTimer invalidate];
