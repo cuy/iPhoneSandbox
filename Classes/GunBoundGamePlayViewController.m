@@ -130,6 +130,7 @@
 	mMountView1.backgroundColor = [UIColor clearColor];
 	[self.view addSubview:mMountView1];
 	[mMountView1 setRandomLocation];
+	mMountView1.mMount.angle = 45.0;
 	// alloc mount muzzle 
 	mMuzzleView1 = [[MuzzleView alloc] initWithFrame:CGRectMake(mMountView1.center.x - 12, mMountView1.center.y - 27, 75, 75) forPlayer:1];
 	mMuzzleView1.backgroundColor = [UIColor clearColor];
@@ -146,6 +147,7 @@
 	mMountView2.backgroundColor = [UIColor clearColor];
 	[self.view addSubview:mMountView2];
 	[mMountView2 setRandomLocation];
+	mMountView2.mMount.angle = 135.0;
 	// alloc mount muzzle 
 	mMuzzleView2 = [[MuzzleView alloc] initWithFrame:CGRectMake(mMountView2.center.x - 63, mMountView2.center.y - 27, 75, 75) forPlayer:2];
 	mMuzzleView2.backgroundColor = [UIColor clearColor];
