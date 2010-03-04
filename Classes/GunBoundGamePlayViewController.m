@@ -28,8 +28,6 @@
 @synthesize mMuzzleView1,mMuzzleView2;
 
 @synthesize powerLabel;
-@synthesize angleLabel;
-@synthesize angleSlider;
 
 
 /*
@@ -91,13 +89,7 @@
 	[mMissileView release];
 	mPower = 0;
 	mAccel = 0;
-	//[self changePlayer];	
-}
-
-- (IBAction) changeAngle:(UISlider *) sender
-{
-	angleLabel.text = [NSString stringWithFormat:@"%.1f",[sender value]];
-	mMountView.mMount.angle = (CGFloat)[sender value];
+	[self changePlayer];	
 }
 
 - (IBAction) exitGame:(id)sender
@@ -139,7 +131,7 @@
 	[self.view addSubview:mMountView1];
 	[mMountView1 setRandomLocation];
 	// alloc mount muzzle 
-	mMuzzleView1 = [[MuzzleView alloc] initWithFrame:CGRectMake(mMountView1.center.x - 12, mMountView1.center.y - 27, 75, 75)];
+	mMuzzleView1 = [[MuzzleView alloc] initWithFrame:CGRectMake(mMountView1.center.x - 12, mMountView1.center.y - 27, 75, 75) forPlayer:1];
 	mMuzzleView1.backgroundColor = [UIColor clearColor];
 	mMountView1.mMuzzleView = mMuzzleView1;
 	[self.view insertSubview:mMuzzleView1 belowSubview:mMountView1];
@@ -153,6 +145,12 @@
 	mMountView2.backgroundColor = [UIColor clearColor];
 	[self.view addSubview:mMountView2];
 	[mMountView2 setRandomLocation];
+	// alloc mount muzzle 
+	mMuzzleView2 = [[MuzzleView alloc] initWithFrame:CGRectMake(mMountView2.center.x - 63, mMountView2.center.y - 27, 75, 75) forPlayer:2];
+	mMuzzleView2.backgroundColor = [UIColor clearColor];
+	mMountView2.mMuzzleView = mMuzzleView2;
+	[self.view insertSubview:mMuzzleView2 belowSubview:mMountView2];
+
 	
 	// set player 1 to be the first to move
 	mMountView = mMountView1;
@@ -163,13 +161,12 @@
 {
 	if (mMountView == mMountView1) {
 		mMountView = mMountView2;
+		mMuzzleView = mMuzzleView2;
 	}
 	else {
 		mMountView = mMountView1;
+		mMuzzleView = mMuzzleView1;
 	}
-	
-	mMountView.mMount.angle = (CGFloat) [angleSlider value];
-
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

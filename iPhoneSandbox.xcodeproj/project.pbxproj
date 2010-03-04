@@ -14,7 +14,8 @@
 		114FC3DB113D05C600B4F33A /* player_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 114FC3D9113D05C600B4F33A /* player_1.png */; };
 		114FC3DC113D05C600B4F33A /* player_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 114FC3DA113D05C600B4F33A /* player_2.png */; };
 		114FC601113E470200B4F33A /* MuzzleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 114FC600113E470200B4F33A /* MuzzleView.m */; };
-		114FC633113E49D200B4F33A /* mountmuzzle.png in Resources */ = {isa = PBXBuildFile; fileRef = 114FC632113E49D200B4F33A /* mountmuzzle.png */; };
+		114FC7E9113F3E3100B4F33A /* mountmuzzle_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 114FC7E7113F3E3100B4F33A /* mountmuzzle_1.png */; };
+		114FC7EA113F3E3100B4F33A /* mountmuzzle_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 114FC7E8113F3E3100B4F33A /* mountmuzzle_2.png */; };
 		1172353D11229E05003E9184 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1172353C11229E05003E9184 /* QuartzCore.framework */; };
 		1176D68A113B8815007409AD /* missile.png in Resources */ = {isa = PBXBuildFile; fileRef = 1176D689113B8815007409AD /* missile.png */; };
 		11BD11F91111625D00066A18 /* GunBoundNewCharacterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BD11F71111625D00066A18 /* GunBoundNewCharacterViewController.m */; };
@@ -174,7 +175,8 @@
 		114FC3DA113D05C600B4F33A /* player_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_2.png; sourceTree = "<group>"; };
 		114FC5FF113E470200B4F33A /* MuzzleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MuzzleView.h; sourceTree = "<group>"; };
 		114FC600113E470200B4F33A /* MuzzleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MuzzleView.m; sourceTree = "<group>"; };
-		114FC632113E49D200B4F33A /* mountmuzzle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mountmuzzle.png; sourceTree = "<group>"; };
+		114FC7E7113F3E3100B4F33A /* mountmuzzle_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mountmuzzle_1.png; sourceTree = "<group>"; };
+		114FC7E8113F3E3100B4F33A /* mountmuzzle_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mountmuzzle_2.png; sourceTree = "<group>"; };
 		1172353C11229E05003E9184 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1176D689113B8815007409AD /* missile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile.png; sourceTree = "<group>"; };
 		11BD11F61111625D00066A18 /* GunBoundNewCharacterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GunBoundNewCharacterViewController.h; sourceTree = "<group>"; };
@@ -567,8 +569,9 @@
 		56199795111033DD0018BC20 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				114FC7E7113F3E3100B4F33A /* mountmuzzle_1.png */,
+				114FC7E8113F3E3100B4F33A /* mountmuzzle_2.png */,
 				6BCD2278113E7529004E2EF4 /* angleControl.png */,
-				114FC632113E49D200B4F33A /* mountmuzzle.png */,
 				114FC3D9113D05C600B4F33A /* player_1.png */,
 				114FC3DA113D05C600B4F33A /* player_2.png */,
 				1176D689113B8815007409AD /* missile.png */,
@@ -779,8 +782,9 @@
 				1176D68A113B8815007409AD /* missile.png in Resources */,
 				114FC3DB113D05C600B4F33A /* player_1.png in Resources */,
 				114FC3DC113D05C600B4F33A /* player_2.png in Resources */,
-				114FC633113E49D200B4F33A /* mountmuzzle.png in Resources */,
 				6BCD2279113E7529004E2EF4 /* angleControl.png in Resources */,
+				114FC7E9113F3E3100B4F33A /* mountmuzzle_1.png in Resources */,
+				114FC7EA113F3E3100B4F33A /* mountmuzzle_2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

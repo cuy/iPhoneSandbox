@@ -13,9 +13,12 @@
 @interface MuzzleView : UIView {
 
 	CGPoint position;
+	int mPlayer;
 }
 
 @property CGPoint position;
+
+- (id)initWithFrame:(CGRect)frame forPlayer:(int) player;
 - (void) rotateAngle: (CGFloat) angle;
 
 @end

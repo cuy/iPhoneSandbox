@@ -24,9 +24,10 @@
 	return animation;
 }
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame forPlayer:(int) player {
 	position.x = 0;
 	position.y = 0;
+	mPlayer = player;
     if (self = [super initWithFrame:frame]) {
         // Initialization code
     }
@@ -65,7 +66,7 @@
 	NSLog(@"drawrect muzzleview");
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	[self drawImage:context pos:CGPointMake( position.x, position.y ) 
-			  image:[self loadImage:@"mountmuzzle.png"]]; 
+			  image:[self loadImage:[NSString stringWithFormat:@"mountmuzzle_%d.png",mPlayer]]]; 
 	
 	//self.transform = CGAffineTransformMakeRotation(180*M_PI/180);
 }
