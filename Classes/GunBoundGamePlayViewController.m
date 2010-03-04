@@ -150,6 +150,7 @@
 	mMuzzleView2 = [[MuzzleView alloc] initWithFrame:CGRectMake(mMountView2.center.x - 63, mMountView2.center.y - 27, 75, 75) forPlayer:2];
 	mMuzzleView2.backgroundColor = [UIColor clearColor];
 	mMountView2.mMuzzleView = mMuzzleView2;
+	mMuzzleView2.hidden = YES;
 	[mMuzzleView2 rotateAngle:-135.0];
 	[self.view insertSubview:mMuzzleView2 belowSubview:mMountView2];
 
@@ -161,6 +162,7 @@
 
 - (void) changePlayer
 {
+	mMuzzleView.hidden = YES;
 	if (mMountView == mMountView1) {
 		mMountView = mMountView2;
 		mMuzzleView = mMuzzleView2;
@@ -169,6 +171,7 @@
 		mMountView = mMountView1;
 		mMuzzleView = mMuzzleView1;
 	}
+	mMuzzleView.hidden = NO;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -209,23 +212,6 @@
 	
 	NSLog(@"Current Angle = %f", currentAngle);
 	
-	/*
-	if (currentPosition.y > mGestureStartPoint.y) {
-	//	NSLog(@"down");
-		if((mAngle + 5) <= 90)
-			mAngle += 5;
-		[mMuzzleView rotateAngle:mAngle];
-		mMountView.mMount.angle = mAngle;
-	}
-	
-	else if (currentPosition.y < mGestureStartPoint.x) {
-	//	NSLog(@"up");
-		if ((mAngle - 5) >= -90)
-			mAngle -= 5;
-		[mMuzzleView rotateAngle:mAngle];
-		mMountView.mMount.angle = mAngle;
-	}
-	*/
 	mGestureStartPoint = currentPosition;
 	//NSLog(@"mAngle %f",mAngle);
 }
@@ -257,6 +243,8 @@
 	[mMount2 release];
 	[mMountView1 release];
 	[mMountView2 release];
+	[mMuzzleView1 release];
+	[mMuzzleView2 release];
 	
 	[mMountView release];
 	[mMissileView release];
