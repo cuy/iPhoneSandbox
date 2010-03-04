@@ -42,9 +42,13 @@
 	//mMissile.angle = (float)(arc4random()%(90 - 1 + 1))+ 1;
 	//mMissile.angle = 80;
 	mMissile.angle =  mountView.mMount.angle;
+	
+	/**
 	if (mountView.mMount.player == 2) {
 		mMissile.angle = 180 - mMissile.angle;
 	}
+	 */
+	
 	NSLog(@"current angle: %f",mMissile.angle);
 	mMissile.velocity = mPower;
 	mMissile.gravity = 10;

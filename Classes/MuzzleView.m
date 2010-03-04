@@ -66,7 +66,7 @@
 	NSLog(@"drawrect muzzleview");
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	[self drawImage:context pos:CGPointMake( position.x, position.y ) 
-			  image:[self loadImage:[NSString stringWithFormat:@"mountmuzzle_%d.png",mPlayer]]]; 
+			  image:[self loadImage:@"angleControl.png"]]; 
 	
 	//self.transform = CGAffineTransformMakeRotation(180*M_PI/180);
 }

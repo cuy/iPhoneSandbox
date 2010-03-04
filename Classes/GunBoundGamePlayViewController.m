@@ -134,6 +134,7 @@
 	mMuzzleView1 = [[MuzzleView alloc] initWithFrame:CGRectMake(mMountView1.center.x - 12, mMountView1.center.y - 27, 75, 75) forPlayer:1];
 	mMuzzleView1.backgroundColor = [UIColor clearColor];
 	mMountView1.mMuzzleView = mMuzzleView1;
+	[mMuzzleView1 rotateAngle:-45.0];
 	[self.view insertSubview:mMuzzleView1 belowSubview:mMountView1];
 	
 	
@@ -149,6 +150,7 @@
 	mMuzzleView2 = [[MuzzleView alloc] initWithFrame:CGRectMake(mMountView2.center.x - 63, mMountView2.center.y - 27, 75, 75) forPlayer:2];
 	mMuzzleView2.backgroundColor = [UIColor clearColor];
 	mMountView2.mMuzzleView = mMuzzleView2;
+	[mMuzzleView2 rotateAngle:-135.0];
 	[self.view insertSubview:mMuzzleView2 belowSubview:mMountView2];
 
 	
@@ -185,20 +187,25 @@
 	/**
 	 * Arc Tangent Formula
 	 */
-	CGFloat currentAngle = atan2(mGestureStartPoint.y-mMuzzleView1.center.y,mGestureStartPoint.x-mMuzzleView1.center.x)*180.0/M_PI;
+	CGFloat currentAngle = atan2(mGestureStartPoint.y-mMuzzleView.center.y,mGestureStartPoint.x-mMuzzleView.center.x)*180.0/M_PI;
 	
-	if (currentAngle < -90.0) {
+	
+	if(currentAngle < -90.0 && mMuzzleView == mMuzzleView1){
 		currentAngle = -90.0;
 	}
-	else if (currentAngle > 0) {
-		currentAngle = 0;
+	else if(currentAngle > 45.0 && mMuzzleView == mMuzzleView1){
+		currentAngle = 45.0;
 	}
 	
-	//Let's rotate the angle
-	[mMuzzleView rotateAngle:currentAngle];
-	//Let's run Pole Shift
-	mMountView.mMount.angle = currentAngle*-1;
+	if(currentAngle <= 135.0 && currentAngle > 0.0 && mMuzzleView == mMuzzleView2){
+		currentAngle = 135.0;
+	}
+	else if(currentAngle > -90.0 && currentAngle < 0.0 && mMuzzleView == mMuzzleView2){
+		currentAngle = -90.0;
+	}
 	
+	[mMuzzleView rotateAngle:currentAngle];
+	mMountView.mMount.angle = currentAngle*-1;
 	
 	NSLog(@"Current Angle = %f", currentAngle);
 	
