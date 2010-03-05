@@ -57,11 +57,6 @@
 
 - (void) changePlayer;
 
-
-- (IBAction) upButton:(id)sender;
-- (IBAction) downButton:(id)sender;
-//- (IBAction)upAngleMuzzle:(id)sender;
-//- (IBAction)downAngleMuzzle:(id)sender;
 - (IBAction) stopTimerButton:(id)sender;
 - (IBAction) fireButton:(id)sender;
 - (IBAction) fireMissile:(id)sender;

@@ -42,26 +42,6 @@
 
 #pragma mark Buttons
 
-- (IBAction) upButton:(id)sender
-{
-	mTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(moveAvatarUp:) userInfo:nil repeats:YES];	
-}
-
-- (IBAction) downButton:(id)sender
-{
-	mTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(moveAvatarDown:) userInfo:nil repeats:YES];	
-}
-/*
-- (IBAction)upAngleMuzzle:(id)sender
-{
-	[mMountMuzzleView rotateMuzzleUp];
-}
-
-- (IBAction)downAngleMuzzle:(id)sender
-{
-	[mMountMuzzleView rotateMuzzleDown];
-}
-*/
 - (IBAction) stopTimerButton:(id)sender
 {
 	if (mTimer != nil) 
@@ -98,16 +78,6 @@
 }
 
 #pragma mark avatar movements
-
-- (void) moveAvatarUp:(id)sender
-{
-	[mMountView moveUpMount];
-}
-
-- (void) moveAvatarDown:(id)sender 
-{
-	[mMountView moveDownMount];
-}
 
 -(void) addPower:(id)sender
 {

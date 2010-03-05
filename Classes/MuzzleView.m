@@ -17,7 +17,7 @@
 	id<CAAction> animation = nil;
 	if([key isEqualToString:@"position"]) {
 		animation = [CABasicAnimation animation];
-		((CABasicAnimation*)animation).duration = 0.3;
+		((CABasicAnimation*)animation).duration = 0.1;
 	} else {
 		animation = [super actionForLayer:layer forKey:key];
 	}

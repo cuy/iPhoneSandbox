@@ -16,6 +16,8 @@
 
 	Mount *mMount;
 	MuzzleView *mMuzzleView;
+	
+	CGPoint mGestureStartPoint;
 }
 
 @property (nonatomic, retain) Mount *mMount;

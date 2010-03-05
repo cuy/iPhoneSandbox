@@ -19,13 +19,13 @@
 	id<CAAction> animation = nil;
 	if([key isEqualToString:@"position"]) {
 		animation = [CABasicAnimation animation];
-		((CABasicAnimation*)animation).duration = 0.3;
+		((CABasicAnimation*)animation).duration = 0.1;
 	} else {
 		animation = [super actionForLayer:layer forKey:key];
 	}
  return animation;
 }
- 
+
 
 - (id)initWithFrame:(CGRect)frame withMount:(Mount *)mount {
 	mMount = mount;
@@ -77,7 +77,7 @@
 	
 	self.center = pos;
 	mMuzzleView.center = muzzlepos;
-	NSLog(@"current pos x: %f y:%f",pos.x,pos.y);
+	//NSLog(@"current pos x: %f y:%f",pos.x,pos.y);
 }
 
 - (void) moveDownMount
@@ -111,7 +111,7 @@
 	
 	self.center = pos;
 	mMuzzleView.center = muzzlepos;
-	NSLog(@"current pos x: %f y:%f",pos.x,pos.y);
+	//NSLog(@"current pos x: %f y:%f",pos.x,pos.y);
 }
 
 - (void) setRandomLocation
@@ -122,6 +122,33 @@
 	NSLog(@"starting pos x: %f y:%f",pos.x,pos.y);
 	self.center = pos;
 	
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	UITouch *touch = [touches anyObject];
+	mGestureStartPoint = [touch locationInView:self];
+	//NSLog(@"view position x: %f y: %f",self.center.x,self.center.y);
+	NSLog(@"touch began");
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+	UITouch *touch = [touches anyObject];
+	CGPoint currentPosition = [touch locationInView:self];
+	NSLog(@"currentPosition x: %f y: %f",currentPosition.x,currentPosition.y);
+	
+	if (currentPosition.y <= mGestureStartPoint.y) 
+	{
+		[self moveDownMount];
+	}
+	else if (currentPosition.y >= mGestureStartPoint.y) 
+	{
+		[self moveUpMount];
+	}
+	NSLog(@"current view position x: %f y: %f",self.center.x,self.center.y);
+
+	//mGestureStartPoint = currentPosition;
+	
+	NSLog(@"touchesmoved");
 }
 
 - (CGImageRef) loadImage:(NSString *)filename 
