@@ -26,6 +26,13 @@
 	[self addSubview:mMissileImageView];
 	self.backgroundColor = [UIColor clearColor];
 	
+	// initialize mMissile
+	mMissile = [[Missile alloc] init];
+	CGPoint pos;
+	pos.x = 0; pos.y = 0;
+	mMissile.position = pos;
+	//mMissile.position.x = 0;
+	
 	return self;
 }
 
@@ -33,7 +40,6 @@
 {
 	mMountView = mountView;
 	mEnemyMountView = enemyMountView;
-	mMissile = [[Missile alloc] init];
 	
 	// set missile starting point
 	CGPoint mPos = mMountView.center;
@@ -97,35 +103,6 @@
 		return NO;
 	}
 
-}
-
-- (CGImageRef) loadImage:(NSString *)filename 
-{ 
-	UIImage *img = [UIImage imageNamed:filename]; 
-	CGImageRef image = CGImageRetain(img.CGImage); 
-	return image; 
-} 
-
-// draw 
-- (void) drawImage:(CGContextRef)context pos:(CGPoint)pos image: 
-(CGImageRef)image 
-{ 
-	//image. 
-	CGRect imageRect; 
-	size_t h = CGImageGetHeight( image ); 
-	size_t w = CGImageGetWidth( image ); 
-	imageRect.origin = CGPointMake(pos.x, pos.y); 
-	imageRect.size = CGSizeMake(w, h); 
-	CGContextDrawImage( context, CGRectMake( pos.x, pos.y, w, h), 
-					   image ); 
-}
-
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-	
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	[self drawImage:context pos:CGPointMake( mMissile.position.x, mMissile.position.y ) 
-			  image:[self loadImage:@"missile.png"] ]; 
 }
 
 - (void)dealloc {

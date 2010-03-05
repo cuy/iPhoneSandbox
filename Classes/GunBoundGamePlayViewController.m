@@ -24,7 +24,6 @@
 @synthesize mMissileView;
 
 @synthesize mMountView1,mMountView2;
-@synthesize mMount1,mMount2;
 @synthesize mMuzzleView1,mMuzzleView2;
 
 @synthesize powerLabel;
@@ -58,7 +57,7 @@
 {
 	[self stopTimerButton:sender];
 	
-	mMissileView = [[MissileView alloc] initWithFrame:CGRectMake(-20, 0.0, 20, 20)];
+	mMissileView = [[MissileView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
 	//mMissileView.backgroundColor = [UIColor blueColor];
 	mMissileView.mPower = mPower;
 	[self.view insertSubview:mMissileView belowSubview:mMountView];
@@ -98,10 +97,8 @@
 	mAngle = 0;
 	mAccel = 0;
 	// add player 1
-	mMount1 = [[Mount alloc] init];
-	mMount1.player = 1;
-	mMount1.bgColor = [UIColor blueColor];
-	mMountView1 = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) withMount:mMount1];
+	mMountView1 = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+	mMountView1.mMount.player = 1;
 	[self.view addSubview:mMountView1];
 	[mMountView1 setRandomLocation];
 	mMountView1.mMount.angle = 45.0;
@@ -114,10 +111,8 @@
 	
 	
 	// add player 2
-	mMount2 = [[Mount alloc] init];
-	mMount2.player = 2;
-	mMount2.bgColor = [UIColor redColor];
-	mMountView2 = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) withMount:mMount2];
+	mMountView2 = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+	mMountView2.mMount.player = 2;
 	[self.view addSubview:mMountView2];
 	[mMountView2 setRandomLocation];
 	mMountView2.mMount.angle = 135.0;
@@ -128,7 +123,7 @@
 	mMuzzleView2.hidden = YES;
 	[mMuzzleView2 rotateAngle:-135.0];
 	[self.view insertSubview:mMuzzleView2 belowSubview:mMountView2];
-
+	 
 	
 	// set player 1 to be the first to move
 	mMountView = mMountView1;
@@ -216,8 +211,6 @@
 
 - (void)dealloc {
     [super dealloc];
-	[mMount1 release];
-	[mMount2 release];
 	[mMountView1 release];
 	[mMountView2 release];
 	[mMuzzleView1 release];

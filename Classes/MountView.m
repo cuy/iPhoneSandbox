@@ -27,9 +27,8 @@
 }
 
 
-- (id)initWithFrame:(CGRect)frame withMount:(Mount *)mount {
-	mMount = mount;
-	
+- (id)initWithFrame:(CGRect)frame {
+	/*
 	CGFloat x;
 	if (mount.player == 1) {
 		x = 20.0f;
@@ -37,11 +36,15 @@
 	else {
 		x = 395.0f;
 	}
+	*/
 	
-	frame = CGRectMake(x,0,65,58);
+	frame = CGRectMake(0,0,65,58);
     if (self = [super initWithFrame:frame]) {
         // Initialization code
     }
+	
+	// initialize mMount
+	mMount = [[Mount alloc] init];
 	
 	self.backgroundColor = [UIColor clearColor];
 	
@@ -80,6 +83,7 @@
 	
 	self.center = pos;
 	mMuzzleView.center = muzzlepos;
+	[self setNeedsDisplay];
 	//NSLog(@"current pos x: %f y:%f",pos.x,pos.y);
 }
 
@@ -114,6 +118,7 @@
 	
 	self.center = pos;
 	mMuzzleView.center = muzzlepos;
+	[self setNeedsDisplay];
 	//NSLog(@"current pos x: %f y:%f",pos.x,pos.y);
 }
 
@@ -121,10 +126,19 @@
 {	
 	CGPoint pos = self.center;
 	
+	//CGFloat x;
+	if (mMount.player == 1) {
+		pos.x = 50.0f;
+	}
+	else {
+		pos.x = 430.0f;
+	}
+	
 	pos.y = (float)(arc4random()%(250 - 50 + 1))+ 50;
 	//NSLog(@"starting pos x: %f y:%f",pos.x,pos.y);
 	self.center = pos;
 	
+	[self setNeedsDisplay];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

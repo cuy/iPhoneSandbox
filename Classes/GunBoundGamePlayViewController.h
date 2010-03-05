@@ -30,8 +30,6 @@
 	// Players Variables
 	MountView *mMountView1;
 	MountView *mMountView2;
-	Mount *mMount1;
-	Mount *mMount2;
 	MuzzleView *mMuzzleView1;
 	MuzzleView *mMuzzleView2;
 	
@@ -48,8 +46,6 @@
 
 @property(nonatomic, readonly, assign) MountView *mMountView1;
 @property(nonatomic, readonly, assign) MountView *mMountView2;
-@property(nonatomic, readonly, assign) Mount *mMount1;
-@property(nonatomic, readonly, assign) Mount *mMount2;
 @property(nonatomic, readonly, assign) MuzzleView *mMuzzleView1;
 @property(nonatomic, readonly, assign) MuzzleView *mMuzzleView2;
 

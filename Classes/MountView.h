@@ -24,7 +24,7 @@
 @property (nonatomic, retain) MuzzleView *mMuzzleView;
 
 //+ (Mount *) initMountWithMuzzle: (MountMuzzle *)mountMuzzle;
-- (id)initWithFrame:(CGRect)frame withMount:(Mount *)mount;
+//- (id)initWithFrame:(CGRect)frame withMount:(Mount *)mount;
 - (void) moveUpMount;
 - (void) moveDownMount;
 - (void) setRandomLocation;
