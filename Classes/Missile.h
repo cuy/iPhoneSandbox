@@ -24,6 +24,4 @@
 @property CGFloat angle;
 @property CGFloat time;
 
-- (void) update;
-
 @end

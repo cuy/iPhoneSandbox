@@ -63,7 +63,7 @@
 
 - (void)drawRect:(CGRect)rect {
     // Drawing code
-	NSLog(@"drawrect muzzleview");
+	//NSLog(@"drawrect muzzleview");
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	[self drawImage:context pos:CGPointMake( position.x, position.y ) 
 			  image:[self loadImage:@"angleControl.png"]]; 

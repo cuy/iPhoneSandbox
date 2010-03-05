@@ -42,13 +42,16 @@
     if (self = [super initWithFrame:frame]) {
         // Initialization code
     }
+	
+	self.backgroundColor = [UIColor clearColor];
+	
     return self;
 }
 
 
 - (void) moveUpMount
 {
-	NSLog(@"moveUpMount");
+	//NSLog(@"moveUpMount");
 	/*
 	CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
     [animation setDelegate:self];
@@ -82,7 +85,7 @@
 
 - (void) moveDownMount
 {
-	NSLog(@"moveDownMount");
+	//NSLog(@"moveDownMount");
 	/*
 	CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
     [animation setDelegate:self];
@@ -119,7 +122,7 @@
 	CGPoint pos = self.center;
 	
 	pos.y = (float)(arc4random()%(250 - 50 + 1))+ 50;
-	NSLog(@"starting pos x: %f y:%f",pos.x,pos.y);
+	//NSLog(@"starting pos x: %f y:%f",pos.x,pos.y);
 	self.center = pos;
 	
 }
@@ -128,13 +131,13 @@
 	UITouch *touch = [touches anyObject];
 	mGestureStartPoint = [touch locationInView:self];
 	//NSLog(@"view position x: %f y: %f",self.center.x,self.center.y);
-	NSLog(@"touch began");
+	//NSLog(@"touch began");
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 	UITouch *touch = [touches anyObject];
 	CGPoint currentPosition = [touch locationInView:self];
-	NSLog(@"currentPosition x: %f y: %f",currentPosition.x,currentPosition.y);
+	//NSLog(@"currentPosition x: %f y: %f",currentPosition.x,currentPosition.y);
 	
 	if (currentPosition.y <= mGestureStartPoint.y) 
 	{
@@ -144,11 +147,11 @@
 	{
 		[self moveUpMount];
 	}
-	NSLog(@"current view position x: %f y: %f",self.center.x,self.center.y);
+	//NSLog(@"current view position x: %f y: %f",self.center.x,self.center.y);
 
 	//mGestureStartPoint = currentPosition;
 	
-	NSLog(@"touchesmoved");
+	//NSLog(@"touchesmoved");
 }
 
 - (CGImageRef) loadImage:(NSString *)filename 
@@ -174,7 +177,7 @@
 
 - (void)drawRect:(CGRect)rect {
     // Drawing code
-	NSLog(@"drawrect mountview");
+	//NSLog(@"drawrect mountview");
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	[self drawImage:context pos:CGPointMake( mMount.position.x, mMount.position.y ) 
 			  image:[self loadImage:[NSString stringWithFormat:@"player_%d.png",mMount.player]] ]; 

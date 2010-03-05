@@ -58,14 +58,14 @@
 {
 	[self stopTimerButton:sender];
 	
-	mMissileView = [[MissileView alloc] initWithFrame:CGRectMake(0.0, 0.0, 480, 320)];
-	mMissileView.backgroundColor = [UIColor clearColor];
+	mMissileView = [[MissileView alloc] initWithFrame:CGRectMake(-20, 0.0, 20, 20)];
+	//mMissileView.backgroundColor = [UIColor blueColor];
 	mMissileView.mPower = mPower;
 	[self.view insertSubview:mMissileView belowSubview:mMountView];
 	//[self.view addSubview:mMissileView];
 	//[self.view bringSubviewToFront:mMissileView];
 	mMissileView.hidden = NO;
-	[mMissileView fireMissileFrom:mMountView];
+	[mMissileView fireMissileFrom:mMountView toEnemyMountView:mEnemyMountView];
 	[mMissileView release];
 	mPower = 0;
 	mAccel = 0;
@@ -89,7 +89,12 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bg01.png"]];
+	
+	// set background image
+	UIColor *bgImage = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bg01.png"]];
+	self.view.backgroundColor = bgImage;
+	[bgImage release];
+		
 	mAngle = 0;
 	mAccel = 0;
 	// add player 1
@@ -97,7 +102,6 @@
 	mMount1.player = 1;
 	mMount1.bgColor = [UIColor blueColor];
 	mMountView1 = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) withMount:mMount1];
-	mMountView1.backgroundColor = [UIColor clearColor];
 	[self.view addSubview:mMountView1];
 	[mMountView1 setRandomLocation];
 	mMountView1.mMount.angle = 45.0;
@@ -114,7 +118,6 @@
 	mMount2.player = 2;
 	mMount2.bgColor = [UIColor redColor];
 	mMountView2 = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) withMount:mMount2];
-	mMountView2.backgroundColor = [UIColor clearColor];
 	[self.view addSubview:mMountView2];
 	[mMountView2 setRandomLocation];
 	mMountView2.mMount.angle = 135.0;
@@ -130,11 +133,13 @@
 	// set player 1 to be the first to move
 	mMountView = mMountView1;
 	mMuzzleView = mMuzzleView1;
+	mEnemyMountView = mMountView2;
 }
 
 - (void) changePlayer
 {
 	mMuzzleView.hidden = YES;
+	mEnemyMountView = mMountView;
 	if (mMountView == mMountView1) {
 		mMountView = mMountView2;
 		mMuzzleView = mMuzzleView2;
@@ -182,7 +187,7 @@
 	[mMuzzleView rotateAngle:currentAngle];
 	mMountView.mMount.angle = currentAngle*-1;
 	
-	NSLog(@"Current Angle = %f", currentAngle);
+	//NSLog(@"Current Angle = %f", currentAngle);
 	
 	mGestureStartPoint = currentPosition;
 	//NSLog(@"mAngle %f",mAngle);

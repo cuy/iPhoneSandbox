@@ -19,6 +19,7 @@
 	
 	// Avatar Variables
 	MountView *mMountView;
+	MountView *mEnemyMountView;
 	MissileView *mMissileView;
 	MuzzleView *mMuzzleView;
 	CGFloat mAngle;

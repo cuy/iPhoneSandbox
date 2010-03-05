@@ -21,16 +21,23 @@
     if (self = [super initWithFrame:frame]) {
         // Initialization code
     }
-    return self;
+	// set missile image as background
+	mMissileImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"missile.png"]];
+	[self addSubview:mMissileImageView];
+	self.backgroundColor = [UIColor clearColor];
+	
+	return self;
 }
 
-- (void) fireMissileFrom:(MountView *)mountView
+- (void) fireMissileFrom:(MountView *)mountView toEnemyMountView:(MountView *)enemyMountView 
 {
+	mMountView = mountView;
+	mEnemyMountView = enemyMountView;
 	mMissile = [[Missile alloc] init];
 	
 	// set missile starting point
-	CGPoint mPos = mountView.center;
-	if (mountView.mMount.player == 1) {
+	CGPoint mPos = mMountView.center;
+	if (mMountView.mMount.player == 1) {
 		mPos.x += 20;
 	}
 	else {
@@ -38,10 +45,10 @@
 	}
 	mMissile.position = mPos;
 
-	NSLog(@"player %d",mountView.mMount.player);
+	//NSLog(@"player %d",mMountView.mMount.player);
 	//mMissile.angle = (float)(arc4random()%(90 - 1 + 1))+ 1;
 	//mMissile.angle = 80;
-	mMissile.angle =  mountView.mMount.angle;
+	mMissile.angle =  mMountView.mMount.angle;
 	
 	/**
 	if (mountView.mMount.player == 2) {
@@ -49,7 +56,7 @@
 	}
 	 */
 	
-	NSLog(@"current angle: %f",mMissile.angle);
+	//NSLog(@"current angle: %f",mMissile.angle);
 	mMissile.velocity = mPower;
 	mMissile.gravity = 10;
 	mMissile.time = 0;
@@ -60,17 +67,37 @@
 
 - (void) startFireMissile
 {
-	[mMissile update];
-	[self setNeedsDisplay];
+	// launch missile
+	mMissile.time += 1.0/15.0;
+	//NSLog(@"velocity: %f gravity: %f angle: %f time: %f",velocity,gravity,angle,time);
+	CGPoint position = self.center;
+	position.x = mMissile.velocity * mMissile.time * cos(mMissile.angle * M_PI/180) + mMissile.position.x;
+	position.y = mMissile.gravity * mMissile.time * mMissile.time - mMissile.velocity * mMissile.time * sin(mMissile.angle * M_PI/180) + mMissile.position.y;	
 	
-	if (mMissile.position.y >= 320.0f  || mMissile.position.x >= 480.0f) {
+	self.center = position;
+	mMissile.position = position;	
+	
+	//[self setNeedsDisplay];
+	
+	//NSLog(@"missile position x: %f y: %f",mMissile.position.x,mMissile.position.y);
+	if ((mMissile.position.y >= 320.0f  || mMissile.position.x >= 480.0f) || [self didHitEnemyMountView]) {
 		[mTimer invalidate];
 		mTimer = nil;
 		self.hidden = YES;
-		//[mMissile release];
 	}
 }
 
+- (BOOL) didHitEnemyMountView
+{
+	if (CGRectIntersectsRect(self.frame, mEnemyMountView.frame)) {
+		NSLog(@"naka igo ka brad!");
+		return YES;
+	}
+	else {
+		return NO;
+	}
+
+}
 
 - (CGImageRef) loadImage:(NSString *)filename 
 { 

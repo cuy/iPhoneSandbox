@@ -13,16 +13,21 @@
 
 @interface MissileView : UIView {
 
+	UIImageView *mMissileImageView;
 	Missile *mMissile;
 	NSTimer *mTimer;
 	CGFloat mPower;
+	
+	MountView *mMountView;
+	MountView *mEnemyMountView;
 }
 
 @property (nonatomic, retain) Missile *mMissile;
 @property (nonatomic, retain) NSTimer *mTimer;
 @property CGFloat mPower;
 
-- (void) fireMissileFrom:(MountView *) mountView;
+- (void) fireMissileFrom:(MountView *) mountView toEnemyMountView:(MountView *)enemyMountView;
 - (void) startFireMissile;
+- (BOOL) didHitEnemyMountView;
 
 @end
