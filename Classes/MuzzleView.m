@@ -31,6 +31,7 @@
     if (self = [super initWithFrame:frame]) {
         // Initialization code
     }
+	self.backgroundColor = [UIColor clearColor];
     return self;
 }
 

@@ -14,7 +14,6 @@
 @implementation MissileView
 
 @synthesize mMissile;
-@synthesize mTimer;
 @synthesize mPower;
 
 - (id)initWithFrame:(CGRect)frame {
@@ -24,7 +23,7 @@
 	// set missile image as background
 	mMissileImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"missile.png"]];
 	[self addSubview:mMissileImageView];
-	self.backgroundColor = [UIColor clearColor];
+	self.backgroundColor = [UIColor blueColor];
 	
 	// initialize mMissile
 	mMissile = [[Missile alloc] init];
@@ -44,23 +43,18 @@
 	// set missile starting point
 	CGPoint mPos = mMountView.center;
 	if (mMountView.mMount.player == 1) {
-		mPos.x += 20;
+		mPos.x += 30;
+		mPos.y += 5;
 	}
 	else {
-		mPos.x -= 40;
+		mPos.x -= 30;
+		mPos.y += 5;
 	}
 	mMissile.position = mPos;
-
-	//NSLog(@"player %d",mMountView.mMount.player);
-	//mMissile.angle = (float)(arc4random()%(90 - 1 + 1))+ 1;
-	//mMissile.angle = 80;
-	mMissile.angle =  mMountView.mMount.angle;
 	
-	/**
-	if (mountView.mMount.player == 2) {
-		mMissile.angle = 180 - mMissile.angle;
-	}
-	 */
+	//NSLog(@"missile pos x: %f y: %f",mMissile.position.x, mMissile.position.y);
+	//NSLog(@"player %d",mMountView.mMount.player);
+	mMissile.angle =  mMountView.mMount.angle;
 	
 	//NSLog(@"current angle: %f",mMissile.angle);
 	mMissile.velocity = mPower;
@@ -74,7 +68,7 @@
 - (void) startFireMissile
 {
 	// launch missile
-	mMissile.time += 1.0/15.0;
+	mMissile.time += 1.0/60.0;
 	//NSLog(@"velocity: %f gravity: %f angle: %f time: %f",velocity,gravity,angle,time);
 	CGPoint position = self.center;
 	position.x = mMissile.velocity * mMissile.time * cos(mMissile.angle * M_PI/180) + mMissile.position.x;
@@ -107,6 +101,8 @@
 
 - (void)dealloc {
     [super dealloc];
+	
+	[mMissile release];
 }
 
 

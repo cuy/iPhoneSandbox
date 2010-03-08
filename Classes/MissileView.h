@@ -23,7 +23,6 @@
 }
 
 @property (nonatomic, retain) Missile *mMissile;
-@property (nonatomic, retain) NSTimer *mTimer;
 @property CGFloat mPower;
 
 - (void) fireMissileFrom:(MountView *) mountView toEnemyMountView:(MountView *)enemyMountView;

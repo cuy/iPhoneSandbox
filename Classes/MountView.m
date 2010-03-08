@@ -28,15 +28,6 @@
 
 
 - (id)initWithFrame:(CGRect)frame {
-	/*
-	CGFloat x;
-	if (mount.player == 1) {
-		x = 20.0f;
-	}
-	else {
-		x = 395.0f;
-	}
-	*/
 	
 	frame = CGRectMake(0,0,65,58);
     if (self = [super initWithFrame:frame]) {
@@ -46,7 +37,7 @@
 	// initialize mMount
 	mMount = [[Mount alloc] init];
 	
-	self.backgroundColor = [UIColor clearColor];
+	self.backgroundColor = [UIColor redColor];
 	
     return self;
 }
@@ -201,6 +192,9 @@
 
 - (void)dealloc {
     [super dealloc];
+	
+	[mMount release];
+	[mMuzzleView release];
 }
 
 @end
