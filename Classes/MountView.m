@@ -37,7 +37,7 @@
 	// initialize mMount
 	mMount = [[Mount alloc] init];
 	
-	self.backgroundColor = [UIColor redColor];
+	self.backgroundColor = [UIColor clearColor];
 	
     return self;
 }

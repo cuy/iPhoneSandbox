@@ -11,6 +11,7 @@
 #import "Mount.h"
 #import "MountView.h"
 #import "MissileView.h"
+#import "Missile.h"
 
 
 #define degreesToRadian(x) (M_PI * x / 180.0)
@@ -46,16 +47,21 @@
 {
 	[self stopTimerButton:sender];
 	
+	// allocate missileView
 	mMissileView = [[MissileView alloc] initWithFrame:CGRectMake(-20, -20, 20, 20)];
-	//mMissileView.backgroundColor = [UIColor blueColor];
-	mMissileView.mPower = mPower;
+	// set missile velocity
+	mMissileView.mMissile.velocity = mPower;
+	// set missile starting angle
+	mMissileView.mMissile.angle = mMountView.mMount.angle;
+	// insert subview below the current player's mountview
 	[self.view insertSubview:mMissileView belowSubview:mMountView];
-	//[self.view addSubview:mMissileView];
-	//[self.view bringSubviewToFront:mMissileView];
-	mMissileView.hidden = NO;
+	// call firemissilefrom method 
 	[mMissileView fireMissileFrom:mMountView toEnemyMountView:mEnemyMountView];
+	// release missileview
 	[mMissileView release];
+	// re-init mpower
 	mPower = 0;
+	// call change played method
 	[self changePlayer];	
 }
 
@@ -68,9 +74,10 @@
 
 -(void) addPower:(id)sender
 {
+	// increment power
 	mPower += 1.5;
+	// set powerlabel
 	powerLabel.text = [NSString stringWithFormat:@"%d",mPower];
-	//NSLog(@"mpower %d",mPower);
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -84,36 +91,49 @@
 		
 	// add player 1
 	mMountView1 = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+	// set player
 	mMountView1.mMount.player = 1;
+	// add subview
 	[self.view addSubview:mMountView1];
+	// set to random location
 	[mMountView1 setRandomLocation];
-	mMountView1.mMount.angle = 45.0;
 	// alloc mount muzzle 
 	mMountView1.mMuzzleView = [[MuzzleView alloc] initWithFrame:CGRectMake(mMountView1.center.x - 12, mMountView1.center.y - 27, 75, 75) forPlayer:1];
+	// set muzzle starting angle
+	mMountView1.mMount.angle = 45.0;
 	[mMountView1.mMuzzleView rotateAngle:-45.0];
+	// insert subview below player's mountview
 	[self.view insertSubview:mMountView1.mMuzzleView belowSubview:mMountView1];
 	
 	
 	// add player 2
 	mMountView2 = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+	// set player
 	mMountView2.mMount.player = 2;
+	// add to subview
 	[self.view addSubview:mMountView2];
+	// set to random location
 	[mMountView2 setRandomLocation];
-	mMountView2.mMount.angle = 135.0;
 	// alloc mount muzzle 
 	mMountView2.mMuzzleView = [[MuzzleView alloc] initWithFrame:CGRectMake(mMountView2.center.x - 63, mMountView2.center.y - 27, 75, 75) forPlayer:2];
+	// set muzzle starting angle
+	mMountView2.mMount.angle = 135.0;
 	[mMountView2.mMuzzleView rotateAngle:-135.0];
+	// insert subview below player's mountview
 	[self.view insertSubview:mMountView2.mMuzzleView belowSubview:mMountView2];
 	 
 	
 	// set player 1 to be the first to move
 	mMountView = mMountView1;
+	// set player 2 to be the enemy
 	mEnemyMountView = mMountView2;
 }
 
 - (void) changePlayer
-{
+{	
+	// hide current player muzzle
 	mMountView.mMuzzleView.hidden = YES;
+	
 	mEnemyMountView = mMountView;
 	if (mMountView == mMountView1) {
 		mMountView = mMountView2;
@@ -121,6 +141,8 @@
 	else {
 		mMountView = mMountView1;
 	}
+	
+	// unhide new player muzzle
 	mMountView.mMuzzleView.hidden = NO;
 }
 

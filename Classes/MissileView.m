@@ -23,14 +23,13 @@
 	// set missile image as background
 	mMissileImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"missile.png"]];
 	[self addSubview:mMissileImageView];
-	self.backgroundColor = [UIColor blueColor];
+	self.backgroundColor = [UIColor clearColor];
 	
 	// initialize mMissile
 	mMissile = [[Missile alloc] init];
 	CGPoint pos;
 	pos.x = 0; pos.y = 0;
 	mMissile.position = pos;
-	//mMissile.position.x = 0;
 	
 	return self;
 }
@@ -52,12 +51,10 @@
 	}
 	mMissile.position = mPos;
 	
-	//NSLog(@"missile pos x: %f y: %f",mMissile.position.x, mMissile.position.y);
-	//NSLog(@"player %d",mMountView.mMount.player);
-	mMissile.angle =  mMountView.mMount.angle;
+	// rotate missile with given angle
+	self.transform = CGAffineTransformMakeRotation(((mMissile.angle - (mMissile.angle * 2)) * M_PI)/180);
 	
-	//NSLog(@"current angle: %f",mMissile.angle);
-	mMissile.velocity = mPower;
+	//mMissile.velocity = mPower;
 	mMissile.gravity = 10;
 	mMissile.time = 0;
 	
@@ -68,12 +65,12 @@
 - (void) startFireMissile
 {
 	// launch missile
-	mMissile.time += 1.0/60.0;
+	mMissile.time += 1.0/12.0;
 	//NSLog(@"velocity: %f gravity: %f angle: %f time: %f",velocity,gravity,angle,time);
-	CGPoint position = self.center;
-	position.x = mMissile.velocity * mMissile.time * cos(mMissile.angle * M_PI/180) + mMissile.position.x;
-	position.y = mMissile.gravity * mMissile.time * mMissile.time - mMissile.velocity * mMissile.time * sin(mMissile.angle * M_PI/180) + mMissile.position.y;	
-	
+	CGPoint position = mMissile.position;
+	position.x = mMissile.velocity * mMissile.time * cos((mMissile.angle * M_PI)/180) + mMissile.position.x;
+	position.y = mMissile.gravity * mMissile.time * mMissile.time - mMissile.velocity * mMissile.time * sin((mMissile.angle * M_PI)/180) + mMissile.position.y;	
+		
 	self.center = position;
 	mMissile.position = position;	
 	
