@@ -75,7 +75,7 @@
 -(void) addPower:(id)sender
 {
 	// increment power
-	mPower += 1.5;
+	mPower += 5;
 	// set powerlabel
 	powerLabel.text = [NSString stringWithFormat:@"%d",mPower];
 }

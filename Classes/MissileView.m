@@ -15,13 +15,15 @@
 
 @synthesize mMissile;
 @synthesize mPower;
+@synthesize cx;
+@synthesize cy;
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
     }
 	// set missile image as background
-	mMissileImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"missile.png"]];
+	mMissileImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"missile2.png"]];
 	[self addSubview:mMissileImageView];
 	self.backgroundColor = [UIColor clearColor];
 	
@@ -38,21 +40,24 @@
 {
 	mMountView = mountView;
 	mEnemyMountView = enemyMountView;
+	cx = mMountView.center.x;
+	cy = mMountView.center.y;
 	
 	// set missile starting point
-	CGPoint mPos = mMountView.center;
+	//CGPoint mPos = mMountView.center;
 	if (mMountView.mMount.player == 1) {
-		mPos.x += 30;
-		mPos.y += 5;
+		cx += 30;
+		cy += 5;
 	}
 	else {
-		mPos.x -= 30;
-		mPos.y += 5;
+		cx -= 30;
+		cy += 5;
 	}
-	mMissile.position = mPos;
+	
+	//mMissile.position = mPos;
 	
 	// rotate missile with given angle
-	self.transform = CGAffineTransformMakeRotation(((mMissile.angle - (mMissile.angle * 2)) * M_PI)/180);
+	//self.transform = CGAffineTransformMakeRotation(((mMissile.angle - (mMissile.angle * 2)) * M_PI)/180);
 	
 	//mMissile.velocity = mPower;
 	mMissile.gravity = 10;
@@ -65,12 +70,14 @@
 - (void) startFireMissile
 {
 	// launch missile
-	mMissile.time += 1.0/12.0;
+	mMissile.time += 1.0/6.0;
 	//NSLog(@"velocity: %f gravity: %f angle: %f time: %f",velocity,gravity,angle,time);
 	CGPoint position = mMissile.position;
-	position.x = mMissile.velocity * mMissile.time * cos((mMissile.angle * M_PI)/180) + mMissile.position.x;
-	position.y = mMissile.gravity * mMissile.time * mMissile.time - mMissile.velocity * mMissile.time * sin((mMissile.angle * M_PI)/180) + mMissile.position.y;	
-		
+	position.x = mMissile.velocity * mMissile.time * cos(mMissile.angle * M_PI/180) + cx;
+	position.y = 0.5 * mMissile.gravity * mMissile.time * mMissile.time - mMissile.velocity * mMissile.time * sin((mMissile.angle * M_PI)/180) + cy;	
+	self.transform = CGAffineTransformMakeRotation(mMissile.angle*-1);
+	//NSLog(@"Missile Angle = %f",atan2(position.y,position.x)*180/M_PI);
+	//NSLog(@"cx = %f, cy = %f", mMissile.position.x, mMissile.position.y);
 	self.center = position;
 	mMissile.position = position;	
 	

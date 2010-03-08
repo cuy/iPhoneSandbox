@@ -17,12 +17,16 @@
 	Missile *mMissile;
 	NSTimer *mTimer;
 	CGFloat mPower;
+	CGFloat cx;
+	CGFloat cy;
 	
 	MountView *mMountView;
 	MountView *mEnemyMountView;
 }
 
 @property (nonatomic, retain) Missile *mMissile;
+@property CGFloat cx;
+@property CGFloat cy;
 @property CGFloat mPower;
 
 - (void) fireMissileFrom:(MountView *) mountView toEnemyMountView:(MountView *)enemyMountView;

@@ -159,6 +159,7 @@
 		6B358D4711198F31008B98B8 /* btnDownPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B358D4511198F31008B98B8 /* btnDownPressed.png */; };
 		6B358D4811198F31008B98B8 /* btnUpPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B358D4611198F31008B98B8 /* btnUpPressed.png */; };
 		6B358D4E1119917B008B98B8 /* btnMissileSelectPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B358D4D1119917B008B98B8 /* btnMissileSelectPressed.png */; };
+		6B76D190114507BD00E2E04D /* missile2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B76D18F114507BD00E2E04D /* missile2.png */; };
 		6BCD2279113E7529004E2EF4 /* angleControl.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BCD2278113E7529004E2EF4 /* angleControl.png */; };
 /* End PBXBuildFile section */
 
@@ -326,6 +327,7 @@
 		6B358D4511198F31008B98B8 /* btnDownPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btnDownPressed.png; path = images/btnDownPressed.png; sourceTree = SOURCE_ROOT; };
 		6B358D4611198F31008B98B8 /* btnUpPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btnUpPressed.png; path = images/btnUpPressed.png; sourceTree = SOURCE_ROOT; };
 		6B358D4D1119917B008B98B8 /* btnMissileSelectPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnMissileSelectPressed.png; sourceTree = "<group>"; };
+		6B76D18F114507BD00E2E04D /* missile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile2.png; sourceTree = "<group>"; };
 		6BCD2278113E7529004E2EF4 /* angleControl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = angleControl.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iPhoneSandbox-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iPhoneSandbox-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -569,6 +571,7 @@
 		56199795111033DD0018BC20 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6B76D18F114507BD00E2E04D /* missile2.png */,
 				115015281144E07A00043D0A /* missile.png */,
 				114FC7E7113F3E3100B4F33A /* mountmuzzle_1.png */,
 				114FC7E8113F3E3100B4F33A /* mountmuzzle_2.png */,
@@ -785,6 +788,7 @@
 				114FC7E9113F3E3100B4F33A /* mountmuzzle_1.png in Resources */,
 				114FC7EA113F3E3100B4F33A /* mountmuzzle_2.png in Resources */,
 				115015291144E07A00043D0A /* missile.png in Resources */,
+				6B76D190114507BD00E2E04D /* missile2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
