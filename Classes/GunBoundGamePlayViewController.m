@@ -53,6 +53,7 @@
 	mMissileView.mMissile.velocity = mPower;
 	// set missile starting angle
 	mMissileView.mMissile.angle = mMountView.mMount.angle;
+	//mMissileView.mMissile.position = mMountView.mMuzzleView.position;
 	// insert subview below the current player's mountview
 	[self.view insertSubview:mMissileView belowSubview:mMountView];
 	// call firemissilefrom method 

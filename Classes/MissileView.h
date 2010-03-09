@@ -19,6 +19,8 @@
 	CGFloat mPower;
 	CGFloat cx;
 	CGFloat cy;
+	CGPoint position;
+	CGPoint oposition;
 	
 	MountView *mMountView;
 	MountView *mEnemyMountView;
@@ -28,6 +30,8 @@
 @property CGFloat cx;
 @property CGFloat cy;
 @property CGFloat mPower;
+@property CGPoint position;
+@property CGPoint oposition;
 
 - (void) fireMissileFrom:(MountView *) mountView toEnemyMountView:(MountView *)enemyMountView;
 - (void) startFireMissile;
