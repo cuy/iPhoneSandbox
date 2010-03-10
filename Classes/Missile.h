@@ -16,6 +16,8 @@
 	CGFloat gravity;
 	CGFloat angle;
 	CGFloat time;
+	CGFloat cx;
+	CGFloat cy;
 }
 
 @property CGPoint position;
@@ -23,5 +25,7 @@
 @property CGFloat gravity;
 @property CGFloat angle;
 @property CGFloat time;
+@property CGFloat cx;
+@property CGFloat cy;
 
 @end

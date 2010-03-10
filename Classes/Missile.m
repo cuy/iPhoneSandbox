@@ -11,7 +11,7 @@
 
 @implementation Missile
 
-@synthesize velocity, gravity, angle, time, position;
+@synthesize velocity, gravity, angle, time, position, cx, cy;
 
 
 @end

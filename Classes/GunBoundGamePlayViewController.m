@@ -48,9 +48,12 @@
 	[self stopTimerButton:sender];
 	
 	// allocate missileView
-	mMissileView = [[MissileView alloc] initWithFrame:CGRectMake(-20, -20, 20, 20)];
+	mMissileView = [[MissileView alloc] initWithFrame:CGRectMake(mMountView.mMuzzleView.center.x, mMountView.mMuzzleView.center.y, 31, 14)];
 	// set missile velocity
 	mMissileView.mMissile.velocity = mPower;
+	//set missile cx and cy
+	mMissileView.mMissile.cx = mMountView.mMuzzleView.center.x;
+	mMissileView.mMissile.cy = mMountView.mMuzzleView.center.y;
 	// set missile starting angle
 	mMissileView.mMissile.angle = mMountView.mMount.angle;
 	//mMissileView.mMissile.position = mMountView.mMuzzleView.position;
