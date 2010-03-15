@@ -146,6 +146,12 @@
 		561996D9111020B10018BC20 /* mini-apps.plist in Resources */ = {isa = PBXBuildFile; fileRef = 561996D8111020B10018BC20 /* mini-apps.plist */; };
 		56199798111033DD0018BC20 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 56199796111033DD0018BC20 /* 1.png */; };
 		56199799111033DD0018BC20 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 56199797111033DD0018BC20 /* 2.png */; };
+		564377D7114E209400CC2FFC /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 564377CC114E209400CC2FFC /* Projectile.m */; };
+		564377D8114E209400CC2FFC /* NormalGameMount.m in Sources */ = {isa = PBXBuildFile; fileRef = 564377CE114E209400CC2FFC /* NormalGameMount.m */; };
+		564377D9114E209400CC2FFC /* GameMissile.m in Sources */ = {isa = PBXBuildFile; fileRef = 564377D0114E209400CC2FFC /* GameMissile.m */; };
+		564377DA114E209400CC2FFC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 564377D2114E209400CC2FFC /* User.m */; };
+		564377DB114E209400CC2FFC /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 564377D4114E209400CC2FFC /* Game.m */; };
+		564377DC114E209400CC2FFC /* GameMount.m in Sources */ = {isa = PBXBuildFile; fileRef = 564377D6114E209400CC2FFC /* GameMount.m */; };
 		56BA2F8C111132AD00CB4BDB /* GunboundMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA2F8B111132AD00CB4BDB /* GunboundMainMenuViewController.m */; };
 		56BA2F9A1111355700CB4BDB /* GunboundMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56BA2F991111355700CB4BDB /* GunboundMainMenu.xib */; };
 		6B358D3011198646008B98B8 /* angleArc.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B358D2811198646008B98B8 /* angleArc.png */; };
@@ -319,6 +325,18 @@
 		561996D8111020B10018BC20 /* mini-apps.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "mini-apps.plist"; sourceTree = "<group>"; };
 		56199796111033DD0018BC20 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		56199797111033DD0018BC20 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		564377CB114E209400CC2FFC /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = ../ManagedObjectClasses/Projectile.h; sourceTree = "<group>"; };
+		564377CC114E209400CC2FFC /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projectile.m; path = ../ManagedObjectClasses/Projectile.m; sourceTree = "<group>"; };
+		564377CD114E209400CC2FFC /* NormalGameMount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NormalGameMount.h; path = ../ManagedObjectClasses/NormalGameMount.h; sourceTree = "<group>"; };
+		564377CE114E209400CC2FFC /* NormalGameMount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NormalGameMount.m; path = ../ManagedObjectClasses/NormalGameMount.m; sourceTree = "<group>"; };
+		564377CF114E209400CC2FFC /* GameMissile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameMissile.h; path = ../ManagedObjectClasses/GameMissile.h; sourceTree = "<group>"; };
+		564377D0114E209400CC2FFC /* GameMissile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameMissile.m; path = ../ManagedObjectClasses/GameMissile.m; sourceTree = "<group>"; };
+		564377D1114E209400CC2FFC /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = ../ManagedObjectClasses/User.h; sourceTree = "<group>"; };
+		564377D2114E209400CC2FFC /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = ../ManagedObjectClasses/User.m; sourceTree = "<group>"; };
+		564377D3114E209400CC2FFC /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = ../ManagedObjectClasses/Game.h; sourceTree = "<group>"; };
+		564377D4114E209400CC2FFC /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = ../ManagedObjectClasses/Game.m; sourceTree = "<group>"; };
+		564377D5114E209400CC2FFC /* GameMount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameMount.h; path = ../ManagedObjectClasses/GameMount.h; sourceTree = "<group>"; };
+		564377D6114E209400CC2FFC /* GameMount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameMount.m; path = ../ManagedObjectClasses/GameMount.m; sourceTree = "<group>"; };
 		56BA2F8A111132AD00CB4BDB /* GunboundMainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GunboundMainMenuViewController.h; sourceTree = "<group>"; };
 		56BA2F8B111132AD00CB4BDB /* GunboundMainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GunboundMainMenuViewController.m; sourceTree = "<group>"; };
 		56BA2F991111355700CB4BDB /* GunboundMainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GunboundMainMenu.xib; sourceTree = "<group>"; };
@@ -363,6 +381,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				564377DD114E20B600CC2FFC /* ManagedObjectClasses */,
 				11BFAB911122963E00BC256F /* Avatar */,
 				56BA2F891111328100CB4BDB /* Gunbound */,
 				1D3623240D0F684500981E51 /* iPhoneSandboxAppDelegate.h */,
@@ -614,6 +633,25 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		564377DD114E20B600CC2FFC /* ManagedObjectClasses */ = {
+			isa = PBXGroup;
+			children = (
+				564377CB114E209400CC2FFC /* Projectile.h */,
+				564377CC114E209400CC2FFC /* Projectile.m */,
+				564377CD114E209400CC2FFC /* NormalGameMount.h */,
+				564377CE114E209400CC2FFC /* NormalGameMount.m */,
+				564377CF114E209400CC2FFC /* GameMissile.h */,
+				564377D0114E209400CC2FFC /* GameMissile.m */,
+				564377D1114E209400CC2FFC /* User.h */,
+				564377D2114E209400CC2FFC /* User.m */,
+				564377D3114E209400CC2FFC /* Game.h */,
+				564377D4114E209400CC2FFC /* Game.m */,
+				564377D5114E209400CC2FFC /* GameMount.h */,
+				564377D6114E209400CC2FFC /* GameMount.m */,
+			);
+			name = ManagedObjectClasses;
+			sourceTree = "<group>";
+		};
 		56BA2F891111328100CB4BDB /* Gunbound */ = {
 			isa = PBXGroup;
 			children = (
@@ -834,6 +872,12 @@
 				114FC1A3113CDDC400B4F33A /* MountView.m in Sources */,
 				114FC1A6113CDE1600B4F33A /* Mount.m in Sources */,
 				114FC601113E470200B4F33A /* MuzzleView.m in Sources */,
+				564377D7114E209400CC2FFC /* Projectile.m in Sources */,
+				564377D8114E209400CC2FFC /* NormalGameMount.m in Sources */,
+				564377D9114E209400CC2FFC /* GameMissile.m in Sources */,
+				564377DA114E209400CC2FFC /* User.m in Sources */,
+				564377DB114E209400CC2FFC /* Game.m in Sources */,
+				564377DC114E209400CC2FFC /* GameMount.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
