@@ -67,23 +67,23 @@
 	oposition.x = mMissile.cx;
 	oposition.y = mMissile.cy;
 	
-	mMissile.gravity = 20;
+	mMissile.gravity = 20.0;
 	mMissile.time = 0;
-	mTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 / 30.0  target:self selector:@selector(startFireMissile) userInfo:nil repeats:YES];	
+	mTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 / 60.0  target:self selector:@selector(startFireMissile) userInfo:nil repeats:YES];	
 
 }
 
 - (void) startFireMissile
 {
 	// launch missile
-	mMissile.time += 1.0/6.0;
+	mMissile.time += 1.0/10;
 	position.x = mMissile.velocity * mMissile.time * cos(mMissile.angle * M_PI/180) + cx;
 	position.y = 0.5 * mMissile.gravity * mMissile.time * mMissile.time - mMissile.velocity * mMissile.time * sin((mMissile.angle * M_PI)/180) + cy;	
 	self.center = position;
 	//NSLog(@"Missile Angle = %f",rot);
 	//NSLog(@"cx = %f, cy = %f", mMissile.position.x, mMissile.position.y);
 	CGFloat rot = atan2(position.y - oposition.y, position.x - oposition.x)*180.0/M_PI;
-	self.transform = CGAffineTransformMakeRotation(rot*M_PI/180);
+	self.transform = CGAffineTransformMakeRotation(round(rot)*M_PI/180);
 	oposition = self.center;
 	NSLog(@"px[%f] ox[%f] py[%f] oy[%f]", self.center.x, oposition.x, self.center.y, oposition.y);
 	NSLog(@"angle: %f",rot);

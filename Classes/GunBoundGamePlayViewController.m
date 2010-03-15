@@ -18,7 +18,6 @@
 
 
 @implementation GunBoundGamePlayViewController
-
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -78,18 +77,38 @@
 
 -(void) addPower:(id)sender
 {
-	// increment power
-	mPower += 5;
-	// set powerlabel
-	powerLabel.text = [NSString stringWithFormat:@"%d",mPower];
+	// Check if the power is greater than the MAX POWER which is 145
+	
+	if(mPower >= 145){
+		//set the power to the max power
+		mPower = 145;
+	
+	}
+	// otherwise increment the power by 5
+	else {
+		mPower += 5;
+	}
+
+	//Set PowerBar
+	CGFloat mScalex = mPower;
+	CGAffineTransform trans = CGAffineTransformMakeScale(mScalex/145*1, 1.0);
+	powerBar.transform = trans;
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	//set powerGuage default scale and orientation;
+	CGAffineTransform defaultScale = CGAffineTransformMakeScale(0.01, 1.0);
+	CGPoint defaultCenter = powerBar.center;
+	defaultCenter.x -= 50.0;
+	[powerBar.layer setAnchorPoint:CGPointMake(0.0f, 0.5f)];
+	powerBar.center = defaultCenter;
+	powerBar.transform = defaultScale;
+	
 	// set background image
-	UIColor *bgImage = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bg01.png"]];
+	UIColor *bgImage = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"gameBG.png"]];
 	self.view.backgroundColor = bgImage;
 	[bgImage release];
 		
@@ -131,6 +150,9 @@
 	mMountView = mMountView1;
 	// set player 2 to be the enemy
 	mEnemyMountView = mMountView2;
+	
+	// set powerlabel
+	angleLabel.text = [NSString stringWithFormat:@"%.0f",mMountView.mMount.angle];
 }
 
 - (void) changePlayer
@@ -148,6 +170,8 @@
 	
 	// unhide new player muzzle
 	mMountView.mMuzzleView.hidden = NO;
+	
+	angleLabel.text = [NSString stringWithFormat:@"%.0f",mMountView.mMount.angle];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -186,6 +210,10 @@
 	mMountView.mMount.angle = currentAngle*-1;
 		
 	mGestureStartPoint = currentPosition;
+	
+	// set powerlabel
+	angleLabel.text = [NSString stringWithFormat:@"%.0f",mMountView.mMount.angle];
+	NSLog(@"label: %@", angleLabel.text);
 }
 
 

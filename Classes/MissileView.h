@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @class Missile;
 @class MountView;
+
 
 @interface MissileView : UIView {
 
@@ -21,6 +21,7 @@
 	CGFloat cy;
 	CGPoint position;
 	CGPoint oposition;
+
 	
 	MountView *mMountView;
 	MountView *mEnemyMountView;

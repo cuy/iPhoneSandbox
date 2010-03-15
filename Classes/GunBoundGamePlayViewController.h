@@ -22,7 +22,8 @@
 	MountView *mEnemyMountView;
 	MissileView *mMissileView;
 	int mPower;
-	IBOutlet UILabel *powerLabel;
+	IBOutlet UILabel *angleLabel;
+	IBOutlet UIView *powerBar;
 	
 	// Players Variables
 	MountView *mMountView1;
