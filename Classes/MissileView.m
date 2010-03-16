@@ -10,6 +10,7 @@
 #import "Missile.h"
 #import "MountView.h"
 #import "Mount.h"
+#import "GunBoundGamePlayViewController.h"
 
 @implementation MissileView
 
@@ -19,6 +20,16 @@
 @synthesize cy;
 @synthesize position;
 @synthesize oposition;
+
+
+-(void)	setDelegate:(id)mDelegate
+{
+	delegate = mDelegate;
+}
+
+- (id) delegate {
+	return delegate;
+}
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -95,6 +106,10 @@
 		[mTimer invalidate];
 		mTimer = nil;
 		self.hidden = YES;
+		if([delegate respondsToSelector:@selector(changePlayer)])
+		{
+			[delegate changePlayer];
+		}
 	}
 }
 

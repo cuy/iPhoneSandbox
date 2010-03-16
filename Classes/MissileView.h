@@ -21,6 +21,7 @@
 	CGFloat cy;
 	CGPoint position;
 	CGPoint oposition;
+	id delegate;
 
 	
 	MountView *mMountView;
@@ -37,5 +38,7 @@
 - (void) fireMissileFrom:(MountView *) mountView toEnemyMountView:(MountView *)enemyMountView;
 - (void) startFireMissile;
 - (BOOL) didHitEnemyMountView;
+- (void) setDelegate:(id)mDelegate;
+- (id) delegate;
 
 @end

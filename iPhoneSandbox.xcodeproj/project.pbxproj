@@ -167,6 +167,7 @@
 		6B358D4E1119917B008B98B8 /* btnMissileSelectPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B358D4D1119917B008B98B8 /* btnMissileSelectPressed.png */; };
 		6B52EAD71148F0D400583F94 /* missile3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B52EAD61148F0D400583F94 /* missile3.png */; };
 		6B52EAF51148F75300583F94 /* missile4.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B52EAF41148F75300583F94 /* missile4.png */; };
+		6B5B3815114F86AE00F86921 /* controller_fire_button_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5B3814114F86AE00F86921 /* controller_fire_button_disabled.png */; };
 		6B76D190114507BD00E2E04D /* missile2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B76D18F114507BD00E2E04D /* missile2.png */; };
 		6BA7C653114E14AD00595341 /* controller_fire_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA7C651114E14AD00595341 /* controller_fire_button.png */; };
 		6BA7C66D114E35E300595341 /* controller_fire_button_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA7C66C114E35E300595341 /* controller_fire_button_up.png */; };
@@ -353,6 +354,7 @@
 		6B358D4D1119917B008B98B8 /* btnMissileSelectPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnMissileSelectPressed.png; sourceTree = "<group>"; };
 		6B52EAD61148F0D400583F94 /* missile3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile3.png; sourceTree = "<group>"; };
 		6B52EAF41148F75300583F94 /* missile4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile4.png; sourceTree = "<group>"; };
+		6B5B3814114F86AE00F86921 /* controller_fire_button_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controller_fire_button_disabled.png; sourceTree = "<group>"; };
 		6B76D18F114507BD00E2E04D /* missile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile2.png; sourceTree = "<group>"; };
 		6BA7C651114E14AD00595341 /* controller_fire_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controller_fire_button.png; sourceTree = "<group>"; };
 		6BA7C66C114E35E300595341 /* controller_fire_button_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controller_fire_button_up.png; sourceTree = "<group>"; };
@@ -602,6 +604,7 @@
 		56199795111033DD0018BC20 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6B5B3814114F86AE00F86921 /* controller_fire_button_disabled.png */,
 				6BA7C685114E3FEA00595341 /* controller_base.png */,
 				6BA7C682114E3CA600595341 /* gameBG.png */,
 				6BA7C66C114E35E300595341 /* controller_fire_button_up.png */,
@@ -851,6 +854,7 @@
 				6BA7C66D114E35E300595341 /* controller_fire_button_up.png in Resources */,
 				6BA7C683114E3CA600595341 /* gameBG.png in Resources */,
 				6BA7C686114E3FEA00595341 /* controller_base.png in Resources */,
+				6B5B3815114F86AE00F86921 /* controller_fire_button_disabled.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

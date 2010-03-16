@@ -24,6 +24,7 @@
 	int mPower;
 	IBOutlet UILabel *angleLabel;
 	IBOutlet UIView *powerBar;
+	IBOutlet UIButton *powerButton;
 	
 	// Players Variables
 	MountView *mMountView1;
@@ -34,7 +35,11 @@
 	
 	NSTimer *mTimer;
 	
+	//btn ref
+	id btnFire;
+	
 }
+
 
 - (void) changePlayer;
 

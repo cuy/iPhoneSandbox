@@ -8,7 +8,7 @@
 
 #import "Game.h"
 
-#import "Player.h"
+//#import "Player.h"
 
 @implementation Game 
 

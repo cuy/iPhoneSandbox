@@ -60,12 +60,17 @@
 	[self.view insertSubview:mMissileView belowSubview:mMountView];
 	// call firemissilefrom method 
 	[mMissileView fireMissileFrom:mMountView toEnemyMountView:mEnemyMountView];
+	[mMissileView setDelegate:self];
 	// release missileview
 	[mMissileView release];
 	// re-init mpower
 	mPower = 0;
 	// call change played method
-	[self changePlayer];	
+	//[self changePlayer];
+	
+	
+	//disable power button
+	[powerButton setEnabled:NO];
 }
 
 - (IBAction) exitGame:(id)sender
@@ -98,6 +103,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	//set the power button to enabled
+	[powerButton setEnabled:YES];
 	
 	//set powerGuage default scale and orientation;
 	CGAffineTransform defaultScale = CGAffineTransformMakeScale(0.01, 1.0);
@@ -172,15 +180,22 @@
 	mMountView.mMuzzleView.hidden = NO;
 	
 	angleLabel.text = [NSString stringWithFormat:@"%.0f",mMountView.mMount.angle];
+	
+	//enable power button
+	[powerButton setEnabled:YES];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	if([btnFire isEnabled]){
 	UITouch *touch = [touches anyObject];
 	mGestureStartPoint = [touch locationInView:self.view];
 	//NSLog(@"touch began");
+	}
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+	// Activate touch move if the FIRE BUTTON is enabled :D
+	if([powerButton isEnabled]){
 	UITouch *touch = [touches anyObject];
 	CGPoint currentPosition = [touch locationInView:self.view];
 	//NSLog(@"previous position x: %f y: %f",mGestureStartPoint.x,mGestureStartPoint.y);
@@ -214,6 +229,7 @@
 	// set powerlabel
 	angleLabel.text = [NSString stringWithFormat:@"%.0f",mMountView.mMount.angle];
 	NSLog(@"label: %@", angleLabel.text);
+	}
 }
 
 
