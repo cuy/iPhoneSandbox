@@ -33,6 +33,7 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28C3AD8A0F43EF2300507BA6 /* iPhoneSandbox.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 28C3AD890F43EF2300507BA6 /* iPhoneSandbox.xcdatamodel */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		560B6DA0114F2364004E6EE6 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B6D9F114F2364004E6EE6 /* Player.m */; };
 		561996101110115F0018BC20 /* 01-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 561995A21110115F0018BC20 /* 01-refresh.png */; };
 		561996111110115F0018BC20 /* 02-redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 561995A31110115F0018BC20 /* 02-redo.png */; };
 		561996121110115F0018BC20 /* 03-loopback.png in Resources */ = {isa = PBXBuildFile; fileRef = 561995A41110115F0018BC20 /* 03-loopback.png */; };
@@ -213,6 +214,8 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* iPhoneSandbox_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneSandbox_Prefix.pch; sourceTree = "<group>"; };
+		560B6D9E114F2364004E6EE6 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = ManagedObjectClasses/Player.h; sourceTree = SOURCE_ROOT; };
+		560B6D9F114F2364004E6EE6 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player.m; path = ManagedObjectClasses/Player.m; sourceTree = SOURCE_ROOT; };
 		561995A21110115F0018BC20 /* 01-refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-refresh.png"; sourceTree = "<group>"; };
 		561995A31110115F0018BC20 /* 02-redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-redo.png"; sourceTree = "<group>"; };
 		561995A41110115F0018BC20 /* 03-loopback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-loopback.png"; sourceTree = "<group>"; };
@@ -651,6 +654,8 @@
 				564377D4114E209400CC2FFC /* Game.m */,
 				564377D5114E209400CC2FFC /* GameMount.h */,
 				564377D6114E209400CC2FFC /* GameMount.m */,
+				560B6D9E114F2364004E6EE6 /* Player.h */,
+				560B6D9F114F2364004E6EE6 /* Player.m */,
 			);
 			name = ManagedObjectClasses;
 			sourceTree = "<group>";
@@ -882,6 +887,7 @@
 				564377DA114E209400CC2FFC /* User.m in Sources */,
 				564377DB114E209400CC2FFC /* Game.m in Sources */,
 				564377DC114E209400CC2FFC /* GameMount.m in Sources */,
+				560B6DA0114F2364004E6EE6 /* Player.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
