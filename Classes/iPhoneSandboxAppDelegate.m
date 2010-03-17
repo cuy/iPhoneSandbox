@@ -215,6 +215,8 @@
 {
     if ([(UITableViewController *)[[[tabBarController viewControllers] objectAtIndex:0] topViewController] tableView] == tableView) {
         GunboundMainMenuViewController *gunboundMainMenuViewController = [[GunboundMainMenuViewController alloc] initWithNibName:@"GunboundMainMenu" bundle:nil];
+        [gunboundMainMenuViewController setManagedObjectContext:[self managedObjectContext]];
+        [gunboundMainMenuViewController setManagedObjectModel:[self managedObjectModel]];
         [gunboundMainMenuViewController setHidesBottomBarWhenPushed:YES];
         [(UINavigationController *)[tabBarController selectedViewController] pushViewController:gunboundMainMenuViewController animated:NO];
         [gunboundMainMenuViewController release];

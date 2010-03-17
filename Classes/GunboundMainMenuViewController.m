@@ -9,9 +9,13 @@
 #import "GunboundMainMenuViewController.h"
 #import "GunBoundNewCharacterViewController.h"
 #import "GunBoundGamePlayViewController.h"
+#import "User.h"
 
 
 @implementation GunboundMainMenuViewController
+
+@synthesize managedObjectContext;
+@synthesize managedObjectModel;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -29,12 +33,37 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSEntityDescription *userEntity = [[managedObjectModel entitiesByName] objectForKey:@"User"];
+    NSFetchRequest *usersRequest = [[NSFetchRequest alloc] init];
+    [usersRequest setEntity:userEntity];
+    
+    NSError *error = nil;
+    
+    NSArray *users = [managedObjectContext executeFetchRequest:usersRequest error:&error];
+    if ((error != nil) || (users == nil)) {
+        NSLog(@"Error while fetching\n%@", ([error localizedDescription] != nil) ? [error localizedDescription] : @"Unknown Error");
+        exit(1);
+    }
+    
+    if ([users count] == 0) {
+        // add a default user
+        User *defaultUser = [[User alloc] initWithEntity:userEntity insertIntoManagedObjectContext:[self managedObjectContext]];
+        [defaultUser setName:@"Default User"];
+        error = nil;
+        [managedObjectContext save:&error];
+        if (error != nil) {
+            NSLog(@"Error while saving\n%@", ([error localizedDescription] != nil) ? [error localizedDescription] : @"Unknown Error");
+            exit(1);
+        }
+        
+    }
 }
-*/
+
 
 /*
 // Override to allow orientations other than the default portrait orientation.

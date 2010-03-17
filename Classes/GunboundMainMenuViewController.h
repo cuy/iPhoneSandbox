@@ -10,8 +10,12 @@
 
 
 @interface GunboundMainMenuViewController : UIViewController {
-
+    NSManagedObjectModel *managedObjectModel;
+    NSManagedObjectContext *managedObjectContext;
 }
+
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
 
 - (IBAction)exit:(id)sender;
 - (IBAction)newGameButton:(id)sender;
