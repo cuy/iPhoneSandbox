@@ -37,7 +37,7 @@
     self = [super init];
     if (self != nil) {
         isTouchEnabled = YES;
-		
+
 		// set background image
 		CCSprite *bg = [CCSprite spriteWithFile:@"gameBG.png"];
 		bg.position = ccp(bg.contentSize.width/2,bg.contentSize.height/2);
@@ -60,7 +60,13 @@
 		mPlayer2 = [Mount mountWithTexture:mountTexture];
 		mPlayer2.position = ccp(430, winSize.height/2);
 		mPlayer2.scaleX = -mPlayer2.scaleX;
-		[self addChild:mPlayer2];
+		[self addChild:mPlayer2 z:1];
+		// add player 2 muzzle
+		mPlayer2.mMuzzle = [CCSprite spriteWithTexture:muzzleSprite];
+		mPlayer2.mMuzzle.scaleX = -mPlayer2.mMuzzle.scaleX;
+		mPlayer2.mMuzzle.position = ccp(mPlayer2.position.x-30,mPlayer2.position.y - 9);
+		[self addChild:mPlayer2.mMuzzle ];
+		
 		
 		// set current player
 		mCurrentPlayer = mPlayer1;
@@ -88,20 +94,37 @@
     return self;
 }
 
+#pragma mark Game Actions
+
+- (void) changePlayer 
+{
+	if (mCurrentPlayer == mPlayer1) {
+		mCurrentPlayer = mPlayer2;
+	}
+	else {
+		mCurrentPlayer = mPlayer1;
+	}
+
+}
+
+#pragma mark Button Actions
+
 - (void) fireButtonTapped: (id) sender
 {
 	NSLog(@"fireButtonTapped");
+	[self changePlayer];
 }
 
 - (void) dealloc
 {
 	[super dealloc];
+	[[CCTextureCache sharedTextureCache] removeAllTextures];
 	[mPlayer1 release];
 	[mPlayer2 release];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	NSLog(@"touchces began");
+	//NSLog(@"touchces began");
 	UITouch *touch = [touches anyObject];
 	mGestureStartPoint = [touch locationInView:[touch view]];
 	mGestureStartPoint = [[CCDirector sharedDirector] convertToGL:mGestureStartPoint];
@@ -109,27 +132,30 @@
 
 }
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-	NSLog(@"touched moved");
+	//NSLog(@"touched moved");
 	UITouch *touch = [touches anyObject];
 	CGPoint currentPosition = [touch locationInView:[touch view]];
 	currentPosition = [[CCDirector sharedDirector] convertToGL:currentPosition];
 	
 	// Arc Tangent Formula
 	CGFloat currentAngle = atan2(mGestureStartPoint.y - mCurrentPlayer.mMuzzle.position.y,mGestureStartPoint.x - mCurrentPlayer.mMuzzle.position.x)*180.0/M_PI;
-	
-	if(currentAngle < -90.0){
-		currentAngle = -90.0;
+	NSLog(@"current angle : %f",currentAngle);
+
+	if (currentAngle <= 80.0f && currentAngle >= -45.0f && mCurrentPlayer == mPlayer1) {
+		mCurrentPlayer.mMuzzle.rotation = -currentAngle;
 	}
-	else if(currentAngle > 45.0){
-		currentAngle = 45.0;
+	else if ((currentAngle >= 100.0f || currentAngle <= -135.0f) && mCurrentPlayer == mPlayer2) {
+		mCurrentPlayer.mMuzzle.rotation = 180 - currentAngle;
 	}
 	
-	mCurrentPlayer.mMuzzle.rotation = currentAngle;
+	// rotate muzzle
+	
 	mGestureStartPoint = currentPosition;
+	NSLog(@"mCurrentPlayer.mMuzzle.rotation : %f",mCurrentPlayer.mMuzzle.rotation);
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-	NSLog(@"touchended");
+	//NSLog(@"touchended");
 }
 @end
 
