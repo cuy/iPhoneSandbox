@@ -13,10 +13,7 @@
 - (id) init {
     self = [super init];
     if (self != nil) {
-       // CCSprite * bg = [Sprite spriteWithFile:@"bg01.png"];
-       // [bg setPosition:ccp(240, 160)];
-       // [self addChild:bg z:0];
-        [self addChild:[MainMenuLayer node] z:1];
+		[self addChild:[MainMenuLayer node] z:1];
     }
     return self;
 }

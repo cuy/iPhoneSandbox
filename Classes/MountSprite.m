@@ -12,6 +12,8 @@
 
 @implementation Mount
 
+@synthesize mMuzzle;
+
 - (CGRect)rect
 {
 	CGSize s = [self.texture contentSize];
@@ -75,6 +77,7 @@
 	
 	if (touchPoint.y <= 280 && touchPoint.y >= 30) {
 		self.position = CGPointMake(self.position.x, touchPoint.y);
+		mMuzzle.position = CGPointMake(mMuzzle.position.x, self.position.y - 9);
 	}
 }
 

@@ -9,15 +9,24 @@
 #import "cocos2d.h"
 #import "MountSprite.h"
 
+
 @interface GamePlayLayer : CCLayer {
+	
+	Mount *mPlayer1, *mPlayer2, *mCurrentPlayer;
+	
+	CCLabel *angleLabel; 
+	
+	// touch vars
+	CGPoint mGestureStartPoint;
 
 }
+@property (nonatomic,retain) Mount *mPlayer1, *mPlayer2, *mCurrentPlayer;
 
 @end
 
 @interface GamePlayScene : CCScene {
-
-	Mount *mPlayer1, *mPlayer2;
+	
 }
+
 
 @end

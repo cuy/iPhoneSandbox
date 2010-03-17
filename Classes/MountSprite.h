@@ -7,6 +7,7 @@
 //
 
 #import "cocos2d.h"
+#import "MuzzleSprite.h"
 
 typedef enum tagMountState {
 	kMountStateGrabbed,
@@ -14,11 +15,15 @@ typedef enum tagMountState {
 } MountState;
 
 @interface Mount : CCSprite <CCTargetedTouchDelegate> {
+
+	Muzzle *mMuzzle;
+	
 @private
 	MountState state;
 }
 
 @property(nonatomic, readonly) CGRect rect;
+@property(nonatomic, retain) Muzzle *mMuzzle;
 
 + (id)mountWithTexture:(CCTexture2D *)texture;
 @end

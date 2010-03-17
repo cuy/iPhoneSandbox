@@ -18,6 +18,8 @@
 		11B46B8C114F5A9E00EBB7F2 /* controller_base.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B46B89114F5A9E00EBB7F2 /* controller_base.png */; };
 		11B46B8D114F5A9E00EBB7F2 /* controller_fire_button_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B46B8A114F5A9E00EBB7F2 /* controller_fire_button_up.png */; };
 		11B46B8E114F5A9E00EBB7F2 /* controller_fire_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B46B8B114F5A9E00EBB7F2 /* controller_fire_button.png */; };
+		11B46CA7114F77B300EBB7F2 /* muzzle.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B46CA6114F77B300EBB7F2 /* muzzle.png */; };
+		11B46CBB114F78C400EBB7F2 /* MuzzleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B46CBA114F78C400EBB7F2 /* MuzzleSprite.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1F3B9A2D0EF2145700286867 /* GunBoundcocos2dAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B9A2B0EF2145700286867 /* GunBoundcocos2dAppDelegate.m */; };
 		502BC35D1120837500A0B92A /* CDAudioManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 502BC3551120837500A0B92A /* CDAudioManager.h */; };
@@ -243,6 +245,9 @@
 		11B46B89114F5A9E00EBB7F2 /* controller_base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = controller_base.png; path = images/controller_base.png; sourceTree = "<group>"; };
 		11B46B8A114F5A9E00EBB7F2 /* controller_fire_button_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = controller_fire_button_up.png; path = images/controller_fire_button_up.png; sourceTree = "<group>"; };
 		11B46B8B114F5A9E00EBB7F2 /* controller_fire_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = controller_fire_button.png; path = images/controller_fire_button.png; sourceTree = "<group>"; };
+		11B46CA6114F77B300EBB7F2 /* muzzle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = muzzle.png; path = images/muzzle.png; sourceTree = "<group>"; };
+		11B46CB9114F78C400EBB7F2 /* MuzzleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MuzzleSprite.h; sourceTree = "<group>"; };
+		11B46CBA114F78C400EBB7F2 /* MuzzleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MuzzleSprite.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* GunBoundcocos2d.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GunBoundcocos2d.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F3B9A2B0EF2145700286867 /* GunBoundcocos2dAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GunBoundcocos2dAppDelegate.m; path = Classes/GunBoundcocos2dAppDelegate.m; sourceTree = SOURCE_ROOT; };
 		1F3B9A2C0EF2145700286867 /* GunBoundcocos2dAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GunBoundcocos2dAppDelegate.h; path = Classes/GunBoundcocos2dAppDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -499,6 +504,7 @@
 		11B46B12114F52CF00EBB7F2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				11B46CA6114F77B300EBB7F2 /* muzzle.png */,
 				11B46B89114F5A9E00EBB7F2 /* controller_base.png */,
 				11B46B8A114F5A9E00EBB7F2 /* controller_fire_button_up.png */,
 				11B46B8B114F5A9E00EBB7F2 /* controller_fire_button.png */,
@@ -514,6 +520,8 @@
 			children = (
 				11B46ABE114F4E6800EBB7F2 /* MountSprite.h */,
 				11B46ABF114F4E6800EBB7F2 /* MountSprite.m */,
+				11B46CB9114F78C400EBB7F2 /* MuzzleSprite.h */,
+				11B46CBA114F78C400EBB7F2 /* MuzzleSprite.m */,
 			);
 			name = Mount;
 			sourceTree = "<group>";
@@ -1024,6 +1032,7 @@
 				11B46B8C114F5A9E00EBB7F2 /* controller_base.png in Resources */,
 				11B46B8D114F5A9E00EBB7F2 /* controller_fire_button_up.png in Resources */,
 				11B46B8E114F5A9E00EBB7F2 /* controller_fire_button.png in Resources */,
+				11B46CA7114F77B300EBB7F2 /* muzzle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1042,6 +1051,7 @@
 				11B46AC0114F4E6800EBB7F2 /* MountSprite.m in Sources */,
 				11B46B57114F575500EBB7F2 /* ControllerBaseSprite.m in Sources */,
 				11B46B5A114F583500EBB7F2 /* FireButtonSprite.m in Sources */,
+				11B46CBB114F78C400EBB7F2 /* MuzzleSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1226,12 +1236,13 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Royce Albert Dy (5K3VK76GFX)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A9E6AE97-8ED6-4348-8518-B308DAD93DC9";
 				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;

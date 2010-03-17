@@ -11,4 +11,12 @@
 
 @implementation FireButton
 
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	NSLog(@"touchces began");
+	UITouch *touch = [touches anyObject];
+	CGPoint location = [touch locationInView: [touch view]];
+	location = [[CCDirector sharedDirector] convertToGL:location];
+	NSLog(@"touch position x: %f y: %f",location.x,location.y);
+}
+
 @end
