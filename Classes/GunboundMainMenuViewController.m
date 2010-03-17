@@ -119,6 +119,8 @@
 	
 	//GunBoundNewCharacterViewController *viewController = [[GunBoundNewCharacterViewController alloc] initWithNibName:@"GunBoundNewCharacterViewController" bundle:[NSBundle mainBundle]];
 	GunBoundGamePlayViewController *viewController = [[GunBoundGamePlayViewController alloc] initWithNibName:@"GunBoundGamePlayViewController" bundle:[NSBundle mainBundle]];
+    [viewController setManagedObjectModel:[self managedObjectModel]];
+    [viewController setManagedObjectContext:[self managedObjectContext]];
 	UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]; // this is a leak!
 	window.backgroundColor = [UIColor redColor]; // just for debugging
 	[UIView setAnimationsEnabled:NO];

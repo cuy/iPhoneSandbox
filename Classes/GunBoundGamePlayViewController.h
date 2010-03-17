@@ -37,9 +37,14 @@
 	
 	//btn ref
 	id btnFire;
+    
+    NSManagedObjectContext *managedObjectContext;
+    NSManagedObjectModel *managedObjectModel;
 	
 }
 
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
 
 - (void) changePlayer;
 
