@@ -25,56 +25,48 @@
 	return animation;
 }
 
-- (id)initWithFrame:(CGRect)frame forPlayer:(int) player {
-	position.x = 0;
-	position.y = 0;
-	mPlayer = player;
+- (id)initWithFrame:(CGRect)frame forPlayer:(int)player {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor clearColor];
         // Initialization code
+        self.backgroundColor = [UIColor clearColor];
+        // TODO: What's the use of position if it isn't modified?
+        position.x = 0;
+        position.y = 0;
+        mPlayer = player;
     }
     return self;
 }
 
-- (void) rotateAngle: (CGFloat) angle
+- (void)rotateAngle:(CGFloat)angle
 {
 	self.transform = CGAffineTransformMakeRotation((angle*M_PI)/180);
 }
 
 
-- (CGImageRef) loadImage:(NSString *)filename 
+- (CGImageRef)loadImage:(NSString *)filename 
 { 
+    // TODO: Find out if this causes extra retain counts when called multiple times
 	UIImage *img = [UIImage imageNamed:filename]; 
 	CGImageRef image = CGImageRetain(img.CGImage); 
 	return image; 
 } 
 
-// draw 
-- (void) drawImage:(CGContextRef)context pos:(CGPoint)pos image: 
-(CGImageRef)image 
+- (void)drawImage:(CGContextRef)context pos:(CGPoint)pos image:(CGImageRef)image 
 { 
 	//image. 
 	CGRect imageRect; 
-	size_t h = CGImageGetHeight( image ); 
-	size_t w = CGImageGetWidth( image ); 
-	imageRect.origin = CGPointMake(pos.x, pos.y);
+	size_t h = CGImageGetHeight(image); 
+	size_t w = CGImageGetWidth(image); 
+	imageRect.origin = position;
 	imageRect.size = CGSizeMake(w, h); 
-    NSLog(@"imagerect = %@", CGRectCreateDictionaryRepresentation(imageRect));
-	CGContextDrawImage( context, CGRectMake( pos.x, pos.y, w, h), 
-					   image ); 
+	CGContextDrawImage(context, CGRectMake(pos.x, pos.y, w, h), image); 
 }
 
 - (void)drawRect:(CGRect)rect {
     // Drawing code
-	//NSLog(@"drawrect muzzleview");
-    NSLog(@"drawrect @ point = %@", CGPointCreateDictionaryRepresentation(position));
 	CGContextRef context = UIGraphicsGetCurrentContext();
-	[self drawImage:context pos:CGPointMake( position.x, position.y ) 
-			  image:[self loadImage:@"angleControl.png"]]; 
-	
-//	self.transform = CGAffineTransformMakeRotation(180*M_PI/180);
+	[self drawImage:context pos:position image:[self loadImage:@"angleControl.png"]]; 
 }
-
 
 - (void)dealloc {
     [super dealloc];
