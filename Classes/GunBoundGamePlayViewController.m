@@ -22,15 +22,14 @@
 @synthesize managedObjectContext;
 @synthesize managedObjectModel;
 
-/*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
+        players = [[NSMutableArray alloc] init];
     }
     return self;
 }
-*/
 
 #pragma mark Buttons
 
@@ -59,6 +58,7 @@
 
 	// re-init mpower
 	mPower = 0;
+    [self setPowerBarValue:mPower];
 
 	//disable power button
 	[powerButton setEnabled:NO];
@@ -68,9 +68,15 @@
 	
 }
 
+- (void)setPowerBarValue:(int)value {
+    CGFloat mScalex = value;
+	CGAffineTransform trans = CGAffineTransformMakeScale(mScalex/145*1, 1.0);
+	powerBar.transform = trans;    
+}
+
 #pragma mark avatar movements
 
--(void)addPower:(id)sender
+- (void)addPower:(id)sender
 {
 	// Check if the power is greater than the MAX POWER which is 145
 	if(mPower >= 145) {
@@ -81,11 +87,47 @@
 	else {
 		mPower += 5;
 	}
+    
+    [self setPowerBarValue:mPower];
+}
 
-	//Set PowerBar
-	CGFloat mScalex = mPower;
-	CGAffineTransform trans = CGAffineTransformMakeScale(mScalex/145*1, 1.0);
-	powerBar.transform = trans;
+- (void)setupPowerGauge {
+	//set powerGauge default scale and orientation;
+	CGAffineTransform defaultScale = CGAffineTransformMakeScale(0.01, 1.0);
+	CGPoint defaultCenter = powerBar.center;
+	defaultCenter.x -= 50.0;
+	[powerBar.layer setAnchorPoint:CGPointMake(0.0f, 0.5f)];
+	powerBar.center = defaultCenter;
+	powerBar.transform = defaultScale;
+}
+
+- (void)setupBackground {
+	// set background image
+	UIColor *bgImage = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"gameBG.png"]];
+	self.view.backgroundColor = bgImage;
+	[bgImage release];    
+}
+
+- (MountView *)setupPlayer:(int)player {
+    MountView *aPlayerMount = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) forPlayer:(player + 1)];
+    [self.view addSubview:aPlayerMount];
+    [aPlayerMount setRandomLocation];
+
+    NSDictionary *playersInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PlayerConfigurations" ofType:@"plist"]];
+    NSDictionary *currentPlayerInfo = [playersInfo objectForKey:[NSString stringWithFormat:@"player%.2d", player]];
+    NSLog(@"player = %d\n%@", player, currentPlayerInfo);
+    aPlayerMount.mMount.angle = [[currentPlayerInfo objectForKey:@"mountAngle"] floatValue];
+    aPlayerMount.mMuzzleView.initialAngle = [[currentPlayerInfo objectForKey:@"muzzleInitialAngle"] floatValue];
+    CGFloat xOffset = [[currentPlayerInfo objectForKey:@"muzzleXOffset"] floatValue];
+    CGFloat yOffset = [[currentPlayerInfo objectForKey:@"muzzleYOffset"] floatValue];
+    aPlayerMount.offsets = CGPointMake(xOffset, yOffset);
+    return [aPlayerMount autorelease];
+}
+
+- (void)setupPlayers:(int)total {
+    for (NSUInteger i = 0; i < total; ++i) {
+        [players addObject:[self setupPlayer:i]];
+    }
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -94,42 +136,14 @@
 	
 	//set the power button to enabled
 	[powerButton setEnabled:YES];
+    [self setupPowerGauge];
+    [self setupBackground];
+    [self setupPlayers:2];
 	
-	//set powerGuage default scale and orientation;
-	CGAffineTransform defaultScale = CGAffineTransformMakeScale(0.01, 1.0);
-	CGPoint defaultCenter = powerBar.center;
-	defaultCenter.x -= 50.0;
-	[powerBar.layer setAnchorPoint:CGPointMake(0.0f, 0.5f)];
-	powerBar.center = defaultCenter;
-	powerBar.transform = defaultScale;
-	
-	// set background image
-	UIColor *bgImage = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"gameBG.png"]];
-	self.view.backgroundColor = bgImage;
-	[bgImage release];
-		
-	// add player 1
-	mMountView1 = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) forPlayer:1];
-	[self.view addSubview:mMountView1];
-	[mMountView1 setRandomLocation];
-	mMountView1.mMount.angle = 45.0;
-    mMountView1.mMuzzleView.initialAngle = -45.0;
-    CGPoint offsets1 = CGPointMake(-12, -27);
-    mMountView1.offsets = offsets1;
-	
-	// add player 2
-	mMountView2 = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) forPlayer:2];
-	[self.view addSubview:mMountView2];
-	[mMountView2 setRandomLocation];
-	mMountView2.mMount.angle = 135.0;
-    mMountView2.mMuzzleView.initialAngle = -135.0;
-    CGPoint offsets2 = CGPointMake(-63, -27);
-    mMountView2.offsets = offsets2;
-
 	// set player 1 to be the first to move
-	mMountView = mMountView1;
+	mMountView = [players objectAtIndex:0];
 	// set player 2 to be the enemy
-	mEnemyMountView = mMountView2;
+	mEnemyMountView = [players objectAtIndex:1];
 	
 	// set powerlabel
 	angleLabel.text = [NSString stringWithFormat:@"%.0f",mMountView.mMount.angle];
@@ -138,14 +152,10 @@
 - (void)changePlayer {
 	// hide current player muzzle
 	mMountView.mMuzzleView.hidden = YES;
-	
-	mEnemyMountView = mMountView;
-	if (mMountView == mMountView1) {
-		mMountView = mMountView2;
-	}
-	else {
-		mMountView = mMountView1;
-	}
+    
+    MountView *swap = mMountView;
+    mMountView = mEnemyMountView;
+    mEnemyMountView = swap;
 	
 	// unhide new player muzzle
 	mMountView.mMuzzleView.hidden = NO;
@@ -219,11 +229,7 @@
 
 - (void)dealloc {
     [super dealloc];
-	[mMountView1 release];
-	[mMountView2 release];
-	
-	[mMountView release];
-	[mEnemyMountView release];
+    [players release];
 	[mMissileView release];
 }
 

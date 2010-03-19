@@ -153,6 +153,7 @@
 		564377DA114E209400CC2FFC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 564377D2114E209400CC2FFC /* User.m */; };
 		564377DB114E209400CC2FFC /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 564377D4114E209400CC2FFC /* Game.m */; };
 		564377DC114E209400CC2FFC /* GameMount.m in Sources */ = {isa = PBXBuildFile; fileRef = 564377D6114E209400CC2FFC /* GameMount.m */; };
+		5652813311533F9E003137C3 /* PlayerConfigurations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5652813211533F9E003137C3 /* PlayerConfigurations.plist */; };
 		56BA2F8C111132AD00CB4BDB /* GunboundMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA2F8B111132AD00CB4BDB /* GunboundMainMenuViewController.m */; };
 		56BA2F9A1111355700CB4BDB /* GunboundMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56BA2F991111355700CB4BDB /* GunboundMainMenu.xib */; };
 		6B358D3011198646008B98B8 /* angleArc.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B358D2811198646008B98B8 /* angleArc.png */; };
@@ -341,6 +342,7 @@
 		564377D4114E209400CC2FFC /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = ../ManagedObjectClasses/Game.m; sourceTree = "<group>"; };
 		564377D5114E209400CC2FFC /* GameMount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameMount.h; path = ../ManagedObjectClasses/GameMount.h; sourceTree = "<group>"; };
 		564377D6114E209400CC2FFC /* GameMount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameMount.m; path = ../ManagedObjectClasses/GameMount.m; sourceTree = "<group>"; };
+		5652813211533F9E003137C3 /* PlayerConfigurations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PlayerConfigurations.plist; sourceTree = "<group>"; };
 		56BA2F8A111132AD00CB4BDB /* GunboundMainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GunboundMainMenuViewController.h; sourceTree = "<group>"; };
 		56BA2F8B111132AD00CB4BDB /* GunboundMainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GunboundMainMenuViewController.m; sourceTree = "<group>"; };
 		56BA2F991111355700CB4BDB /* GunboundMainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GunboundMainMenu.xib; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 				56BA2F991111355700CB4BDB /* GunboundMainMenu.xib */,
 				11BD11F81111625D00066A18 /* GunBoundNewCharacterViewController.xib */,
 				11BD23371119438400066A18 /* GunBoundGamePlayViewController.xib */,
+				5652813211533F9E003137C3 /* PlayerConfigurations.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -860,6 +863,7 @@
 				6BA7C683114E3CA600595341 /* gameBG.png in Resources */,
 				6BA7C686114E3FEA00595341 /* controller_base.png in Resources */,
 				6B5B3815114F86AE00F86921 /* controller_fire_button_disabled.png in Resources */,
+				5652813311533F9E003137C3 /* PlayerConfigurations.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

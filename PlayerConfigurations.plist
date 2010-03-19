@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>player01</key>
+	<dict>
+		<key>muzzleXOffset</key>
+		<integer>-63</integer>
+		<key>muzzleYOffset</key>
+		<integer>-27</integer>
+		<key>mountAngle</key>
+		<integer>135</integer>
+		<key>xposition</key>
+		<integer>430</integer>
+		<key>muzzleInitialAngle</key>
+		<integer>-135</integer>
+	</dict>
+	<key>player00</key>
+	<dict>
+		<key>muzzleXOffset</key>
+		<integer>-12</integer>
+		<key>muzzleYOffset</key>
+		<integer>-27</integer>
+		<key>mountAngle</key>
+		<integer>45</integer>
+		<key>xposition</key>
+		<integer>50</integer>
+		<key>muzzleInitialAngle</key>
+		<integer>-45</integer>
+	</dict>
+</dict>
+</plist>

@@ -41,6 +41,7 @@
     NSManagedObjectContext *managedObjectContext;
     NSManagedObjectModel *managedObjectModel;
 	
+    NSMutableArray *players;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -51,5 +52,6 @@
 - (IBAction)fireButton:(id)sender;
 - (IBAction)fireMissile:(id)sender;
 - (IBAction)exitGame:(id)sender;
+- (void)setPowerBarValue:(int)value;     
 
 @end
