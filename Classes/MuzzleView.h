@@ -14,9 +14,11 @@
 
 	CGPoint position;
 	int mPlayer;
+    CGFloat initialAngle;
 }
 
 @property CGPoint position;
+@property CGFloat initialAngle;
 
 - (id)initWithFrame:(CGRect)frame forPlayer:(int) player;
 - (void) rotateAngle: (CGFloat) angle;

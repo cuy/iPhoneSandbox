@@ -133,13 +133,12 @@
 	// set to random location
 	[mMountView1 setRandomLocation];
 	// alloc mount muzzle 
-	mMountView1.mMuzzleView = [[MuzzleView alloc] initWithFrame:CGRectMake(mMountView1.center.x - 12, mMountView1.center.y - 27, 75, 75) forPlayer:1];
-	// set muzzle starting angle
 	mMountView1.mMount.angle = 45.0;
-	[mMountView1.mMuzzleView rotateAngle:-45.0];
+    mMountView1.mMuzzleView.initialAngle = -45.0;
+    CGPoint offsets1 = CGPointMake(-12, -27);
+    mMountView1.offsets = offsets1;
 	// insert subview below player's mountview
-	[self.view insertSubview:mMountView1.mMuzzleView belowSubview:mMountView1];
-	
+//	[self.view insertSubview:mMountView1.mMuzzleView belowSubview:mMountView1];
 	
 	// add player 2
 	mMountView2 = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
@@ -149,13 +148,13 @@
 	[self.view addSubview:mMountView2];
 	// set to random location
 	[mMountView2 setRandomLocation];
-	// alloc mount muzzle 
-	mMountView2.mMuzzleView = [[MuzzleView alloc] initWithFrame:CGRectMake(mMountView2.center.x - 63, mMountView2.center.y - 27, 75, 75) forPlayer:2];
-	// set muzzle starting angle
+	// alloc mount muzzle 	// set muzzle starting angle
 	mMountView2.mMount.angle = 135.0;
-	[mMountView2.mMuzzleView rotateAngle:-135.0];
+    mMountView2.mMuzzleView.initialAngle = -135.0;
+    CGPoint offsets2 = CGPointMake(-63, -27);
+    mMountView2.offsets = offsets2;
 	// insert subview below player's mountview
-	[self.view insertSubview:mMountView2.mMuzzleView belowSubview:mMountView2];
+//	[self.view insertSubview:mMountView2.mMuzzleView belowSubview:mMountView2];
 	 
 	
 	// set player 1 to be the first to move

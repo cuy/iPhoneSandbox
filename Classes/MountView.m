@@ -14,6 +14,7 @@
 
 @synthesize mMount;
 @synthesize mMuzzleView;
+@synthesize offsets;
 
 - (id<CAAction>)actionForLayer:(CALayer *)layer forKey:(NSString *)key {
 	id<CAAction> animation = nil;
@@ -26,20 +27,30 @@
  return animation;
 }
 
-
 - (id)initWithFrame:(CGRect)frame {
 	
-	frame = CGRectMake(0,0,65,58);
-    if (self = [super initWithFrame:frame]) {
+	CGRect defaultFrame = CGRectMake(0,0,65,58);
+    if (self = [super initWithFrame:defaultFrame]) {
         // Initialization code
+        
+        // initialize mMount
+        mMount = [[Mount alloc] init];        
+        self.backgroundColor = [UIColor clearColor];
+        
+        MuzzleView *aMuzzleView = [[MuzzleView alloc] initWithFrame:CGRectMake(0, 0, 75, 75) forPlayer:mMount.player];
+        [self setMMuzzleView:aMuzzleView];
+        [aMuzzleView release];
     }
 	
-	// initialize mMount
-	mMount = [[Mount alloc] init];
-	
-	self.backgroundColor = [UIColor clearColor];
-	
     return self;
+}
+
+- (void)layoutSubviews {
+    [mMuzzleView removeFromSuperview];
+    CGRect newFrame = CGRectMake(self.center.x + offsets.x, self.center.y + offsets.y, 75, 75);
+    [mMuzzleView setFrame:newFrame];
+    [self.superview insertSubview:mMuzzleView belowSubview:self];
+    [mMuzzleView rotateAngle:mMuzzleView.initialAngle];
 }
 
 
@@ -129,7 +140,7 @@
 	//NSLog(@"starting pos x: %f y:%f",pos.x,pos.y);
 	self.center = pos;
 	
-	[self setNeedsDisplay];
+//	[self setNeedsDisplay];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

@@ -12,6 +12,7 @@
 @implementation MuzzleView
 
 @synthesize position;
+@synthesize initialAngle;
 
 - (id<CAAction>)actionForLayer:(CALayer *)layer forKey:(NSString *)key {
 	id<CAAction> animation = nil;
@@ -29,9 +30,9 @@
 	position.y = 0;
 	mPlayer = player;
     if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor clearColor];
         // Initialization code
     }
-	self.backgroundColor = [UIColor clearColor];
     return self;
 }
 
@@ -58,6 +59,7 @@
 	size_t w = CGImageGetWidth( image ); 
 	imageRect.origin = CGPointMake(pos.x, pos.y);
 	imageRect.size = CGSizeMake(w, h); 
+    NSLog(@"imagerect = %@", CGRectCreateDictionaryRepresentation(imageRect));
 	CGContextDrawImage( context, CGRectMake( pos.x, pos.y, w, h), 
 					   image ); 
 }
@@ -65,11 +67,12 @@
 - (void)drawRect:(CGRect)rect {
     // Drawing code
 	//NSLog(@"drawrect muzzleview");
+    NSLog(@"drawrect @ point = %@", CGPointCreateDictionaryRepresentation(position));
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	[self drawImage:context pos:CGPointMake( position.x, position.y ) 
 			  image:[self loadImage:@"angleControl.png"]]; 
 	
-	//self.transform = CGAffineTransformMakeRotation(180*M_PI/180);
+//	self.transform = CGAffineTransformMakeRotation(180*M_PI/180);
 }
 
 

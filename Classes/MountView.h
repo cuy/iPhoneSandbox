@@ -18,10 +18,13 @@
 	MuzzleView *mMuzzleView;
 	
 	CGPoint mGestureStartPoint;
+    
+    CGPoint offsets;
 }
 
 @property (nonatomic, retain) Mount *mMount;
 @property (nonatomic, retain) MuzzleView *mMuzzleView;
+@property CGPoint offsets;
 
 - (void) moveUpMount;
 - (void) moveDownMount;
