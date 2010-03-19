@@ -18,7 +18,6 @@
 	MuzzleView *mMuzzleView;
 	
 	CGPoint mGestureStartPoint;
-    
     CGPoint offsets;
 }
 
@@ -26,8 +25,9 @@
 @property (nonatomic, retain) MuzzleView *mMuzzleView;
 @property CGPoint offsets;
 
-- (void) moveUpMount;
-- (void) moveDownMount;
-- (void) setRandomLocation;
+- (id)initWithFrame:(CGRect)frame forPlayer:(int)player; 
+- (void)moveUpMount;
+- (void)moveDownMount;
+- (void)setRandomLocation;
 
 @end
