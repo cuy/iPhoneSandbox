@@ -34,64 +34,48 @@
 
 #pragma mark Buttons
 
-- (IBAction) stopTimerButton:(id)sender
-{
+- (IBAction)stopTimerButton:(id)sender {
 	if (mTimer != nil) 
 		[mTimer invalidate];
 	mTimer = nil;
 }
 
-- (IBAction) fireButton:(id)sender
-{
+- (IBAction) fireButton:(id)sender {
 	mTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/30 target:self selector:@selector(addPower:) userInfo:nil repeats:YES];
 }
 
-- (IBAction) fireMissile:(id)sender
-{
+- (IBAction)fireMissile:(id)sender {
 	[self stopTimerButton:sender];
 	
-	// allocate missileView
 	mMissileView = [[MissileView alloc] initWithFrame:CGRectMake(mMountView.mMuzzleView.center.x, mMountView.mMuzzleView.center.y, 31, 14)];
-	// set missile velocity
 	mMissileView.mMissile.velocity = mPower;
-	//set missile cx and cy
 	mMissileView.mMissile.cx = mMountView.mMuzzleView.center.x;
 	mMissileView.mMissile.cy = mMountView.mMuzzleView.center.y;
-	// set missile starting angle
 	mMissileView.mMissile.angle = mMountView.mMount.angle;
-	//mMissileView.mMissile.position = mMountView.mMuzzleView.position;
-	// insert subview below the current player's mountview
 	[self.view insertSubview:mMissileView belowSubview:mMountView];
-	// call firemissilefrom method 
 	[mMissileView fireMissileFrom:mMountView toEnemyMountView:mEnemyMountView];
 	[mMissileView setDelegate:self];
-	// release missileview
 	[mMissileView release];
+
 	// re-init mpower
 	mPower = 0;
-	// call change played method
-	//[self changePlayer];
-	
-	
+
 	//disable power button
 	[powerButton setEnabled:NO];
 }
 
-- (IBAction) exitGame:(id)sender
-{
+- (IBAction)exitGame:(id)sender {
 	
 }
 
 #pragma mark avatar movements
 
--(void) addPower:(id)sender
+-(void)addPower:(id)sender
 {
 	// Check if the power is greater than the MAX POWER which is 145
-	
-	if(mPower >= 145){
+	if(mPower >= 145) {
 		//set the power to the max power
 		mPower = 145;
-	
 	}
 	// otherwise increment the power by 5
 	else {
@@ -125,38 +109,23 @@
 	[bgImage release];
 		
 	// add player 1
-	mMountView1 = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-	// set player
-	mMountView1.mMount.player = 1;
-	// add subview
+	mMountView1 = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) forPlayer:1];
 	[self.view addSubview:mMountView1];
-	// set to random location
 	[mMountView1 setRandomLocation];
-	// alloc mount muzzle 
 	mMountView1.mMount.angle = 45.0;
     mMountView1.mMuzzleView.initialAngle = -45.0;
     CGPoint offsets1 = CGPointMake(-12, -27);
     mMountView1.offsets = offsets1;
-	// insert subview below player's mountview
-//	[self.view insertSubview:mMountView1.mMuzzleView belowSubview:mMountView1];
 	
 	// add player 2
-	mMountView2 = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-	// set player
-	mMountView2.mMount.player = 2;
-	// add to subview
+	mMountView2 = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) forPlayer:2];
 	[self.view addSubview:mMountView2];
-	// set to random location
 	[mMountView2 setRandomLocation];
-	// alloc mount muzzle 	// set muzzle starting angle
 	mMountView2.mMount.angle = 135.0;
     mMountView2.mMuzzleView.initialAngle = -135.0;
     CGPoint offsets2 = CGPointMake(-63, -27);
     mMountView2.offsets = offsets2;
-	// insert subview below player's mountview
-//	[self.view insertSubview:mMountView2.mMuzzleView belowSubview:mMountView2];
-	 
-	
+
 	// set player 1 to be the first to move
 	mMountView = mMountView1;
 	// set player 2 to be the enemy
@@ -166,8 +135,7 @@
 	angleLabel.text = [NSString stringWithFormat:@"%.0f",mMountView.mMount.angle];
 }
 
-- (void) changePlayer
-{	
+- (void)changePlayer {
 	// hide current player muzzle
 	mMountView.mMuzzleView.hidden = YES;
 	
@@ -189,49 +157,42 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	if([btnFire isEnabled]){
-	UITouch *touch = [touches anyObject];
-	mGestureStartPoint = [touch locationInView:self.view];
-	//NSLog(@"touch began");
+	if([btnFire isEnabled]) {
+        UITouch *touch = [touches anyObject];
+        mGestureStartPoint = [touch locationInView:self.view];
 	}
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 	// Activate touch move if the FIRE BUTTON is enabled :D
-	if([powerButton isEnabled]){
-	UITouch *touch = [touches anyObject];
-	CGPoint currentPosition = [touch locationInView:self.view];
-	//NSLog(@"previous position x: %f y: %f",mGestureStartPoint.x,mGestureStartPoint.y);
-	//NSLog(@"current position x: %f y: %f",currentPosition.x,currentPosition.y);
+	if ([powerButton isEnabled]) {
+        UITouch *touch = [touches anyObject];
+        CGPoint currentPosition = [touch locationInView:self.view];
+
+        // Arc Tangent Formula
+        CGFloat currentAngle = atan2(mGestureStartPoint.y - mMountView.mMuzzleView.center.y,mGestureStartPoint.x - mMountView.mMuzzleView.center.x)*180.0/M_PI;
+
+        if (currentAngle < -90.0 && mMountView.mMount.player == 1) {
+            currentAngle = -90.0;
+        }
+        else if (currentAngle > 45.0 && mMountView.mMount.player == 1) {
+            currentAngle = 45.0;
+        }
 	
+        if (currentAngle <= 135.0 && currentAngle > 0.0 && mMountView.mMount.player == 2) {
+            currentAngle = 135.0;
+        }
+        else if (currentAngle > -90.0 && currentAngle < 0.0 && mMountView.mMount.player == 2) {
+            currentAngle = -90.0;
+        }
+        
+        [mMountView.mMuzzleView rotateAngle:currentAngle];
+        mMountView.mMount.angle = currentAngle*-1;
+        mGestureStartPoint = currentPosition;
 	
-	
-	// Arc Tangent Formula
-	CGFloat currentAngle = atan2(mGestureStartPoint.y - mMountView.mMuzzleView.center.y,mGestureStartPoint.x - mMountView.mMuzzleView.center.x)*180.0/M_PI;
-	
-	
-	if(currentAngle < -90.0 && mMountView.mMount.player == 1){
-		currentAngle = -90.0;
-	}
-	else if(currentAngle > 45.0 && mMountView.mMount.player == 1){
-		currentAngle = 45.0;
-	}
-	
-	if(currentAngle <= 135.0 && currentAngle > 0.0 && mMountView.mMount.player == 2){
-		currentAngle = 135.0;
-	}
-	else if(currentAngle > -90.0 && currentAngle < 0.0 && mMountView.mMount.player == 2){
-		currentAngle = -90.0;
-	}
-	
-	[mMountView.mMuzzleView rotateAngle:currentAngle];
-	mMountView.mMount.angle = currentAngle*-1;
-		
-	mGestureStartPoint = currentPosition;
-	
-	// set powerlabel
-	angleLabel.text = [NSString stringWithFormat:@"%.0f",mMountView.mMount.angle];
-	NSLog(@"label: %@", angleLabel.text);
+        // set powerlabel
+        angleLabel.text = [NSString stringWithFormat:@"%.0f",mMountView.mMount.angle];
+        NSLog(@"label: %@", angleLabel.text);
 	}
 }
 
@@ -265,6 +226,5 @@
 	[mEnemyMountView release];
 	[mMissileView release];
 }
-
 
 @end

@@ -46,11 +46,10 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
 
-- (void) changePlayer;
-
-- (IBAction) stopTimerButton:(id)sender;
-- (IBAction) fireButton:(id)sender;
-- (IBAction) fireMissile:(id)sender;
-- (IBAction) exitGame:(id)sender;
+- (void)changePlayer;
+- (IBAction)stopTimerButton:(id)sender;
+- (IBAction)fireButton:(id)sender;
+- (IBAction)fireMissile:(id)sender;
+- (IBAction)exitGame:(id)sender;
 
 @end
