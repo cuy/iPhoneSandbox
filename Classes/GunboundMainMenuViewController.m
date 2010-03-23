@@ -60,8 +60,10 @@
             NSLog(@"Error while saving\n%@", ([error localizedDescription] != nil) ? [error localizedDescription] : @"Unknown Error");
             exit(1);
         }
-        
+        [defaultUser release];
     }
+    
+    [usersRequest release];
 }
 
 
@@ -115,18 +117,21 @@
 
 - (IBAction)newGameButton:(id)sender
 {
-	// if new user then create character
-	
+	// if new user then create character	
 	//GunBoundNewCharacterViewController *viewController = [[GunBoundNewCharacterViewController alloc] initWithNibName:@"GunBoundNewCharacterViewController" bundle:[NSBundle mainBundle]];
+    
 	GunBoundGamePlayViewController *viewController = [[GunBoundGamePlayViewController alloc] initWithNibName:@"GunBoundGamePlayViewController" bundle:[NSBundle mainBundle]];
     [viewController setManagedObjectModel:[self managedObjectModel]];
     [viewController setManagedObjectContext:[self managedObjectContext]];
-	UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]; // this is a leak!
-	window.backgroundColor = [UIColor redColor]; // just for debugging
-	[UIView setAnimationsEnabled:NO];
-	[window addSubview:viewController.view];
-	[[UIDevice currentDevice] setOrientation:UIInterfaceOrientationLandscapeRight];
-	[window makeKeyAndVisible];
+    [self presentModalViewController:viewController animated:NO];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO];
+    [viewController release];
+//    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]; // this is a leak!
+//	window.backgroundColor = [UIColor redColor]; // just for debugging
+//	[UIView setAnimationsEnabled:NO];
+//	[window addSubview:viewController.view];
+//	[[UIDevice currentDevice] setOrientation:UIInterfaceOrientationLandscapeRight];
+//	[window makeKeyAndVisible];
 	//[self.navigationController pushViewController:viewController animated:YES];
 	//[self.view addSubview:viewController.view];
 	//[[UIDevice currentDevice] setOrientation:UIInterfaceOrientationLandscapeRight];
