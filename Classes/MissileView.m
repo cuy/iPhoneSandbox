@@ -34,21 +34,21 @@
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
+        // set missile image as background
+        mMissileImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"missile2.png"]];
+        [self addSubview:mMissileImageView];
+        self.backgroundColor = [UIColor clearColor];
+        
+        // initialize mMissile
+        mMissile = [[Missile alloc] init];        
     }
-	// set missile image as background
-	mMissileImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"missile2.png"]];
-	[self addSubview:mMissileImageView];
-	self.backgroundColor = [UIColor clearColor];
-	
-	// initialize mMissile
-	mMissile = [[Missile alloc] init];
 	return self;
 }
 
-- (void) fireMissileFrom:(MountView *)mountView toEnemyMountView:(MountView *)enemyMountView
-{
+- (void)fireMissileFrom:(MountView *)mountView toEnemyMountView:(MountView *)enemyMountView {
 	mMountView = mountView;
 	mEnemyMountView = enemyMountView;
+    
 	//cx = mMountView.center.x;
 	//cy = mMountView.center.y;
 	
@@ -84,8 +84,7 @@
 
 }
 
-- (void) startFireMissile
-{
+- (void)startFireMissile {
 	// launch missile
 	mMissile.time += 1.0/10;
 	position.x = mMissile.velocity * mMissile.time * cos(mMissile.angle * M_PI/180) + cx;
@@ -113,8 +112,7 @@
 	}
 }
 
-- (BOOL) didHitEnemyMountView
-{
+- (BOOL)didHitEnemyMountView {
 	if (CGRectIntersectsRect(self.frame, mEnemyMountView.frame)) {
 		NSLog(@"naka igo ka brad!");
 		return YES;
@@ -122,12 +120,11 @@
 	else {
 		return NO;
 	}
-
 }
 
 - (void)dealloc {
     [super dealloc];
-	
+	[mMissileImageView release];
 	[mMissile release];
 }
 
