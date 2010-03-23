@@ -182,27 +182,34 @@
         // Arc Tangent Formula
         CGFloat currentAngle = atan2(mGestureStartPoint.y - mMountView.mMuzzleView.center.y,mGestureStartPoint.x - mMountView.mMuzzleView.center.x)*180.0/M_PI;
 
-        if (currentAngle < -90.0 && mMountView.mMount.player == 1) {
-            currentAngle = -90.0;
+        NSDictionary *playersInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PlayerConfigurations" ofType:@"plist"]];
+        NSDictionary *currentPlayerInfo = [playersInfo objectForKey:[NSString stringWithFormat:@"player%.2d", (mMountView.mMount.player - 1)]];
+
+        if (currentAngle >= 0) {
+            CGFloat max = [[currentPlayerInfo objectForKey:@"posAngleMax"] floatValue];
+            CGFloat min = [[currentPlayerInfo objectForKey:@"posAngleMin"] floatValue];
+            CGFloat def = [[currentPlayerInfo objectForKey:@"posAngleDefault"] floatValue];
+            
+            if (currentAngle > max || currentAngle < min) {
+                currentAngle = def;
+            }
         }
-        else if (currentAngle > 45.0 && mMountView.mMount.player == 1) {
-            currentAngle = 45.0;
-        }
-	
-        if (currentAngle <= 135.0 && currentAngle > 0.0 && mMountView.mMount.player == 2) {
-            currentAngle = 135.0;
-        }
-        else if (currentAngle > -90.0 && currentAngle < 0.0 && mMountView.mMount.player == 2) {
-            currentAngle = -90.0;
+        else {
+            CGFloat max = [[currentPlayerInfo objectForKey:@"negAngleMax"] floatValue];
+            CGFloat min = [[currentPlayerInfo objectForKey:@"negAngleMin"] floatValue];
+            CGFloat def = [[currentPlayerInfo objectForKey:@"negAngleDefault"] floatValue];            
+
+            if (currentAngle < max || currentAngle > min) {
+                currentAngle = def;
+            }
         }
         
         [mMountView.mMuzzleView rotateAngle:currentAngle];
-        mMountView.mMount.angle = currentAngle*-1;
+        mMountView.mMount.angle = currentAngle;
         mGestureStartPoint = currentPosition;
 	
         // set powerlabel
         angleLabel.text = [NSString stringWithFormat:@"%.0f",mMountView.mMount.angle];
-        NSLog(@"label: %@", angleLabel.text);
 	}
 }
 
