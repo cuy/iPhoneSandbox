@@ -205,7 +205,7 @@
         }
         
         [mMountView.mMuzzleView rotateAngle:currentAngle];
-        mMountView.mMount.angle = currentAngle;
+        mMountView.mMount.angle = currentAngle * -1;
         mGestureStartPoint = currentPosition;
 	
         // set powerlabel
