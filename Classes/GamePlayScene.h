@@ -12,16 +12,23 @@
 
 @interface GamePlayLayer : CCLayer {
 	
-	Mount *mPlayer1, *mPlayer2, *mCurrentPlayer;
+	Mount *mCurrentPlayer, *mEnemyPlayer;
+	NSMutableArray *players;
 	
 	CCLabel *angleLabel; 
 	
 	// touch vars
 	CGPoint mGestureStartPoint;
-
+	
 }
-@property (nonatomic,retain) Mount *mPlayer1, *mPlayer2, *mCurrentPlayer;
 
+@property (nonatomic,retain) Mount *mCurrentPlayer, *mEnemyPlayer;
+
+// game methods and initializers
+- (void) setupBackground;
+- (Mount *)setupPlayer:(int)player;
+- (void) setupPlayers:(int)total;
+- (void) setupController;
 @end
 
 @interface GamePlayScene : CCScene {

@@ -31,80 +31,97 @@
 
 @implementation GamePlayLayer
 
-@synthesize mPlayer1, mPlayer2, mCurrentPlayer;
+@synthesize mCurrentPlayer, mEnemyPlayer;
 
 - (id) init {
     self = [super init];
     if (self != nil) {
         isTouchEnabled = YES;
-
-		// set background image
-		CCSprite *bg = [CCSprite spriteWithFile:@"gameBG.png"];
-		bg.position = ccp(bg.contentSize.width/2,bg.contentSize.height/2);
-		[self addChild:bg z:0];
 		
-		CGSize winSize = [[CCDirector sharedDirector] winSize];
+		// game initializers
+		[self setupBackground]; // initialize background
+		players = [[NSMutableArray alloc] init]; // initialize players array
+		[self setupPlayers:2]; // initialize number of players
+		[self setupController]; // initialize controller
 		
-		//player 1
-		CCTexture2D *mountTexture = [[CCTextureCache sharedTextureCache] addImage:@"player1.png"];
-		mPlayer1 = [Mount mountWithTexture:mountTexture];
-		mPlayer1.position = ccp(50, winSize.height/2);
-		[self addChild:mPlayer1 z:1];	
-		// add player 1 muzzle
-		CCTexture2D *muzzleSprite = [[CCTextureCache sharedTextureCache] addImage:@"muzzle.png"];
-		mPlayer1.mMuzzle = [CCSprite spriteWithTexture:muzzleSprite];
-		mPlayer1.mMuzzle.position = ccp(mPlayer1.position.x+30,mPlayer1.position.y - 9);
-		[self addChild:mPlayer1.mMuzzle ];
-		
-		//player 2
-		mPlayer2 = [Mount mountWithTexture:mountTexture];
-		mPlayer2.position = ccp(430, winSize.height/2);
-		mPlayer2.scaleX = -mPlayer2.scaleX;
-		[self addChild:mPlayer2 z:1];
-		// add player 2 muzzle
-		mPlayer2.mMuzzle = [CCSprite spriteWithTexture:muzzleSprite];
-		mPlayer2.mMuzzle.scaleX = -mPlayer2.mMuzzle.scaleX;
-		mPlayer2.mMuzzle.position = ccp(mPlayer2.position.x-30,mPlayer2.position.y - 9);
-		[self addChild:mPlayer2.mMuzzle ];
-		
-		
-		// set current player
-		mCurrentPlayer = mPlayer1;
-		
-		// insert controllerbase firebutton
-		CCMenuItem *fireButtonMenuItem = [CCMenuItemImage itemFromNormalImage:@"controller_fire_button.png" selectedImage:@"controller_fire_button_up.png" target:self selector:@selector(fireButtonTapped:)];
-		fireButtonMenuItem.position = ccp(305,72);
-		CCMenu *fireButtonMenu = [CCMenu menuWithItems:fireButtonMenuItem, nil];
-		fireButtonMenu.position = CGPointZero;
-		[self addChild:fireButtonMenu];
-		
-		// insert controllerbase sprite
-		ControllerBase *controllerBase = [ControllerBase alloc];
-		controllerBase = [controllerBase initWithImage:@"controller_base.png"];
-		[self addChild:controllerBase];
-		
-		// insert controllerbase angle label
-		angleLabel = [CCLabel labelWithString:@"45" fontName:@"Helvetica" fontSize:10];
-		angleLabel.position = ccp(145,59);
-		angleLabel.color = ccc3(0, 0, 0);
-		[self addChild:angleLabel];
-		
-		
+		// set player 1 to be the first to move
+		mCurrentPlayer = [players objectAtIndex:0];
+		// set player 2 to be the enemy player
+		mEnemyPlayer = [players objectAtIndex:1];
     }
     return self;
+}
+
+#pragma mark Game methods and initializers
+
+- (void) setupBackground
+{
+	// set background image
+	CCSprite *bg = [CCSprite spriteWithFile:@"gameBG.png"];
+	bg.position = ccp(bg.contentSize.width/2,bg.contentSize.height/2);
+	[self addChild:bg z:0];	
+}
+
+- (void) setupPlayers:(int)total {
+    for (NSUInteger i = 0; i < total; ++i) {
+        [players addObject:[self setupPlayer:i]];
+    }
+}
+
+- (Mount *)setupPlayer:(int)player {
+	
+	// add player image
+	CCTexture2D *mountTexture = [[CCTextureCache sharedTextureCache] addImage:@"player.png"];
+	// initialize with player image
+	Mount *aPlayerMount = [Mount mountWithTexture:mountTexture];
+	// set random location for player
+	[aPlayerMount setRandomLocationForPlayer:(player + 1)];
+	// add player to view
+	[self addChild:aPlayerMount z:1];	
+	
+	// add muzzle image
+	CCTexture2D *muzzleSprite = [[CCTextureCache sharedTextureCache] addImage:@"muzzle.png"];
+	// initialize player muzzle with muzzle image
+	aPlayerMount.mMuzzle = [CCSprite spriteWithTexture:muzzleSprite];
+	// set muzzle location
+	[aPlayerMount setMuzzleLocationForPlayer:(player + 1)];
+	// add player muzzle to view
+	[self addChild:aPlayerMount.mMuzzle ];
+	
+	[mountTexture release];
+	[muzzleSprite release];
+	
+	return aPlayerMount;
+}
+
+- (void) setupController
+{
+	// insert controllerbase firebutton
+	CCMenuItem *fireButtonMenuItem = [CCMenuItemImage itemFromNormalImage:@"controller_fire_button.png" selectedImage:@"controller_fire_button_up.png" target:self selector:@selector(fireButtonTapped:)];
+	fireButtonMenuItem.position = ccp(305,72);
+	CCMenu *fireButtonMenu = [CCMenu menuWithItems:fireButtonMenuItem, nil];
+	fireButtonMenu.position = CGPointZero;
+	[self addChild:fireButtonMenu];
+	
+	// insert controllerbase sprite
+	ControllerBase *controllerBase = [ControllerBase alloc];
+	controllerBase = [controllerBase initWithImage:@"controller_base.png"];
+	[self addChild:controllerBase];
+	
+	// insert controllerbase angle label
+	angleLabel = [CCLabel labelWithString:@"45" fontName:@"Helvetica" fontSize:10];
+	angleLabel.position = ccp(145,59);
+	angleLabel.color = ccc3(0, 0, 0);
+	[self addChild:angleLabel];
 }
 
 #pragma mark Game Actions
 
 - (void) changePlayer 
 {
-	if (mCurrentPlayer == mPlayer1) {
-		mCurrentPlayer = mPlayer2;
-	}
-	else {
-		mCurrentPlayer = mPlayer1;
-	}
-
+	Mount *swap = mCurrentPlayer;
+	mCurrentPlayer = mEnemyPlayer;
+	mEnemyPlayer =  swap;
 }
 
 #pragma mark Button Actions
@@ -113,14 +130,6 @@
 {
 	NSLog(@"fireButtonTapped");
 	[self changePlayer];
-}
-
-- (void) dealloc
-{
-	[super dealloc];
-	[[CCTextureCache sharedTextureCache] removeAllTextures];
-	[mPlayer1 release];
-	[mPlayer2 release];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -141,10 +150,10 @@
 	CGFloat currentAngle = atan2(mGestureStartPoint.y - mCurrentPlayer.mMuzzle.position.y,mGestureStartPoint.x - mCurrentPlayer.mMuzzle.position.x)*180.0/M_PI;
 	NSLog(@"current angle : %f",currentAngle);
 
-	if (currentAngle <= 80.0f && currentAngle >= -45.0f && mCurrentPlayer == mPlayer1) {
+	if (currentAngle <= 80.0f && currentAngle >= -45.0f && mCurrentPlayer == [players objectAtIndex:0]) {
 		mCurrentPlayer.mMuzzle.rotation = -currentAngle;
 	}
-	else if ((currentAngle >= 100.0f || currentAngle <= -135.0f) && mCurrentPlayer == mPlayer2) {
+	else if ((currentAngle >= 100.0f || currentAngle <= -135.0f) && mCurrentPlayer == [players objectAtIndex:1]) {
 		mCurrentPlayer.mMuzzle.rotation = 180 - currentAngle;
 	}
 	
@@ -157,5 +166,13 @@
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	//NSLog(@"touchended");
 }
+
+- (void) dealloc
+{
+	[super dealloc];
+	[[CCTextureCache sharedTextureCache] removeAllTextures];
+	[players release];
+}
+
 @end
 

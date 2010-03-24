@@ -35,6 +35,30 @@
 	return self;
 }
 
+- (void) setRandomLocationForPlayer:(int) player
+{
+	CGFloat y = (float)(arc4random()%(250 - 50 + 1))+ 50;
+	CGFloat x = 50;
+	if (player == 2) {
+		x = 430;
+		// flip player image
+		self.scaleX = -self.scaleX;
+	}
+	self.position = ccp(x, y);
+}
+
+- (void) setMuzzleLocationForPlayer:(int) player
+{	
+	CGFloat x = self.position.x + 30;
+	CGFloat y = self.position.y - 9;
+	if (player == 2) {
+		x -= 60;
+		// flip muzzle image
+		self.mMuzzle.scaleX = -self.mMuzzle.scaleX;
+	}
+	self.mMuzzle.position = ccp(x,y);
+}
+
 - (void)onEnter
 {
 	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];

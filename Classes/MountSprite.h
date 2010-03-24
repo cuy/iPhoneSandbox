@@ -25,5 +25,7 @@ typedef enum tagMountState {
 @property(nonatomic, readonly) CGRect rect;
 @property(nonatomic, retain) Muzzle *mMuzzle;
 
+- (void) setRandomLocationForPlayer:(int) player;
+- (void) setMuzzleLocationForPlayer:(int) player;
 + (id)mountWithTexture:(CCTexture2D *)texture;
 @end
