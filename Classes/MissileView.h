@@ -10,6 +10,11 @@
 @class Missile;
 @class MountView;
 
+@protocol MissileViewDelegate 
+
+- (void)missileProjectileCompleted;
+
+@end
 
 @interface MissileView : UIView {
 
@@ -21,7 +26,7 @@
 	CGFloat cy;
 	CGPoint position;
 	CGPoint oposition;
-	id delegate;
+	id <MissileViewDelegate> delegate;
 
 	
 	MountView *mMountView;
@@ -34,11 +39,10 @@
 @property CGFloat mPower;
 @property CGPoint position;
 @property CGPoint oposition;
+@property (nonatomic, assign) id <MissileViewDelegate> delegate;
 
 - (void) fireMissileFrom:(MountView *) mountView toEnemyMountView:(MountView *)enemyMountView;
 - (void) startFireMissile;
 - (BOOL) didHitEnemyMountView;
-- (void) setDelegate:(id)mDelegate;
-- (id) delegate;
 
 @end

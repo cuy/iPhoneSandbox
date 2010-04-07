@@ -8,14 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "MissileView.h"
 
 @class Mount;
 @class MountView;
 @class Missile;
-@class MissileView;
-@class MuzzleView;
 
-@interface GunBoundGamePlayViewController : UIViewController {
+@interface GunBoundGamePlayViewController : UIViewController <MissileViewDelegate> {
 	
 	// Avatar Variables
 	MountView *mMountView;
@@ -47,7 +46,6 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
 
-- (void)changePlayer;
 - (IBAction)stopTimerButton:(id)sender;
 - (IBAction)fireButton:(id)sender;
 - (IBAction)fireMissile:(id)sender;

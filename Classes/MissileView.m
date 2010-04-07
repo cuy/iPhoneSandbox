@@ -20,16 +20,7 @@
 @synthesize cy;
 @synthesize position;
 @synthesize oposition;
-
-
--(void)	setDelegate:(id)mDelegate
-{
-	delegate = mDelegate;
-}
-
-- (id) delegate {
-	return delegate;
-}
+@synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -83,10 +74,7 @@
 		[mTimer invalidate];
 		mTimer = nil;
 		self.hidden = YES;
-		if([delegate respondsToSelector:@selector(changePlayer)])
-		{
-			[delegate changePlayer];
-		}
+        [delegate missileProjectileCompleted];
 	}
 }
 

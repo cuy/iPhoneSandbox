@@ -149,7 +149,7 @@
 	angleLabel.text = [NSString stringWithFormat:@"%.0f",mMountView.mMount.angle];
 }
 
-- (void)changePlayer {
+- (void)missileProjectileCompleted {
 	// hide current player muzzle
 	mMountView.mMuzzleView.hidden = YES;
     
