@@ -8,6 +8,7 @@
 
 #import "cocos2d.h"
 #import "MountSprite.h"
+#import "ControllerSprite.h"
 
 
 @interface GamePlayLayer : CCLayer {
@@ -20,6 +21,7 @@
 	// touch vars
 	CGPoint mGestureStartPoint;
 	
+	Controller *controllerBase;	
 }
 
 @property (nonatomic,retain) Mount *mCurrentPlayer, *mEnemyPlayer;

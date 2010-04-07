@@ -6,11 +6,26 @@
 //  Copyright 2010 G2iX. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+typedef enum tagFireButtonState {
+	kFireButtonStateGrabbed,
+	kFireButtonStateUngrabbed
+} FireButtonState;
 
-@interface FireButton : CCMenuItem {
+@interface FireButton : CCSprite <CCTargetedTouchDelegate> {
 
+	float power;
+	CCSprite *powerMeter;
+
+@private
+	FireButtonState state;
+	
 }
+
+@property (nonatomic, retain) CCSprite *powerMeter;
+
++ (id)fireButtonWithTexture:(CCTexture2D *)aTexture;
 
 @end

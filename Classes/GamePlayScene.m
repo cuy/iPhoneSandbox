@@ -10,7 +10,9 @@
 #import "MainMenuScene.h"
 #import "MountSprite.h"
 #import "MuzzleSprite.h"
-#import "ControllerBaseSprite.h"
+#import "ControllerSprite.h"
+#import "FireButtonSprite.h"
+
 
 @implementation GamePlayScene
 
@@ -37,7 +39,7 @@
     self = [super init];
     if (self != nil) {
         isTouchEnabled = YES;
-		
+
 		// game initializers
 		[self setupBackground]; // initialize background
 		players = [[NSMutableArray alloc] init]; // initialize players array
@@ -88,31 +90,41 @@
 	// add player muzzle to view
 	[self addChild:aPlayerMount.mMuzzle ];
 	
-	[mountTexture release];
-	[muzzleSprite release];
+	[mountTexture release]; mountTexture = nil;
+	[muzzleSprite release]; muzzleSprite = nil;
 	
 	return aPlayerMount;
 }
 
 - (void) setupController
 {
-	// insert controllerbase firebutton
-	CCMenuItem *fireButtonMenuItem = [CCMenuItemImage itemFromNormalImage:@"controller_fire_button.png" selectedImage:@"controller_fire_button_up.png" target:self selector:@selector(fireButtonTapped:)];
-	fireButtonMenuItem.position = ccp(305,72);
-	CCMenu *fireButtonMenu = [CCMenu menuWithItems:fireButtonMenuItem, nil];
-	fireButtonMenu.position = CGPointZero;
-	[self addChild:fireButtonMenu];
+	// insert controller base
+	CCTexture2D *controllerSprite = [[CCTextureCache sharedTextureCache] addImage:@"controller_base.png"];
+	controllerBase = [Controller controllertWithTexture:controllerSprite];
+	controllerBase.position = ccp(235,73);
+	[self addChild:controllerBase z:3];
 	
-	// insert controllerbase sprite
-	ControllerBase *controllerBase = [ControllerBase alloc];
-	controllerBase = [controllerBase initWithImage:@"controller_base.png"];
-	[self addChild:controllerBase];
+	// insert controller base firebutton
+	CCTexture2D *firebuttonSprite = [[CCTextureCache sharedTextureCache] addImage:@"controller_fire_button.png"];
+	controllerBase.fireButton = [FireButton fireButtonWithTexture:firebuttonSprite];
+	controllerBase.fireButton.position = ccp(305,72);
+	[self addChild:controllerBase.fireButton z:2];
 	
-	// insert controllerbase angle label
+	// initialize power meter
+	controllerBase.fireButton.powerMeter = [CCSprite spriteWithFile:@"power_meter.png"];
+	[controllerBase.fireButton.powerMeter setAnchorPoint:ccp(0.0f, 0.5f)];
+	controllerBase.fireButton.powerMeter.position = ccp(167,61);
+	[self addChild:controllerBase.fireButton.powerMeter z:2];
+	
+	// insert controller base angle label
 	angleLabel = [CCLabel labelWithString:@"45" fontName:@"Helvetica" fontSize:10];
 	angleLabel.position = ccp(145,59);
 	angleLabel.color = ccc3(0, 0, 0);
-	[self addChild:angleLabel];
+	[self addChild:angleLabel z:3];
+	
+	// release
+	[controllerSprite release]; controllerSprite = nil;
+	[firebuttonSprite release]; firebuttonSprite = nil;
 }
 
 #pragma mark Game Actions
@@ -124,12 +136,13 @@
 	mEnemyPlayer =  swap;
 }
 
+
 #pragma mark Button Actions
 
 - (void) fireButtonTapped: (id) sender
 {
 	NSLog(@"fireButtonTapped");
-	[self changePlayer];
+	//[self changePlayer];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -158,8 +171,8 @@
 	}
 	
 	// rotate muzzle
-	
 	mGestureStartPoint = currentPosition;
+	[angleLabel setString:[NSString stringWithFormat:@"%.0f", mCurrentPlayer.mMuzzle.rotation]];
 	NSLog(@"mCurrentPlayer.mMuzzle.rotation : %f",mCurrentPlayer.mMuzzle.rotation);
 }
 

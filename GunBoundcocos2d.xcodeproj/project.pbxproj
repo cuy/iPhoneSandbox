@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		119E8270116C2F5500ED64A9 /* power_meter.png in Resources */ = {isa = PBXBuildFile; fileRef = 119E826F116C2F5500ED64A9 /* power_meter.png */; };
 		11B45768114F0E7700EBB7F2 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B45767114F0E7700EBB7F2 /* MainMenuScene.m */; };
 		11B457A8114F12FF00EBB7F2 /* GamePlayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B457A7114F12FF00EBB7F2 /* GamePlayScene.m */; };
 		11B46AC0114F4E6800EBB7F2 /* MountSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B46ABF114F4E6800EBB7F2 /* MountSprite.m */; };
 		11B46B14114F52EA00EBB7F2 /* gameBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B46B13114F52EA00EBB7F2 /* gameBG.png */; };
 		11B46B17114F530C00EBB7F2 /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B46B15114F530C00EBB7F2 /* player.png */; };
-		11B46B57114F575500EBB7F2 /* ControllerBaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B46B56114F575500EBB7F2 /* ControllerBaseSprite.m */; };
+		11B46B57114F575500EBB7F2 /* ControllerSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B46B56114F575500EBB7F2 /* ControllerSprite.m */; };
 		11B46B5A114F583500EBB7F2 /* FireButtonSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B46B59114F583500EBB7F2 /* FireButtonSprite.m */; };
 		11B46B8C114F5A9E00EBB7F2 /* controller_base.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B46B89114F5A9E00EBB7F2 /* controller_base.png */; };
 		11B46B8D114F5A9E00EBB7F2 /* controller_fire_button_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B46B8A114F5A9E00EBB7F2 /* controller_fire_button_up.png */; };
@@ -198,6 +199,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		119E826F116C2F5500ED64A9 /* power_meter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = power_meter.png; path = images/power_meter.png; sourceTree = "<group>"; };
 		11B45766114F0E7700EBB7F2 /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
 		11B45767114F0E7700EBB7F2 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
 		11B457A6114F12FF00EBB7F2 /* GamePlayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlayScene.h; sourceTree = "<group>"; };
@@ -206,8 +208,8 @@
 		11B46ABF114F4E6800EBB7F2 /* MountSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MountSprite.m; sourceTree = "<group>"; };
 		11B46B13114F52EA00EBB7F2 /* gameBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gameBG.png; path = images/gameBG.png; sourceTree = "<group>"; };
 		11B46B15114F530C00EBB7F2 /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = player.png; path = images/player.png; sourceTree = "<group>"; };
-		11B46B55114F575500EBB7F2 /* ControllerBaseSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControllerBaseSprite.h; sourceTree = "<group>"; };
-		11B46B56114F575500EBB7F2 /* ControllerBaseSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerBaseSprite.m; sourceTree = "<group>"; };
+		11B46B55114F575500EBB7F2 /* ControllerSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControllerSprite.h; sourceTree = "<group>"; };
+		11B46B56114F575500EBB7F2 /* ControllerSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerSprite.m; sourceTree = "<group>"; };
 		11B46B58114F583500EBB7F2 /* FireButtonSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireButtonSprite.h; sourceTree = "<group>"; };
 		11B46B59114F583500EBB7F2 /* FireButtonSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FireButtonSprite.m; sourceTree = "<group>"; };
 		11B46B89114F5A9E00EBB7F2 /* controller_base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = controller_base.png; path = images/controller_base.png; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 		11B46B12114F52CF00EBB7F2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				119E826F116C2F5500ED64A9 /* power_meter.png */,
 				11B46CA6114F77B300EBB7F2 /* muzzle.png */,
 				11B46B89114F5A9E00EBB7F2 /* controller_base.png */,
 				11B46B8A114F5A9E00EBB7F2 /* controller_fire_button_up.png */,
@@ -465,8 +468,8 @@
 		11B46B54114F574900EBB7F2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				11B46B55114F575500EBB7F2 /* ControllerBaseSprite.h */,
-				11B46B56114F575500EBB7F2 /* ControllerBaseSprite.m */,
+				11B46B55114F575500EBB7F2 /* ControllerSprite.h */,
+				11B46B56114F575500EBB7F2 /* ControllerSprite.m */,
 				11B46B58114F583500EBB7F2 /* FireButtonSprite.h */,
 				11B46B59114F583500EBB7F2 /* FireButtonSprite.m */,
 			);
@@ -886,6 +889,7 @@
 				11B46B8D114F5A9E00EBB7F2 /* controller_fire_button_up.png in Resources */,
 				11B46B8E114F5A9E00EBB7F2 /* controller_fire_button.png in Resources */,
 				11B46CA7114F77B300EBB7F2 /* muzzle.png in Resources */,
+				119E8270116C2F5500ED64A9 /* power_meter.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -902,7 +906,7 @@
 				11B45768114F0E7700EBB7F2 /* MainMenuScene.m in Sources */,
 				11B457A8114F12FF00EBB7F2 /* GamePlayScene.m in Sources */,
 				11B46AC0114F4E6800EBB7F2 /* MountSprite.m in Sources */,
-				11B46B57114F575500EBB7F2 /* ControllerBaseSprite.m in Sources */,
+				11B46B57114F575500EBB7F2 /* ControllerSprite.m in Sources */,
 				11B46B5A114F583500EBB7F2 /* FireButtonSprite.m in Sources */,
 				11B46CBB114F78C400EBB7F2 /* MuzzleSprite.m in Sources */,
 			);

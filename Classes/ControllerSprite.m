@@ -6,10 +6,12 @@
 //  Copyright 2010 G2iX. All rights reserved.
 //
 
-#import "ControllerBaseSprite.h"
+#import "ControllerSprite.h"
 #import "cocos2d.h"
 
-@implementation ControllerBase
+@implementation Controller
+
+@synthesize fireButton;
 
 - (id) initWithImage: (NSString *) filename
 {
@@ -17,5 +19,20 @@
 	image.position = ccp(235,73);
 	return image;
 }
+
++ (id) controllertWithTexture:(CCTexture2D *)aTexture
+{
+	return [[[self alloc] initWithTexture:aTexture] autorelease];
+}
+
+- (id) initWithTexture:(CCTexture2D *)aTexture
+{
+	if ((self = [super initWithTexture:aTexture]) ) {
+		
+	}
+	
+	return self;
+}
+
 
 @end
