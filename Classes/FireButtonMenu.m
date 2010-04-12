@@ -13,6 +13,8 @@
 @implementation FireButton
 
 @synthesize powerMeter;
+@synthesize delegate;
+
 
 - (void) addPower:(ccTime) dt
 {
@@ -24,13 +26,7 @@
 
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-	NSLog(@"touch began");
-	power = 1;
-	powerMeter.scaleX = power;
-	
-	// start scheduler
-	[self schedule:@selector(addPower:)];
-	
+
 	if( state != kMenuStateWaiting ) return NO;
 	
 	selectedItem = [self itemForTouch:touch];
@@ -38,6 +34,14 @@
 	
 	if( selectedItem ) {
 		state = kMenuStateTrackingTouch;
+		
+		// re-initialize power and power Meter
+		power = 1;
+		powerMeter.scaleX = power;
+		
+		// start scheduler
+		[self schedule:@selector(addPower:)];
+		
 		return YES;
 	}
 	return NO;
@@ -47,7 +51,11 @@
 {
 	NSLog(@"touch ended");
 	// unschedule timer
-	[self unschedule:@selector(addPower:)];	
+	[self unschedule:@selector(addPower:)];
+	
+	//change player
+	[[self delegate] changePlayer];
+	
 	
 	NSAssert(state == kMenuStateTrackingTouch, @"[Menu ccTouchEnded] -- invalid state");
 	

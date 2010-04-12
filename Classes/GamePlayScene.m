@@ -106,10 +106,11 @@
 	[self addChild:controllerBase z:3];
 	
 	// insert controller base firebutton
-	CCMenuItem *fireButtonItem = [CCMenuItemImage itemFromNormalImage:@"controller_fire_button.png" selectedImage:@"controller_fire_button_up.png"];
+	CCMenuItem *fireButtonItem = [CCMenuItemImage itemFromNormalImage:@"controller_fire_button.png" selectedImage:@"controller_fire_button_up.png" ];
 	fireButtonItem.position = ccp(305, 72);
 	controllerBase.fireButton = [FireButton menuWithItems:fireButtonItem, nil];
 	controllerBase.fireButton.position = CGPointZero;
+	[controllerBase.fireButton setDelegate:self];
 	[self addChild:controllerBase.fireButton];
 	
 	// initialize power meter
@@ -132,6 +133,7 @@
 
 - (void) changePlayer 
 {
+	NSLog(@"change player");
 	Mount *swap = mCurrentPlayer;
 	mCurrentPlayer = mEnemyPlayer;
 	mEnemyPlayer =  swap;

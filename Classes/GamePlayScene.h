@@ -9,9 +9,10 @@
 #import "cocos2d.h"
 #import "MountSprite.h"
 #import "ControllerSprite.h"
+#import "FireButtonMenu.h"
 
 
-@interface GamePlayLayer : CCLayer {
+@interface GamePlayLayer : CCLayer <FireButtonMenuDelegate> {
 	
 	Mount *mCurrentPlayer, *mEnemyPlayer;
 	NSMutableArray *players;
