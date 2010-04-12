@@ -14,12 +14,12 @@
 		11B46B14114F52EA00EBB7F2 /* gameBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B46B13114F52EA00EBB7F2 /* gameBG.png */; };
 		11B46B17114F530C00EBB7F2 /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B46B15114F530C00EBB7F2 /* player.png */; };
 		11B46B57114F575500EBB7F2 /* ControllerSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B46B56114F575500EBB7F2 /* ControllerSprite.m */; };
-		11B46B5A114F583500EBB7F2 /* FireButtonSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B46B59114F583500EBB7F2 /* FireButtonSprite.m */; };
 		11B46B8C114F5A9E00EBB7F2 /* controller_base.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B46B89114F5A9E00EBB7F2 /* controller_base.png */; };
 		11B46B8D114F5A9E00EBB7F2 /* controller_fire_button_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B46B8A114F5A9E00EBB7F2 /* controller_fire_button_up.png */; };
 		11B46B8E114F5A9E00EBB7F2 /* controller_fire_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B46B8B114F5A9E00EBB7F2 /* controller_fire_button.png */; };
 		11B46CA7114F77B300EBB7F2 /* muzzle.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B46CA6114F77B300EBB7F2 /* muzzle.png */; };
 		11B46CBB114F78C400EBB7F2 /* MuzzleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B46CBA114F78C400EBB7F2 /* MuzzleSprite.m */; };
+		11ED6C771172C5670066713F /* FireButtonMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ED6C761172C5670066713F /* FireButtonMenu.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1F3B9A2D0EF2145700286867 /* GunBoundcocos2dAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B9A2B0EF2145700286867 /* GunBoundcocos2dAppDelegate.m */; };
 		505574581045D68500A31725 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506EDBA4102F4C9F00A389B3 /* AVFoundation.framework */; };
@@ -210,14 +210,14 @@
 		11B46B15114F530C00EBB7F2 /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = player.png; path = images/player.png; sourceTree = "<group>"; };
 		11B46B55114F575500EBB7F2 /* ControllerSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControllerSprite.h; sourceTree = "<group>"; };
 		11B46B56114F575500EBB7F2 /* ControllerSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerSprite.m; sourceTree = "<group>"; };
-		11B46B58114F583500EBB7F2 /* FireButtonSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireButtonSprite.h; sourceTree = "<group>"; };
-		11B46B59114F583500EBB7F2 /* FireButtonSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FireButtonSprite.m; sourceTree = "<group>"; };
 		11B46B89114F5A9E00EBB7F2 /* controller_base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = controller_base.png; path = images/controller_base.png; sourceTree = "<group>"; };
 		11B46B8A114F5A9E00EBB7F2 /* controller_fire_button_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = controller_fire_button_up.png; path = images/controller_fire_button_up.png; sourceTree = "<group>"; };
 		11B46B8B114F5A9E00EBB7F2 /* controller_fire_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = controller_fire_button.png; path = images/controller_fire_button.png; sourceTree = "<group>"; };
 		11B46CA6114F77B300EBB7F2 /* muzzle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = muzzle.png; path = images/muzzle.png; sourceTree = "<group>"; };
 		11B46CB9114F78C400EBB7F2 /* MuzzleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MuzzleSprite.h; sourceTree = "<group>"; };
 		11B46CBA114F78C400EBB7F2 /* MuzzleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MuzzleSprite.m; sourceTree = "<group>"; };
+		11ED6C751172C5670066713F /* FireButtonMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireButtonMenu.h; sourceTree = "<group>"; };
+		11ED6C761172C5670066713F /* FireButtonMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FireButtonMenu.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* GunBoundcocos2d.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GunBoundcocos2d.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F3B9A2B0EF2145700286867 /* GunBoundcocos2dAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GunBoundcocos2dAppDelegate.m; path = Classes/GunBoundcocos2dAppDelegate.m; sourceTree = SOURCE_ROOT; };
 		1F3B9A2C0EF2145700286867 /* GunBoundcocos2dAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GunBoundcocos2dAppDelegate.h; path = Classes/GunBoundcocos2dAppDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -470,8 +470,8 @@
 			children = (
 				11B46B55114F575500EBB7F2 /* ControllerSprite.h */,
 				11B46B56114F575500EBB7F2 /* ControllerSprite.m */,
-				11B46B58114F583500EBB7F2 /* FireButtonSprite.h */,
-				11B46B59114F583500EBB7F2 /* FireButtonSprite.m */,
+				11ED6C751172C5670066713F /* FireButtonMenu.h */,
+				11ED6C761172C5670066713F /* FireButtonMenu.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -907,8 +907,8 @@
 				11B457A8114F12FF00EBB7F2 /* GamePlayScene.m in Sources */,
 				11B46AC0114F4E6800EBB7F2 /* MountSprite.m in Sources */,
 				11B46B57114F575500EBB7F2 /* ControllerSprite.m in Sources */,
-				11B46B5A114F583500EBB7F2 /* FireButtonSprite.m in Sources */,
 				11B46CBB114F78C400EBB7F2 /* MuzzleSprite.m in Sources */,
+				11ED6C771172C5670066713F /* FireButtonMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

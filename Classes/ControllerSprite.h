@@ -8,7 +8,7 @@
 
 #import "cocos2d.h"
 
-#import "FireButtonSprite.h"
+#import "FireButtonMenu.h"
 
 
 @interface Controller : CCSprite {
@@ -18,6 +18,6 @@
 
 @property (nonatomic, retain) FireButton *fireButton;
 
-- (id) initWithImage: (NSString *) filename;
 + (id) controllertWithTexture:(CCTexture2D *)aTexture;
+
 @end

@@ -13,13 +13,6 @@
 
 @synthesize fireButton;
 
-- (id) initWithImage: (NSString *) filename
-{
-	CCSprite *image = [CCSprite spriteWithFile:filename rect:CGRectMake(0, 0, 237, 99)];
-	image.position = ccp(235,73);
-	return image;
-}
-
 + (id) controllertWithTexture:(CCTexture2D *)aTexture
 {
 	return [[[self alloc] initWithTexture:aTexture] autorelease];

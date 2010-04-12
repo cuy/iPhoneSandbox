@@ -11,8 +11,8 @@
 #import "MountSprite.h"
 #import "MuzzleSprite.h"
 #import "ControllerSprite.h"
-#import "FireButtonSprite.h"
 
+#import "FireButtonMenu.h"
 
 @implementation GamePlayScene
 
@@ -90,6 +90,7 @@
 	// add player muzzle to view
 	[self addChild:aPlayerMount.mMuzzle ];
 	
+	// release the kraken
 	[mountTexture release]; mountTexture = nil;
 	[muzzleSprite release]; muzzleSprite = nil;
 	
@@ -105,10 +106,11 @@
 	[self addChild:controllerBase z:3];
 	
 	// insert controller base firebutton
-	CCTexture2D *firebuttonSprite = [[CCTextureCache sharedTextureCache] addImage:@"controller_fire_button.png"];
-	controllerBase.fireButton = [FireButton fireButtonWithTexture:firebuttonSprite];
-	controllerBase.fireButton.position = ccp(305,72);
-	[self addChild:controllerBase.fireButton z:2];
+	CCMenuItem *fireButtonItem = [CCMenuItemImage itemFromNormalImage:@"controller_fire_button.png" selectedImage:@"controller_fire_button_up.png"];
+	fireButtonItem.position = ccp(305, 72);
+	controllerBase.fireButton = [FireButton menuWithItems:fireButtonItem, nil];
+	controllerBase.fireButton.position = CGPointZero;
+	[self addChild:controllerBase.fireButton];
 	
 	// initialize power meter
 	controllerBase.fireButton.powerMeter = [CCSprite spriteWithFile:@"power_meter.png"];
@@ -122,9 +124,8 @@
 	angleLabel.color = ccc3(0, 0, 0);
 	[self addChild:angleLabel z:3];
 	
-	// release
+	// release the kraken
 	[controllerSprite release]; controllerSprite = nil;
-	[firebuttonSprite release]; firebuttonSprite = nil;
 }
 
 #pragma mark Game Actions
@@ -138,12 +139,6 @@
 
 
 #pragma mark Button Actions
-
-- (void) fireButtonTapped: (id) sender
-{
-	NSLog(@"fireButtonTapped");
-	//[self changePlayer];
-}
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	//NSLog(@"touchces began");
@@ -183,6 +178,7 @@
 - (void) dealloc
 {
 	[super dealloc];
+	//[[CCDirector sharedDirector] release];
 	[[CCTextureCache sharedTextureCache] removeAllTextures];
 	[players release];
 }
