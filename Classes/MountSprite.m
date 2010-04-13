@@ -12,7 +12,7 @@
 
 @implementation Mount
 
-@synthesize mMuzzle;
+@synthesize mMuzzle, enabled;
 
 - (CGRect)rect
 {
@@ -97,12 +97,14 @@
 	
 	NSAssert(state == kMountStateGrabbed, @"Mount - Unexpected state!");	
 	
-	CGPoint touchPoint = [touch locationInView:[touch view]];
-	touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint];
-	
-	if (touchPoint.y <= 280 && touchPoint.y >= 30) {
-		self.position = CGPointMake(self.position.x, touchPoint.y);
-		mMuzzle.position = CGPointMake(mMuzzle.position.x, self.position.y - 9);
+	if (enabled) {
+		CGPoint touchPoint = [touch locationInView:[touch view]];
+		touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint];
+		
+		if (touchPoint.y <= 280 && touchPoint.y >= 30) {
+			self.position = CGPointMake(self.position.x, touchPoint.y);
+			mMuzzle.position = CGPointMake(mMuzzle.position.x, self.position.y - 9);
+		}
 	}
 }
 

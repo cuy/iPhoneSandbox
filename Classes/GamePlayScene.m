@@ -48,6 +48,9 @@
 		
 		// set player 1 to be the first to move
 		mCurrentPlayer = [players objectAtIndex:0];
+		// enable movements for 1st player
+		mCurrentPlayer.enabled = YES;
+		
 		// set player 2 to be the enemy player
 		mEnemyPlayer = [players objectAtIndex:1];
     }
@@ -89,6 +92,9 @@
 	[aPlayerMount setMuzzleLocationForPlayer:(player + 1)];
 	// add player muzzle to view
 	[self addChild:aPlayerMount.mMuzzle ];
+	
+	// disable movements in defaults
+	aPlayerMount.enabled = NO;
 	
 	// release the kraken
 	[mountTexture release]; mountTexture = nil;
@@ -134,9 +140,11 @@
 - (void) changePlayer 
 {
 	NSLog(@"change player");
+	mCurrentPlayer.enabled = NO;
 	Mount *swap = mCurrentPlayer;
 	mCurrentPlayer = mEnemyPlayer;
 	mEnemyPlayer =  swap;
+	mCurrentPlayer.enabled = YES;
 }
 
 

@@ -17,6 +17,7 @@ typedef enum tagMountState {
 @interface Mount : CCSprite <CCTargetedTouchDelegate> {
 
 	Muzzle *mMuzzle;
+	BOOL enabled;
 	
 @private
 	MountState state;
@@ -24,6 +25,7 @@ typedef enum tagMountState {
 
 @property(nonatomic, readonly) CGRect rect;
 @property(nonatomic, retain) Muzzle *mMuzzle;
+@property BOOL enabled;
 
 - (void) setRandomLocationForPlayer:(int) player;
 - (void) setMuzzleLocationForPlayer:(int) player;
