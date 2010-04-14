@@ -53,6 +53,8 @@
 		
 		// set player 2 to be the enemy player
 		mEnemyPlayer = [players objectAtIndex:1];
+		// hide muzzle for player 2
+		mEnemyPlayer.mMuzzle.visible = NO;
     }
     return self;
 }
@@ -140,11 +142,20 @@
 - (void) changePlayer 
 {
 	NSLog(@"change player");
+	
+	// disable movements
 	mCurrentPlayer.enabled = NO;
+	// hide muzzle
+	mCurrentPlayer.mMuzzle.visible = NO;
+	
 	Mount *swap = mCurrentPlayer;
 	mCurrentPlayer = mEnemyPlayer;
 	mEnemyPlayer =  swap;
+	
+	// enable movements for current player
 	mCurrentPlayer.enabled = YES;
+	// unhide muzzle
+	mCurrentPlayer.mMuzzle.visible = YES;
 }
 
 
@@ -166,7 +177,7 @@
 	
 	// Arc Tangent Formula
 	CGFloat currentAngle = atan2(mGestureStartPoint.y - mCurrentPlayer.mMuzzle.position.y,mGestureStartPoint.x - mCurrentPlayer.mMuzzle.position.x)*180.0/M_PI;
-	NSLog(@"current angle : %f",currentAngle);
+	//NSLog(@"current angle : %f",currentAngle);
 
 	if (currentAngle <= 80.0f && currentAngle >= -45.0f && mCurrentPlayer == [players objectAtIndex:0]) {
 		mCurrentPlayer.mMuzzle.rotation = -currentAngle;
@@ -178,7 +189,7 @@
 	// rotate muzzle
 	mGestureStartPoint = currentPosition;
 	[angleLabel setString:[NSString stringWithFormat:@"%.0f", mCurrentPlayer.mMuzzle.rotation]];
-	NSLog(@"mCurrentPlayer.mMuzzle.rotation : %f",mCurrentPlayer.mMuzzle.rotation);
+	//NSLog(@"mCurrentPlayer.mMuzzle.rotation : %f",mCurrentPlayer.mMuzzle.rotation);
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {

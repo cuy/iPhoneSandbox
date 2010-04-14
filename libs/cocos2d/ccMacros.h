@@ -36,10 +36,10 @@
 
 
 /// returns a random float between -1 and 1
-#define CCRANDOM_MINUS1_1() ((random() / (float)0x3fffffff )-1.0f)
+#define CCRANDOM_MINUS1_1() ((arc4random() / (float)0x3fffffff )-1.0f)
 
 /// returns a random float between 0 and 1
-#define CCRANDOM_0_1() ((random() / (float)0x7fffffff ))
+#define CCRANDOM_0_1() ((arc4random() / (float)0x7fffffff ))
 
 /// converts degrees to radians
 #define CC_DEGREES_TO_RADIANS(__ANGLE__) ((__ANGLE__) / 180.0f * (float)M_PI)

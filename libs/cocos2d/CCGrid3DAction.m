@@ -413,10 +413,10 @@
 		for( j = 0; j < (gridSize.y+1); j++ )
 		{
 			ccVertex3F	v = [self originalVertex:ccg(i,j)];
-			v.x += ( rand() % (randrange*2) ) - randrange;
-			v.y += ( rand() % (randrange*2) ) - randrange;
+			v.x += ( arc4random() % (randrange*2) ) - randrange;
+			v.y += ( arc4random() % (randrange*2) ) - randrange;
 			if( shakeZ )
-				v.z += ( rand() % (randrange*2) ) - randrange;
+				v.z += ( arc4random() % (randrange*2) ) - randrange;
 			
 			[self setVertex:ccg(i,j) vertex:v];
 		}

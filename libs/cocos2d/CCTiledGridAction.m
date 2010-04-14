@@ -63,22 +63,22 @@ typedef struct
 			ccQuad3 coords = [self originalTile:ccg(i,j)];
 
 			// X
-			coords.bl.x += ( rand() % (randrange*2) ) - randrange;
-			coords.br.x += ( rand() % (randrange*2) ) - randrange;
-			coords.tl.x += ( rand() % (randrange*2) ) - randrange;
-			coords.tr.x += ( rand() % (randrange*2) ) - randrange;
+			coords.bl.x += ( arc4random() % (randrange*2) ) - randrange;
+			coords.br.x += ( arc4random() % (randrange*2) ) - randrange;
+			coords.tl.x += ( arc4random() % (randrange*2) ) - randrange;
+			coords.tr.x += ( arc4random() % (randrange*2) ) - randrange;
 
 			// Y
-			coords.bl.y += ( rand() % (randrange*2) ) - randrange;
-			coords.br.y += ( rand() % (randrange*2) ) - randrange;
-			coords.tl.y += ( rand() % (randrange*2) ) - randrange;
-			coords.tr.y += ( rand() % (randrange*2) ) - randrange;
+			coords.bl.y += ( arc4random() % (randrange*2) ) - randrange;
+			coords.br.y += ( arc4random() % (randrange*2) ) - randrange;
+			coords.tl.y += ( arc4random() % (randrange*2) ) - randrange;
+			coords.tr.y += ( arc4random() % (randrange*2) ) - randrange;
 
 			if( shakeZ ) {
-				coords.bl.z += ( rand() % (randrange*2) ) - randrange;
-				coords.br.z += ( rand() % (randrange*2) ) - randrange;
-				coords.tl.z += ( rand() % (randrange*2) ) - randrange;
-				coords.tr.z += ( rand() % (randrange*2) ) - randrange;
+				coords.bl.z += ( arc4random() % (randrange*2) ) - randrange;
+				coords.br.z += ( arc4random() % (randrange*2) ) - randrange;
+				coords.tl.z += ( arc4random() % (randrange*2) ) - randrange;
+				coords.tr.z += ( arc4random() % (randrange*2) ) - randrange;
 			}
 						
 			[self setTile:ccg(i,j) coords:coords];
@@ -132,22 +132,22 @@ typedef struct
 				ccQuad3 coords = [self originalTile:ccg(i,j)];
 				
 				// X
-				coords.bl.x += ( rand() % (randrange*2) ) - randrange;
-				coords.br.x += ( rand() % (randrange*2) ) - randrange;
-				coords.tl.x += ( rand() % (randrange*2) ) - randrange;
-				coords.tr.x += ( rand() % (randrange*2) ) - randrange;
+				coords.bl.x += ( arc4random() % (randrange*2) ) - randrange;
+				coords.br.x += ( arc4random() % (randrange*2) ) - randrange;
+				coords.tl.x += ( arc4random() % (randrange*2) ) - randrange;
+				coords.tr.x += ( arc4random() % (randrange*2) ) - randrange;
 				
 				// Y
-				coords.bl.y += ( rand() % (randrange*2) ) - randrange;
-				coords.br.y += ( rand() % (randrange*2) ) - randrange;
-				coords.tl.y += ( rand() % (randrange*2) ) - randrange;
-				coords.tr.y += ( rand() % (randrange*2) ) - randrange;
+				coords.bl.y += ( arc4random() % (randrange*2) ) - randrange;
+				coords.br.y += ( arc4random() % (randrange*2) ) - randrange;
+				coords.tl.y += ( arc4random() % (randrange*2) ) - randrange;
+				coords.tr.y += ( arc4random() % (randrange*2) ) - randrange;
 
 				if( shatterZ ) {
-					coords.bl.z += ( rand() % (randrange*2) ) - randrange;
-					coords.br.z += ( rand() % (randrange*2) ) - randrange;				
-					coords.tl.z += ( rand() % (randrange*2) ) - randrange;
-					coords.tr.z += ( rand() % (randrange*2) ) - randrange;
+					coords.bl.z += ( arc4random() % (randrange*2) ) - randrange;
+					coords.br.z += ( arc4random() % (randrange*2) ) - randrange;				
+					coords.tl.z += ( arc4random() % (randrange*2) ) - randrange;
+					coords.tr.z += ( arc4random() % (randrange*2) ) - randrange;
 				}
 				
 				[self setTile:ccg(i,j) coords:coords];
@@ -203,7 +203,7 @@ typedef struct
 	int i;
 	for( i = len - 1; i >= 0; i-- )
 	{
-		int j = rand() % (i+1);
+		int j = arc4random() % (i+1);
 		int v = array[i];
 		array[i] = array[j];
 		array[j] = v;
@@ -465,7 +465,7 @@ typedef struct
 	int i;
 	for( i = len - 1; i >= 0; i-- )
 	{
-		int j = rand() % (i+1);
+		int j = arc4random() % (i+1);
 		int v = array[i];
 		array[i] = array[j];
 		array[j] = v;
