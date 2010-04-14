@@ -12,6 +12,8 @@
 #import "MountView.h"
 #import "MissileView.h"
 #import "Missile.h"
+#import "Game.h"
+#import "Player.h"
 
 
 #define degreesToRadian(x) (M_PI * x / 180.0)
@@ -121,6 +123,11 @@
     CGFloat xOffset = [[currentPlayerInfo objectForKey:@"muzzleXOffset"] floatValue];
     CGFloat yOffset = [[currentPlayerInfo objectForKey:@"muzzleYOffset"] floatValue];
     aPlayerMount.offsets = CGPointMake(xOffset, yOffset);
+    
+    NSEntityDescription *playerEntity = [[[self managedObjectModel] entitiesByName] objectForKey:@"Player"];
+    Player *aPlayer = [[Player alloc] initWithEntity:playerEntity insertIntoManagedObjectContext:[self managedObjectContext]];
+    [aPlayer setOrder:[NSNumber numberWithInt:player]];
+    [game addPlayersObject:aPlayer];
     return [aPlayerMount autorelease];
 }
 
@@ -133,6 +140,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSEntityDescription *gameEntity = [[[self managedObjectModel] entitiesByName] objectForKey:@"Game"];
+    game = [[Game alloc] initWithEntity:gameEntity insertIntoManagedObjectContext:[self managedObjectContext]];
 	
 	//set the power button to enabled
 	[powerButton setEnabled:YES];

@@ -13,6 +13,7 @@
 @class Mount;
 @class MountView;
 @class Missile;
+@class Game;
 
 @interface GunBoundGamePlayViewController : UIViewController <MissileViewDelegate> {
 	
@@ -41,6 +42,8 @@
     NSManagedObjectModel *managedObjectModel;
 	
     NSMutableArray *players;
+    
+    Game *game;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
