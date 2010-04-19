@@ -21,6 +21,7 @@
 #define degreesToRadian(x) (M_PI * x / 180.0)
 
 #define TOTAL_GAME_MISSILE 2
+#define GENERIC_MISSLE_DAMAGE -1
 
 
 @implementation GunBoundGamePlayViewController
@@ -250,6 +251,43 @@
 }
 
 - (void)missileProjectileCompleted:(BOOL)didHitEnemy {
+    if(didHitEnemy)
+    {
+        NSEntityDescription *playerDescription = [[[self managedObjectModel] entitiesByName] objectForKey:@"Player"];
+        NSString *playerKey = @"order";
+        NSNumber *playerValue = [NSNumber numberWithInt:(currentPlayer == 0 ? 1 : 0)];
+        NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"%K == %@", playerKey, playerValue];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        [fetchRequest setEntity:playerDescription];
+        [fetchRequest setPredicate:fetchPredicate];
+        
+        NSError *error = nil;
+        NSArray *playersFetched = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
+        if ((error != nil) || (playersFetched == nil)) {
+            NSLog(@"Error while fetching\n%@", ([error localizedDescription] != nil) ? [error localizedDescription] : @"Unknown Error");
+            exit(1);
+        }
+        
+        [fetchRequest release];
+        
+        NSLog(@"found = %d", [playersFetched count]);
+        NSAssert([playersFetched count] == 1, @"Wrong number of players found");
+        Player *aPlayer = [playersFetched objectAtIndex:0];
+        
+        NSLog(@"hit enemy");
+        // calculate damage to enemy mount
+        // for now, hard code damage to -1
+        NSNumber *currentArmor = [NSNumber numberWithInt:[[[aPlayer mount] armor] intValue]];
+        [[aPlayer mount] setArmor:[NSNumber numberWithInt:([currentArmor intValue] + GENERIC_MISSLE_DAMAGE)]];
+        NSLog(@"current enemy armor = %d", [[[aPlayer mount] armor] intValue]);
+        if([[[aPlayer mount] armor] intValue] == 0)
+        {
+            NSLog(@"mount has been destroyed");
+            [self dismissModalViewControllerAnimated:NO];
+        }
+        
+    }
+    
 	// hide current player muzzle
 	mMountView.mMuzzleView.hidden = YES;
     
@@ -339,7 +377,6 @@
 - (void)dealloc {
     [super dealloc];
     [players release];
-	[mMissileView release];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
