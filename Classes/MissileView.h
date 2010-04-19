@@ -12,7 +12,7 @@
 
 @protocol MissileViewDelegate 
 
-- (void)missileProjectileCompleted;
+- (void)missileProjectileCompleted:(BOOL)didHitEnemy;
 
 @end
 

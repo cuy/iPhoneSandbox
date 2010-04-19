@@ -14,9 +14,13 @@
 #import "Missile.h"
 #import "Game.h"
 #import "Player.h"
+#import "NormalGameMount.h"
+#import "GameMissile.h"
 
 
 #define degreesToRadian(x) (M_PI * x / 180.0)
+
+#define TOTAL_GAME_MISSILE 10
 
 
 @implementation GunBoundGamePlayViewController
@@ -42,6 +46,8 @@
 }
 
 - (IBAction) fireButton:(id)sender {
+    // check if more missles are available
+    
 	mTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/30 target:self selector:@selector(addPower:) userInfo:nil repeats:YES];
 }
 
@@ -127,7 +133,22 @@
     NSEntityDescription *playerEntity = [[[self managedObjectModel] entitiesByName] objectForKey:@"Player"];
     Player *aPlayer = [[Player alloc] initWithEntity:playerEntity insertIntoManagedObjectContext:[self managedObjectContext]];
     [aPlayer setOrder:[NSNumber numberWithInt:player]];
+    
+    NSEntityDescription *mountEntity = [[[self managedObjectModel] entitiesByName] objectForKey:@"NormalGameMount"];
+    NormalGameMount *aNormalGameMount = [[NormalGameMount alloc] initWithEntity:mountEntity insertIntoManagedObjectContext:[self managedObjectContext]];
+    [aPlayer setMount:aNormalGameMount];
+    [aNormalGameMount release];
+    
+    NSEntityDescription *gameMissile = [[[self managedObjectModel] entitiesByName] objectForKey:@"GameMissile"];
+    for(int i = 0; i < TOTAL_GAME_MISSILE; ++i)
+    {
+        GameMissile *aGameMissile = [[GameMissile alloc] initWithEntity:gameMissile insertIntoManagedObjectContext:[self managedObjectContext]];
+        [aPlayer addWeaponsObject:aGameMissile];
+        [aGameMissile release];
+    }
+     
     [game addPlayersObject:aPlayer];
+    [aPlayer release];
     return [aPlayerMount autorelease];
 }
 
@@ -159,7 +180,7 @@
 	angleLabel.text = [NSString stringWithFormat:@"%.0f",mMountView.mMount.angle];
 }
 
-- (void)missileProjectileCompleted {
+- (void)missileProjectileCompleted:(BOOL)didHitEnemy {
 	// hide current player muzzle
 	mMountView.mMuzzleView.hidden = YES;
     

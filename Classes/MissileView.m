@@ -74,7 +74,7 @@
 		[mTimer invalidate];
 		mTimer = nil;
 		self.hidden = YES;
-        [delegate missileProjectileCompleted];
+        [delegate missileProjectileCompleted:[self didHitEnemyMountView]];
 	}
 }
 
