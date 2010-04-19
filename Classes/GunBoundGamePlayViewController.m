@@ -28,7 +28,7 @@
 @synthesize managedObjectContext;
 @synthesize managedObjectModel;
 
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
+// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
@@ -61,7 +61,7 @@
         NSLog(@"Error while fetching\n%@", ([error localizedDescription] != nil) ? [error localizedDescription] : @"Unknown Error");
         exit(1);
     }
-
+    
     
     NSLog(@"projectiles = %d", [projectiles count]);
     if([projectiles count] > 0)
@@ -95,7 +95,7 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:playerDescription];
     [fetchRequest setPredicate:fetchPredicate];
-
+    
     NSError *error = nil;
     NSArray *playersFetched = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
     if ((error != nil) || (playersFetched == nil)) {
@@ -130,11 +130,11 @@
 	[mMissileView fireMissileFrom:mMountView toEnemyMountView:mEnemyMountView];
 	[mMissileView setDelegate:self];
 	[mMissileView release];
-
+    
 	// re-init mpower
 	mPower = 0;
     [self setPowerBarValue:mPower];
-
+    
 	//disable power button
 	[powerButton setEnabled:NO];
 }
@@ -187,7 +187,7 @@
     MountView *aPlayerMount = [[MountView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) forPlayer:(player + 1)];
     [self.view addSubview:aPlayerMount];
     [aPlayerMount setRandomLocation];
-
+    
     NSDictionary *playersInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PlayerConfigurations" ofType:@"plist"]];
     NSDictionary *currentPlayerInfo = [playersInfo objectForKey:[NSString stringWithFormat:@"player%.2d", player]];
     NSLog(@"player = %d\n%@", player, currentPlayerInfo);
@@ -213,7 +213,7 @@
         [aPlayer addWeaponsObject:aGameMissile];
         [aGameMissile release];
     }
-     
+    
     [game addPlayersObject:aPlayer];
     [aPlayer release];
     return [aPlayerMount autorelease];
@@ -280,13 +280,13 @@
 	if ([powerButton isEnabled]) {
         UITouch *touch = [touches anyObject];
         CGPoint currentPosition = [touch locationInView:self.view];
-
+        
         // Arc Tangent Formula
         CGFloat currentAngle = atan2(mGestureStartPoint.y - mMountView.mMuzzleView.center.y,mGestureStartPoint.x - mMountView.mMuzzleView.center.x)*180.0/M_PI;
-
+        
         NSDictionary *playersInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PlayerConfigurations" ofType:@"plist"]];
         NSDictionary *currentPlayerInfo = [playersInfo objectForKey:[NSString stringWithFormat:@"player%.2d", (mMountView.mMount.player - 1)]];
-
+        
         if (currentAngle >= 0) {
             CGFloat max = [[currentPlayerInfo objectForKey:@"posAngleMax"] floatValue];
             CGFloat min = [[currentPlayerInfo objectForKey:@"posAngleMin"] floatValue];
@@ -300,7 +300,7 @@
             CGFloat max = [[currentPlayerInfo objectForKey:@"negAngleMax"] floatValue];
             CGFloat min = [[currentPlayerInfo objectForKey:@"negAngleMin"] floatValue];
             CGFloat def = [[currentPlayerInfo objectForKey:@"negAngleDefault"] floatValue];            
-
+            
             if (currentAngle < max || currentAngle > min) {
                 currentAngle = def;
             }
@@ -309,7 +309,7 @@
         [mMountView.mMuzzleView rotateAngle:currentAngle];
         mMountView.mMount.angle = currentAngle * -1;
         mGestureStartPoint = currentPosition;
-	
+        
         // set powerlabel
         angleLabel.text = [NSString stringWithFormat:@"%.0f",mMountView.mMount.angle];
 	}
