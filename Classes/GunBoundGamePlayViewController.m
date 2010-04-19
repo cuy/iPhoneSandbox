@@ -20,7 +20,7 @@
 
 #define degreesToRadian(x) (M_PI * x / 180.0)
 
-#define TOTAL_GAME_MISSILE 10
+#define TOTAL_GAME_MISSILE 2
 
 
 @implementation GunBoundGamePlayViewController
@@ -47,8 +47,75 @@
 
 - (IBAction) fireButton:(id)sender {
     // check if more missles are available
+    NSEntityDescription *projectileEntity = [[[self managedObjectModel] entitiesByName] objectForKey:@"Projectile"];
+    NSString *orderKey = @"player.order";
+    NSNumber *orderValue = [NSNumber numberWithInt:currentPlayer];
+    NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"%K == %@", orderKey, orderValue];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:projectileEntity];
+    [fetchRequest setPredicate:fetchPredicate];
     
-	mTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/30 target:self selector:@selector(addPower:) userInfo:nil repeats:YES];
+    NSError *error = nil;
+    NSArray *projectiles = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
+    if ((error != nil) || (projectiles == nil)) {
+        NSLog(@"Error while fetching\n%@", ([error localizedDescription] != nil) ? [error localizedDescription] : @"Unknown Error");
+        exit(1);
+    }
+
+    
+    NSLog(@"projectiles = %d", [projectiles count]);
+    if([projectiles count] > 0)
+    {
+        [[self managedObjectContext] deleteObject:[projectiles objectAtIndex:0]];
+        mTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/30 target:self selector:@selector(addPower:) userInfo:nil repeats:YES];
+    }
+    else {
+        // for now, just add more ammo so ammo becomes infinite
+        NSLog(@"out of ammo");
+        [self refillAmmo];
+        error = nil;
+        projectiles = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
+        if ((error != nil) || (projectiles == nil)) {
+            NSLog(@"Error while fetching\n%@", ([error localizedDescription] != nil) ? [error localizedDescription] : @"Unknown Error");
+            exit(1);
+        }
+        NSLog(@"projectiles = %d", [projectiles count]);        
+        [[self managedObjectContext] deleteObject:[projectiles objectAtIndex:0]];
+        mTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/30 target:self selector:@selector(addPower:) userInfo:nil repeats:YES];
+    }
+    
+    [fetchRequest release];
+}
+
+- (void)refillAmmo {
+    NSEntityDescription *playerDescription = [[[self managedObjectModel] entitiesByName] objectForKey:@"Player"];
+    NSString *playerKey = @"order";
+    NSNumber *playerValue = [NSNumber numberWithInt:currentPlayer];
+    NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"%K == %@", playerKey, playerValue];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:playerDescription];
+    [fetchRequest setPredicate:fetchPredicate];
+
+    NSError *error = nil;
+    NSArray *playersFetched = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
+    if ((error != nil) || (playersFetched == nil)) {
+        NSLog(@"Error while fetching\n%@", ([error localizedDescription] != nil) ? [error localizedDescription] : @"Unknown Error");
+        exit(1);
+    }
+    
+    NSLog(@"found = %d", [playersFetched count]);
+    NSAssert([playersFetched count] == 1, @"Wrong number of players found");
+    Player *aPlayer = [playersFetched objectAtIndex:0];
+    
+    NSEntityDescription *gameMissile = [[[self managedObjectModel] entitiesByName] objectForKey:@"GameMissile"];
+    for(int i = 0; i < TOTAL_GAME_MISSILE; ++i)
+    {
+        GameMissile *aGameMissile = [[GameMissile alloc] initWithEntity:gameMissile insertIntoManagedObjectContext:[self managedObjectContext]];
+        [aPlayer addWeaponsObject:aGameMissile];
+        [aGameMissile release];
+    }    
+    
+    [fetchRequest release];
 }
 
 - (IBAction)fireMissile:(id)sender {
@@ -175,6 +242,8 @@
 	mMountView = [players objectAtIndex:0];
 	// set player 2 to be the enemy
 	mEnemyMountView = [players objectAtIndex:1];
+    
+    currentPlayer = 0;
 	
 	// set powerlabel
 	angleLabel.text = [NSString stringWithFormat:@"%.0f",mMountView.mMount.angle];
@@ -190,6 +259,8 @@
 	
 	// unhide new player muzzle
 	mMountView.mMuzzleView.hidden = NO;
+    
+    currentPlayer = currentPlayer == 0 ? 1 : 0;
 	
 	angleLabel.text = [NSString stringWithFormat:@"%.0f",mMountView.mMount.angle];
 	
@@ -269,6 +340,14 @@
     [super dealloc];
     [players release];
 	[mMissileView release];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    NSLog(@"deleting Game");
+    [[self managedObjectContext] deleteObject:game];
+    
 }
 
 @end
