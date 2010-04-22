@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11331948117568A500C9F987 /* missile3.png in Resources */ = {isa = PBXBuildFile; fileRef = 11331947117568A500C9F987 /* missile3.png */; };
+		114BC54211759CDC00D198C5 /* MissileSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 114BC54111759CDC00D198C5 /* MissileSprite.m */; };
 		119E8270116C2F5500ED64A9 /* power_meter.png in Resources */ = {isa = PBXBuildFile; fileRef = 119E826F116C2F5500ED64A9 /* power_meter.png */; };
 		11B45768114F0E7700EBB7F2 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B45767114F0E7700EBB7F2 /* MainMenuScene.m */; };
 		11B457A8114F12FF00EBB7F2 /* GamePlayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B457A7114F12FF00EBB7F2 /* GamePlayScene.m */; };
@@ -199,6 +201,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11331947117568A500C9F987 /* missile3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = missile3.png; path = images/missile3.png; sourceTree = "<group>"; };
+		114BC54011759CDC00D198C5 /* MissileSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissileSprite.h; sourceTree = "<group>"; };
+		114BC54111759CDC00D198C5 /* MissileSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissileSprite.m; sourceTree = "<group>"; };
 		119E826F116C2F5500ED64A9 /* power_meter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = power_meter.png; path = images/power_meter.png; sourceTree = "<group>"; };
 		11B45766114F0E7700EBB7F2 /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
 		11B45767114F0E7700EBB7F2 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
@@ -420,6 +425,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		113319391175676A00C9F987 /* Missile */ = {
+			isa = PBXGroup;
+			children = (
+				114BC54011759CDC00D198C5 /* MissileSprite.h */,
+				114BC54111759CDC00D198C5 /* MissileSprite.m */,
+			);
+			name = Missile;
+			sourceTree = "<group>";
+		};
 		11B45758114F0DBF00EBB7F2 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,6 +450,7 @@
 			children = (
 				11B46B54114F574900EBB7F2 /* Controller */,
 				11B46B53114F573D00EBB7F2 /* Mount */,
+				113319391175676A00C9F987 /* Missile */,
 			);
 			name = "Sprite Classes";
 			sourceTree = "<group>";
@@ -443,6 +458,7 @@
 		11B46B12114F52CF00EBB7F2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				11331947117568A500C9F987 /* missile3.png */,
 				119E826F116C2F5500ED64A9 /* power_meter.png */,
 				11B46CA6114F77B300EBB7F2 /* muzzle.png */,
 				11B46B89114F5A9E00EBB7F2 /* controller_base.png */,
@@ -890,6 +906,7 @@
 				11B46B8E114F5A9E00EBB7F2 /* controller_fire_button.png in Resources */,
 				11B46CA7114F77B300EBB7F2 /* muzzle.png in Resources */,
 				119E8270116C2F5500ED64A9 /* power_meter.png in Resources */,
+				11331948117568A500C9F987 /* missile3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,6 +926,7 @@
 				11B46B57114F575500EBB7F2 /* ControllerSprite.m in Sources */,
 				11B46CBB114F78C400EBB7F2 /* MuzzleSprite.m in Sources */,
 				11ED6C771172C5670066713F /* FireButtonMenu.m in Sources */,
+				114BC54211759CDC00D198C5 /* MissileSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1079,14 +1097,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Royce Albert Dy (5K3VK76GFX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A9E6AE97-8ED6-4348-8518-B308DAD93DC9";
-				SDKROOT = iphoneos3.0;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos3.1.2;
 			};
 			name = Debug;
 		};
@@ -1101,7 +1119,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos3.1.2;
 			};
 			name = Release;
 		};

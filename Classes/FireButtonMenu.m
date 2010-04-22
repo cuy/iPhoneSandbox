@@ -19,8 +19,9 @@
 - (void) addPower:(ccTime) dt
 {
 	if (power < 105) {
-		powerMeter.scaleX = power++;
-		NSLog(@"power: %f",power);
+		power = power + 2;
+		powerMeter.scaleX = power;
+		//NSLog(@"power: %f",power);
 	}
 }
 
@@ -52,10 +53,13 @@
 	NSLog(@"touch ended");
 	// unschedule timer
 	[self unschedule:@selector(addPower:)];
-	
+		
+	// launch missile
+	[[self delegate] launchMissileWithPower: power];
 	//change player
 	[[self delegate] changePlayer];
 	
+
 	
 	NSAssert(state == kMenuStateTrackingTouch, @"[Menu ccTouchEnded] -- invalid state");
 	

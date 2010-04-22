@@ -12,4 +12,7 @@
 
 @implementation Muzzle
 
+@synthesize power;
+@synthesize angle;
+
 @end

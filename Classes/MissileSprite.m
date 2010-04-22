@@ -2,7 +2,7 @@
 //  MissileSprite.m
 //  GunBoundcocos2d
 //
-//  Created by Royce Albert Dy on 3/17/10.
+//  Created by Royce Albert Dy on 4/14/10.
 //  Copyright 2010 G2iX. All rights reserved.
 //
 
@@ -12,39 +12,57 @@
 
 @implementation Missile
 
-@synthesize angle;
+@synthesize angle, velocity;
 
-- (void) firemissile
++ (id) missileWithTexture:(CCTexture2D *)aTexture
 {
-	
-	cposition.x =  self.position.x + cos(angle); 
-	cposition.y =  self.position.y + sin(angle); 
-	NSLog(@"cposition x: %f y: %f",cposition.x,cposition.y);
-	
-	//cposition = [[CCDirector sharedDirector] convertToGL:cposition];
-	time = 0;
-	angle = -45;
-	mTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 / 60.0  target:self selector:@selector(startFireMissile) userInfo:nil repeats:YES];	
-	
+	return [[[self alloc] initWithTexture:aTexture] autorelease];
 }
 
-- (void) startFireMissile
+- (id) initWithTexture:(CCTexture2D *)aTexture
 {
-	CGFloat velocity = 50;
-	CGFloat gravity = -10;
-	// launch missile
-	time += 1.0/10;
+	if ((self = [super initWithTexture:aTexture]) ) {
+		
+	}
+	
+	return self;
+}
+
+- (void) launchMissile
+{
+	time = 0;
+	self.rotation = angle;
+	startPosition.x = self.position.x + cos(angle * M_PI/180); 
+	startPosition.y = self.position.y + sin(angle * M_PI/180);
+	//NSLog(@"startposition x: %f y: %f",startPosition.x,startPosition.y);
+	oldPosition = startPosition;
+	[self schedule:@selector(startLaunchMissile)];
+
+}
+
+- (void) startLaunchMissile
+{
+	time += (float)1/10;
+
+	float gravity = -10;
+	
 	CGPoint position;
-	position.x = velocity * time * cos(angle * M_PI/180) + cposition.x;
-	position.y = 0.5 * gravity * time * time - velocity * time * sin((angle * M_PI)/180) + cposition.y;	
-	NSLog(@"position x: %f y: %f",position.x,position.y);
-	//position = [[CCDirector sharedDirector] convertToGL:position];
+	position.x = velocity * time * cos(angle * M_PI/180) + startPosition.x;
+	position.y = 0.5 * gravity * time * time - velocity * time * sin((angle * M_PI)/180) + startPosition.y;
+	
+	//NSLog(@"current position x: %f y: %f",position.x,position.y);
+	
 	self.position = position;
 	
-	if (position.y >= 320.0f  || position.x >= 480.0f) {
-		[mTimer invalidate];
-		mTimer = nil;
+	CGFloat rot = atan2(position.y - oldPosition.y, position.x - oldPosition.x)*180.0/M_PI;
+	//NSLog(@"rot %f", rot);
+	self.rotation = rot * -1;
+	oldPosition = position;
+	if (self.position.y >= 380.0f  || self.position.x >= 530.0f || self.position.y < -15)
+	{
+		[self unschedule:@selector(startLaunchMissile)];
 	}
+	
 }
 
 @end

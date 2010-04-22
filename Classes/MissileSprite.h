@@ -2,23 +2,28 @@
 //  MissileSprite.h
 //  GunBoundcocos2d
 //
-//  Created by Royce Albert Dy on 3/17/10.
+//  Created by Royce Albert Dy on 4/14/10.
 //  Copyright 2010 G2iX. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "cocos2d.h"
-
 
 @interface Missile : CCSprite {
 
-	CGPoint cposition;
+	CGPoint startPosition;
+	CGPoint oldPosition;
+	float time;
+	float angle;
+	float velocity;
 	NSTimer *mTimer;
-	CGFloat angle;
-	CGFloat time;
+
 }
 
-@property CGFloat angle;
+@property (nonatomic, assign) float velocity;
+@property (nonatomic, assign) float angle;
 
-- (void) firemissile;
++ (id) missileWithTexture:(CCTexture2D *)aTexture;
+- (void) launchMissile;
 
 @end

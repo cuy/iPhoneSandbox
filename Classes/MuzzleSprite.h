@@ -12,7 +12,11 @@
 
 @interface Muzzle : CCSprite {
 
+	float power;
+	float angle;
 }
 
+@property (nonatomic) float power;
+@property (nonatomic) float angle;
 
 @end

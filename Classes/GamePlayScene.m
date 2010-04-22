@@ -14,6 +14,8 @@
 
 #import "FireButtonMenu.h"
 
+#import "MissileSprite.h"
+
 @implementation GamePlayScene
 
 
@@ -50,7 +52,7 @@
 		mCurrentPlayer = [players objectAtIndex:0];
 		// enable movements for 1st player
 		mCurrentPlayer.enabled = YES;
-		
+
 		// set player 2 to be the enemy player
 		mEnemyPlayer = [players objectAtIndex:1];
 		// hide muzzle for player 2
@@ -89,7 +91,7 @@
 	// add muzzle image
 	CCTexture2D *muzzleSprite = [[CCTextureCache sharedTextureCache] addImage:@"muzzle.png"];
 	// initialize player muzzle with muzzle image
-	aPlayerMount.mMuzzle = [CCSprite spriteWithTexture:muzzleSprite];
+	aPlayerMount.mMuzzle = [Muzzle spriteWithTexture:muzzleSprite];
 	// set muzzle location
 	[aPlayerMount setMuzzleLocationForPlayer:(player + 1)];
 	// add player muzzle to view
@@ -118,8 +120,9 @@
 	fireButtonItem.position = ccp(305, 72);
 	controllerBase.fireButton = [FireButton menuWithItems:fireButtonItem, nil];
 	controllerBase.fireButton.position = CGPointZero;
-	[controllerBase.fireButton setDelegate:self];
-	[self addChild:controllerBase.fireButton];
+	//[controllerBase.fireButton setDelegate:self];
+	controllerBase.fireButton.delegate = self;
+	[self addChild:controllerBase.fireButton z:2];
 	
 	// initialize power meter
 	controllerBase.fireButton.powerMeter = [CCSprite spriteWithFile:@"power_meter.png"];
@@ -158,6 +161,31 @@
 	mCurrentPlayer.mMuzzle.visible = YES;
 }
 
+- (void) launchMissileWithPower: (float) power
+{
+	NSLog(@"launcMissile");
+	
+	CCTexture2D *missileSprite = [[CCTextureCache sharedTextureCache] addImage:@"missile3.png"];
+	Missile *missile = [Missile missileWithTexture:missileSprite];
+	missile.position = mCurrentPlayer.mMuzzle.position;
+	missile.angle = mCurrentPlayer.mMuzzle.angle;
+	missile.velocity = power;
+	[self addChild:missile z:0];
+	
+	[missile launchMissile];
+	
+	// release the kraken
+	[missileSprite release]; missileSprite = nil;
+	//[self removeChild:missile cleanup:NO];
+	//[missile release]; missile = nil;
+	
+}
+
+- (void) setPower: (float) power
+{
+	mCurrentPlayer.mMuzzle.power = power;
+}
+
 
 #pragma mark Button Actions
 
@@ -166,9 +194,11 @@
 	UITouch *touch = [touches anyObject];
 	mGestureStartPoint = [touch locationInView:[touch view]];
 	mGestureStartPoint = [[CCDirector sharedDirector] convertToGL:mGestureStartPoint];
+	
 	//return YES;
 
 }
+
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 	//NSLog(@"touched moved");
 	UITouch *touch = [touches anyObject];
@@ -188,8 +218,12 @@
 	
 	// rotate muzzle
 	mGestureStartPoint = currentPosition;
+	// set angle label
 	[angleLabel setString:[NSString stringWithFormat:@"%.0f", mCurrentPlayer.mMuzzle.rotation]];
-	//NSLog(@"mCurrentPlayer.mMuzzle.rotation : %f",mCurrentPlayer.mMuzzle.rotation);
+	
+	// set angle to currentplayer muzzle
+	mCurrentPlayer.mMuzzle.angle = -currentAngle;
+	//NSLog(@"mCurrentPlayer.mMuzzle.rotation : %f",currentAngle);
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {

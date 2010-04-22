@@ -12,6 +12,7 @@
 @protocol FireButtonMenuDelegate
 
 - (void) changePlayer;
+- (void) launchMissileWithPower: (float) power;
 
 @end
 

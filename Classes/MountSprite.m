@@ -55,6 +55,7 @@
 		x -= 60;
 		// flip muzzle image
 		self.mMuzzle.scaleX = -self.mMuzzle.scaleX;
+		//self.mMuzzle.flipX = YES;
 		NSLog(@"scale x %f",self.mMuzzle.scaleX);
 	}
 	self.mMuzzle.position = ccp(x,y);
